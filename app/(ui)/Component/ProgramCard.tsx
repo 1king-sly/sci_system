@@ -9,7 +9,7 @@ export default function ProgramCard({ name, desc, link, image }: { name: string;
     return (
         <Link href={link}>
             <div
-                className='relative w-[200px] h-[200px] flex flex-col items-center justify-center bg-purple-500 overflow-hidden'
+                className='relative w-[200px] h-[200px] flex flex-col items-center justify-center bg-sky-900 overflow-hidden'
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -18,7 +18,7 @@ export default function ProgramCard({ name, desc, link, image }: { name: string;
                 <p className={`absolute bottom-0 w-full text-center py-2 bg-white ${isHovered ? 'opacity-100 transition-opacity duration-300 ease-in-out' : 'opacity-0'}`}>
                     {desc}
                 </p>
-                <div className={`w-full h-full bg-purple-500 opacity-25 absolute top-0 ${isHovered ? 'bottom-auto' : 'bottom-0'}`} />
+                <div className={`w-full h-full bg-sky-900 opacity-25 absolute top-0 ${isHovered ? 'bottom-auto' : 'bottom-0'}`} />
             </div>
         </Link>
     );

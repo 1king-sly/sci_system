@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
+import NavBar1 from "./(ui)/Component/NavBar1";
 import NavBar from "./(ui)/Component/NavBar";
 import pic from '@/public/students.png'
 import pic2 from '@/public/bg.jpg'
@@ -35,7 +36,7 @@ export default function Home() {
   }, [datas.length]);
   return (
     <>
-    <div className="w-screen h-[12vh] flex flex-col  bg-sky-400 items-center justify-center">
+    <div className="w-screen h-[12vh] flex flex-col ">
     <NavBar1/>
     </div>
     <Header/>
@@ -44,7 +45,7 @@ export default function Home() {
     <div className='w-screen h-screen relative'>
     <Image src={datas[currentDataIndex].image} alt='hero-images' className=' w-full h-full object-cover absolute ' /> 
     <h1 className='absolute w-full h-full flex items-center text-4xl text-purple-900 ps-20'>{datas[currentDataIndex].desc}</h1>
-    <div className='w-full h-full absolute inset-0 bg-purple-500 opacity-20'></div>   
+    <div className='w-full h-full absolute inset-0 bg-sky-900 opacity-20'></div>   
 
     </div>
 
