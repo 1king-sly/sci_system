@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import NavBar from "./(ui)/Component/NavBar";
+import NavBar1 from "./(ui)/Component/NavBar1"
 import Header from "./(ui)/Component/Header";
 import SideBar from "./(ui)/Component/SideBar";
 import { usePathname } from "next/navigation";
@@ -10,8 +10,8 @@ export default function Home() {
   const pathname = usePathname()
   return (
     <>
-    <div className="w-screen h-[23vh] flex flex-col   ">
-    <NavBar/>
+    <div className="w-screen h-[12vh] flex flex-col  bg-sky-400 items-center justify-center">
+    <NavBar1/>
     </div>
     <Header/>
 
