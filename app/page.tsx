@@ -35,8 +35,8 @@ export default function Home() {
   }, [datas.length]);
   return (
     <>
-    <div className="w-screen h-[23vh] flex flex-col   ">
-    <NavBar/>
+    <div className="w-screen h-[12vh] flex flex-col  bg-sky-400 items-center justify-center">
+    <NavBar1/>
     </div>
     <Header/>
 
