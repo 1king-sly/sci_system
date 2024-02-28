@@ -38,7 +38,7 @@ export default function SideBar() {
 ]
   return (
     <div className='w-full h-full'>
-    <div className='w-full h-8 bg-sky-400 mb-5'></div>
+    <div className='w-full h-8 bg-sky-300 mb-5'></div>
     {links.map((link, index) => {
         const LinkIcon = link.icon;
         return (

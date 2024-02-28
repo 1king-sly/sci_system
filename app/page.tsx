@@ -36,9 +36,6 @@ export default function Home() {
   }, [datas.length]);
   return (
     <>
-    <div className="w-screen h-[12vh] flex flex-col ">
-    <NavBar1/>
-    </div>
     <Header/>
 
     {/* Hero Section */}
