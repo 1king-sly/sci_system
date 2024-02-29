@@ -13,7 +13,7 @@ export default function Error({
     console.error(error);
   }, [error])
   return (
-    <div>
+    <div className='items-center justify-center'>
         <h2>Something Went wrong!</h2>
         <button onClick={() => reset()} className='border rounded-lg bg-sky-400'>Try again</button> 
     </div>
