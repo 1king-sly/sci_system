@@ -8,8 +8,8 @@ export default function Programmes() {
     <div className='w-full h-full flex gap-2 justify-around items-center flex-wrap'>
 
         <ProgramCard name={'Programmes'} link={'/programmes'} desc={'Description on programmes'} image={pic}/>
-        <ProgramCard name={'Students'} link={'/students'} desc={'Description on students'} image={pic}/>
-        <ProgramCard name={'Staff'} link={'/staff'} desc={'Description on staff'} image={pic}/>
+        <ProgramCard name={'Students'} link={'/Students'} desc={'Description on students'} image={pic}/>
+        <ProgramCard name={'Staff'} link={'/Staff'} desc={'Description on staff'} image={pic}/>
         <ProgramCard name={'News'} link={'/news'} desc={'Description on news'} image={pic}/>
         <ProgramCard name={'Clubs'} link={'/clubs'} desc={'Description on clubs'} image={pic}/>
 

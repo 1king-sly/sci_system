@@ -7,7 +7,7 @@ export default function page() {
     <div className='mx-20 my-10 overflow-hidden'>
         <h1 className='text-4xl font-serif font-bold max-[425px]:text-2xl'>Staff Page</h1>
         <CODCard></CODCard>
-        <h1 className='text-4xl font-serif font-bold max-[425px]:text-2xl'>Memebers of Staff</h1>
+        <h1 className='text-4xl font-serif font-bold max-[425px]:text-2xl'>Members of Staff</h1>
         <MembersCard></MembersCard>
     </div>
   )
