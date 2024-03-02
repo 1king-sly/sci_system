@@ -1,5 +1,5 @@
 import React from 'react'
-import SideBar from '@/app/(ui)/Component/SideBar'
+import DeptSideBar from '@/app/(ui)/Component/DeptSideBar'
 
 export default function page() {
   return (
@@ -29,8 +29,10 @@ export default function page() {
             </div>
         
             </div>
-
-            <SideBar></SideBar>
+            
+            <div className='w-[20vw] '>
+            <DeptSideBar></DeptSideBar>
+            </div>
         </div>
     </>
   )
