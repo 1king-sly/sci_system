@@ -16,7 +16,7 @@ export default function NavBar1() {
   }
   return (
     <>
-    <div className='w-full flex items-center h-[12vh] font-serif z-50 fixed bg-sky-300'>
+    <div className='w-full flex items-center h-[12vh] font-serif z-50 fixed bg-sky-300 shadow-lg'>
       <div className='w-full h-full px:4 md:px-8 flex items-center'>
 
         <div className='flex justify-start w-1/3 cursor-pointer'>
