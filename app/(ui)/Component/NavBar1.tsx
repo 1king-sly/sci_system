@@ -16,13 +16,15 @@ export default function NavBar1() {
   }
   return (
     <>
-    <div className='w-full flex items-center h-[12vh] font-serif z-50 fixed bg-sky-300 shadow-lg'>
-      <div className='w-full h-full px:4 md:px-8 flex items-center'>
+    <div className='w-full flex items-center h-[30vh] md:h-auto font-serif z-50 fixed bg-gray-900 shadow-lg'>
+      <div className='w-full h-full mx-auto py-5 px-4 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 flex items-center'>
 
-        <div className='flex justify-start w-1/3 cursor-pointer'>
-        <Image src={logo} alt='Logo'  className='cursor-pointer object-cover h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 bg-white'></Image>
+        <div className='flex justify-start w-full cursor-pointer'>
+          <Link href='/'>
+            <Image src={logo} alt='Logo'  className='cursor-pointer '></Image>
+          </Link>
         </div>
-        <div className='gap-4 flex-1 flex justify-evenly md:text-lg lg:text-xl text-white text-xs '>
+        <div className='gap-4 flex-1 justify-evenly hidden text-sm text-white space-x-8 lg:flex'>
         <Link href="/"> 
           <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/'})}>HOME</h1>
         </Link>
@@ -43,7 +45,7 @@ export default function NavBar1() {
         </div>
       </div>
     </div>
-    <div className={clsx(`my-[12vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50`, !visible && 'hidden')}>
+    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50`, !visible && 'hidden')}>
     <AuthForm></AuthForm>
     </div>
     </>
