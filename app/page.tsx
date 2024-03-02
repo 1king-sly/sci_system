@@ -4,7 +4,7 @@ import Image from "next/image";
 import NavBar1 from "./(ui)/Component/NavBar1";
 import NavBar from "./(ui)/Component/NavBar";
 import pic from '@/public/students.png'
-import pic2 from '@/public/bg.jpg'
+import pic2 from '@/public/club.jpg'
 import pic3 from '@/public/students.png'
 import Header from "./(ui)/Component/Header";
 import SideBar from "./(ui)/Component/SideBar";
@@ -36,48 +36,51 @@ export default function Home() {
   }, [datas.length]);
   return (
     <>
-    <Header/>
 
-    {/* Hero Section */}
-    <div className='w-screen h-screen relative'>
-    <Image src={datas[currentDataIndex].image} alt='hero-images' className=' w-full h-full object-cover absolute ' /> 
-    <h1 className='absolute w-full h-full flex items-center text-4xl text-purple-900 ps-20'>{datas[currentDataIndex].desc}</h1>
-    <div className='w-full h-full absolute inset-0 bg-sky-900 opacity-20'></div>   
+ <div className='w-full h-full flex gap-10 flex-col'>
 
-    </div>
+{/* Hero Section */}
+<div className='w-full h-[70vh] relative  '>
+<Image src={datas[currentDataIndex].image} alt='hero-images' className=' w-full h-full object-cover  ' /> 
+<h1 className='w-full h-full flex items-center text-4xl text-purple-900 ps-20 absolute inset-0'>{datas[currentDataIndex].desc}</h1>
+<div className='w-full h-full bg-sky-900 opacity-20 absolute inset-0'></div>   
+
+</div>
 
 {/* About section */}
-    <div className="w-screen h-[320px] flex max-[420px]:flex-col gap-3 justify-around px-20 mt-4 ">
+<div className="w-full min-h-[320px] flex max-[420px]:flex-col gap-3 justify-around px-20 mt-4 ">
 
-      <div className="w-1/4 h-full">
-      <Image src={pic} alt='hero-images' className=' w-full h-full object-cover ' /> 
-      </div>
-      <div className="w-2/3 h-full flex items-center ">
+  <div className="w-1/4 h-full">
+  <Image src={pic} alt='hero-images' className=' w-full h-full object-cover ' /> 
+  </div>
+  <div className="w-2/3 h-full flex items-center ">
 
-        <p>Computer Science is a technical course offered....</p>
-     
-      </div>
+    <p>Computer Science is a technical course offered....</p>
+ 
+  </div>
 
+</div>
+
+{/* Cards sections */}
+
+<div className='w-full h-[420px] flex max-[420px]:flex-col px-20 '>
+
+  <div className='w-2/3 h-full'>
+    <Programmes/>
+  </div>
+  <div className='w-1/4 h-full flex ' >
+    <EventsCard/>
+  </div>
+
+
+</div>
+
+{/* Footer */}
+<div className='w-full  min-h-[320px] bg-gray-400 '>
+   
+</div>
     </div>
-
-    {/* Cards sections */}
-
-    <div className='w-screen h-[420px] flex max-[420px]:flex-col px-20 '>
-
-      <div className='w-2/3 h-full'>
-        <Programmes/>
-      </div>
-      <div className='w-1/4 h-full flex ' >
-        <EventsCard/>
-      </div>
-
-
-    </div>
-
-    {/* Footer */}
-    <div className='w-screen h-[320px] bg-gray-900'>
-
-    </div>
+  
     </>
   );
 }
