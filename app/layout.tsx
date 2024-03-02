@@ -19,10 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
           <div className='w-screen h-screen flex flex-col overflow-hidden gap-1 mb-0'>
-            <div className="shadow-md ">
+            <div className="w-full bg-gray-200 shadow-md h-[22vh]">
               <NavBar1></NavBar1>
               </div>
-            <div className="h-full w-full bg-gray-200 overflow-y-scroll">{children}</div>
+            <div className="h-full w-full bg-gray-200 overflow-y-scroll overflow-x-hidden">{children}</div>
           </div>
         </body>
     </html>

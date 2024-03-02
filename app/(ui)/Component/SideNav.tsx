@@ -67,3 +67,4 @@ export default function SideNav() {
     </div>
   )
 }
+{/* <div className='fixed overflow-hidden bg-sky-300 h-screen w-[15vw]  flex flex-col py-4 gap-3'>hidden md:block */}
