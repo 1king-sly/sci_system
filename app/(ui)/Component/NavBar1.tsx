@@ -16,7 +16,7 @@ export default function NavBar1() {
   }
   return (
     <>
-    <div className='w-full flex items-center h-[30vh] md:h-auto font-serif z-50 fixed bg-gray-900 shadow-lg'>
+    <div className='w-full flex items-center h-[30vh] md:h-auto font-serif z-50 fixed bg-gray-900 '>
       <div className='w-full h-full mx-auto py-5 px-4 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 flex items-center'>
 
         <div className='flex justify-start w-full cursor-pointer'>
