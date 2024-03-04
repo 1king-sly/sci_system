@@ -12,6 +12,11 @@ import SideBar from "./(ui)/Component/SideBar";
 import { usePathname } from "next/navigation";
 import Programmes from "./(ui)/Component/Programmes";
 import EventsCard from "./(ui)/Component/EventsCard";
+import Dean from '@/public/dotanga.jpg'
+import Cards from './(ui)/Component/Cards';
+import UpcomingEvents from './(ui)/Component/UpcomingEvents';
+import DeptMission from './(ui)/Component/DeptMission';
+import DeanSection from './(ui)/Component/DeanSection';
 
 export default function Home() {
 
@@ -35,6 +40,8 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, [datas.length]);
+ 
+ 
   return (
     <>
 
@@ -47,7 +54,8 @@ export default function Home() {
 <p className='w-1/3 h-full mt-8 flex items-center text-md text-gray-300 ps-20 absolute inset-0 z-50'>{datas[currentDataIndex].desc}</p>
 <div className='w-full h-full bg-gray-900 opacity-75 absolute inset-0'></div>   
 
-</div>
+  {/* Dean/About section */}
+            <DeanSection></DeanSection>
 
 {/* About section */}
 <div className="w-full min-h-[440px] flex max-[420px]:flex-col gap-3 justify-around px-20 mt-4 ">
@@ -126,14 +134,17 @@ export default function Home() {
   </div>
 
 
-</div>
+</div> 
 
 {/* Footer */}
 <div className='w-full  min-h-[320px] bg-gray-400 '>
    
 </div>
     </div>
+
+</div>
   
     </>
-  );
-}
+  )
+
+
