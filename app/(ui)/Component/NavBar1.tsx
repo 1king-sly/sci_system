@@ -31,8 +31,8 @@ export default function NavBar1() {
         <Link href="/department">
           <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENT</h1>
         </Link>
-        <Link href="/clubs">
-          <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname==='/clubs'})}>CLUBS</h1>
+        <Link href="/club">
+          <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname==='/club'})}>CLUBS</h1>
         </Link>
         <Link href="blog">
           <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/blog'})}>BLOG</h1>
