@@ -23,6 +23,9 @@ export default function DeptSideBar() {
         name:'Programs',href:'#Programs',
     },
         {
+        name:'Mission and Vision',href:'#Programs',
+    },
+        {
         name:'Staff',href:'#Staff',
     },
         {
@@ -30,7 +33,13 @@ export default function DeptSideBar() {
     },
 ]
   return (
+    <div className="col-span-1">
+    <div className="px-4 py-16 fixed  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-20 lg:py-20">
+    <div className="  h-full ">
+    
     <div className='w-[20vw] mt-10 h-full flex flex-col  fixed items-center'>
+    <div className="text-center  mb-4 items-center justify-center gap-2">
+
     {links.map((link) => {
         return (
                 <Link
@@ -39,11 +48,16 @@ export default function DeptSideBar() {
                     })}
                     href={link.href}
                 >
-                    {link.name}
+                    <h6 className="mb-2 mr-4 text-sm font-bold leading-5 tracking-wider uppercase">{link.name}</h6>
                 </Link>
         );
     })}
 {/* </div> */}
 </div>
+</div>
+</div>
+</div>
+</div>
+
   )
 }
