@@ -1,31 +1,23 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import Image from "next/image";
-import NavBar1 from "./(ui)/Component/NavBar1";
-import NavBar from "./(ui)/Component/NavBar";
 import pic from '@/public/students.png'
 import pic2 from '@/public/club.jpg'
 import pic3 from '@/public/students.png'
-import profile from '@/public/dr.ondulo.jpg'
-import Header from "./(ui)/Component/Header";
-import SideBar from "./(ui)/Component/SideBar";
 import { usePathname } from "next/navigation";
-import Programmes from "./(ui)/Component/Programmes";
-import EventsCard from "./(ui)/Component/EventsCard";
-import Dean from '@/public/dotanga.jpg'
 import Cards from './(ui)/Component/Cards';
 import UpcomingEvents from './(ui)/Component/UpcomingEvents';
 import DeptMission from './(ui)/Component/DeptMission';
 import DeanSection from './(ui)/Component/DeanSection';
+import Footer from './(ui)/Component/Footer';
 
 export default function Home() {
 
   const datas = [
-    {image:pic,title:'First picture',desc:'This is the descripion of the image page'
+    {image:pic,desc:'First picture'
   },
-    {image:pic2,title:'Second picture',desc:'This is the descripion of the image page'
+    {image:pic2,desc:'Second picture'
   },
-    {image:pic3,title:'Third picture',desc:'This is the descripion of the image page'
+    {image:pic3,desc:'Third picture'
   },
 ];
 
@@ -40,111 +32,43 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, [datas.length]);
- 
- 
   return (
     <>
+      <div className='w-full h-full flex gap-10 flex-col'>
+        {/* Hero Section */}
+        <div className="relative">
+            <img src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" className="absolute inset-0 object-cover w-full h-full" alt="" />
+            <div className="relative bg-gray-900 bg-opacity-75">
+              <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+                <div className="flex flex-col items-center justify-between xl:flex-row">
+                  <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+                    <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                      Welcome to Department of Computer Science,<br className="hidden md:block" />
+                      Home of technology<span className="text-teal-accent-400"></span>
+                    </h2>
+                    <p className="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan, totam rem aperiam, eaque ipsa quae.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <DeanSection></DeanSection>
+        <DeptMission></DeptMission>
 
- <div className='w-full h-full flex gap-10 flex-col'>
+        <div className="px-4 relative py-5 m-20 mx-auto bg-white sm:max-w-xl md:max-w-full lg:max-h-screen-lg lg:max-w-screen-xl   md:px-24 lg:px-8 lg:py-20">
+            <div className="grid gap-10 row-gap-8 lg:grid-cols-5">
+            <Cards />
+            <UpcomingEvents></UpcomingEvents>
+          </div>
+        </div>
 
-{/* Hero Section */}
-<div className='w-full h-[60vh] relative  '>
-<Image src={datas[currentDataIndex].image} alt='hero-images' className=' w-full h-full object-cover  ' /> 
-<h1 className='w-full h-full flex items-center text-4xl text-white ps-20 absolute inset-0 z-50'>{datas[currentDataIndex].title}</h1>
-<p className='w-1/3 h-full mt-8 flex items-center text-md text-gray-300 ps-20 absolute inset-0 z-50'>{datas[currentDataIndex].desc}</p>
-<div className='w-full h-full bg-gray-900 opacity-75 absolute inset-0'></div>   
-
-  {/* Dean/About section */}
-            <DeanSection></DeanSection>
-
-{/* About section */}
-<div className="w-full min-h-[440px] flex max-[420px]:flex-col gap-3 justify-around px-20 mt-4 ">
-
-  <div className="w-1/4 h-full">
-  <Image src={profile} alt='about-image' className=' w-full h-4/5 object-cover ' /> 
-  </div>
-  <div className="w-2/3 h-full flex items-start flex-col mt-10 ">
-    <h1 className='text-4xl font-semibold'> SCHOOL OF COMPUTING AND INFORMATICS</h1>
-    <p>The School of Computing and Informatics of Masinde Muliro Universityy of Science and Technology is one of the promising Schools in the University. The School was was approved and officially formed on January, 2017 after splitting from the former Faculty of Science. We offer in-depth content in Computer Science and Information Technology that spans a wide range, from theoretical and algorithmic foundations to cutting-edge developments in ICT for Development, green technologies, security, dynamic databases and other exciting areas. We are equal to task and dedicated to producing quality products that can take on challenging programming jobs</p>
- 
-  </div>
-
-</div>
-{/* Mission and Vision section */}
-<div className="w-full min-h-[440px] flex max-[420px]:flex-col gap-3 justify-around px-20 mt-4 ">
-
-  <div className="w-1/2 h-full flex items-start flex-col mt-10 ">
-    <h1 className='text-4xl font-semibold'>MISSION AND VISION</h1>
-    <div className='px-10'>
-    <div>
-      <h1 className='text-lg font-semibold'>Mission</h1>
-      <p className='text-sm text-gray-700'>All recipes are written using certain conventions, which define the characteristics of common ingredients. The rules vary from place to place.</p>
-    </div>
-    <div>
-      <h1 className='text-lg font-semibold'>Vision</h1>
-      <p className='text-sm text-gray-700'>The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. Michael Knight a young loner.</p>
-    </div>
-    <div>
-      <h1 className='text-lg font-semibold'>Core Values</h1>
-      <p className='text-sm text-gray-700'>News</p>
-      <p className='text-sm text-gray-700'>World</p>
-      <p className='text-sm text-gray-700'>Games</p>
-      <p className='text-sm text-gray-700'>Referrences</p>
-    </div>
-    <div>
-      <h1 className='text-lg font-semibold'>Success</h1>
-    </div>
-    </div>
-  
- 
-  </div>
-  <div className="w-1/2 h-full grid grid-cols-2 gap-1">
-  <Image src={profile} alt='image' className='min-w-1/2 min-h-1/2 object-cover ' /> 
-  <Image src={pic} alt='image' className=' min-w-1/2 min-h-1/2 object-cover ' /> 
-  <Image src={pic3} alt='image' className=' min-w-1/2 min-h-1/2 object-cover ' /> 
-  <Image src={pic2} alt='image' className=' min-w-1/2 min-h-1/2 object-cover ' /> 
-  </div>
-
-</div>
-
-{/* Cards sections */}
-
-<div className='w-full h-[420px] flex max-[420px]:flex-col px-20 gap-2 '>
-
-  <div className='w-2/3 h-full grid grid-cols-2 text-white gap-1'>
-   <div className='min-w-2/5 rounded-md  min-h-2/5 bg-slate-900 items-center justify-center flex'>
-    <h1>Programmes</h1>
-
-   </div>
-   <div className='min-w-2/5 rounded-md  min-h-2/5 bg-slate-900 items-center justify-center flex'>
-    <h1>Department</h1>
-
-   </div>
-   <div className='min-w-2/5 rounded-md  min-h-2/5 bg-slate-900 items-center justify-center flex'>
-    <h1>Clubs</h1>
-
-   </div>
-   <div className='min-w-2/5 rounded-md  min-h-2/5 bg-slate-900 items-center justify-center flex'>
-    <h1>Events</h1>
-
-   </div>
-  </div>
-  <div className='w-1/4 h-full flex ' >
-    <EventsCard/>
-  </div>
-
-
-</div> 
-
-{/* Footer */}
-<div className='w-full  min-h-[320px] bg-gray-400 '>
-   
-</div>
-    </div>
-
-</div>
-  
+        <Footer></Footer>
+          {/* <div className='w-full  min-h-[320px] bg-gray-400 '>
+            
+          </div> */}
+      </div>  
     </>
-  )
-
-
+  );
+}

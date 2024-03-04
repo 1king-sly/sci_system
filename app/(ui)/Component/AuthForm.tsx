@@ -146,17 +146,6 @@ export default function AuthForm() {
                value={formData.secondName}
                onChange={handleChange}
              />
-             <Input
-               id='regNo'
-               name='registrationNumber'
-               label='Registration Number'
-               required
-               type='text'
-               placeholder='Enter Registration Number'
-               disabled={disabled}
-               value={formData.registrationNumber}
-               onChange={handleChange}
-             />
            </>
          )}
          <Input
