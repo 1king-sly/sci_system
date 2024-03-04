@@ -1,11 +1,14 @@
+import Image from 'next/image'
 import React from 'react'
+import Pic from '@/public/dr.ondulo.jpg'
 
 export default function AboutCs() {
   return (
         <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="grid gap-20 row-gap-8 lg:grid-cols-2">
             <div>
-                <img className="object-cover w-full h-56 rounded shadow-lg sm:h-96" src="dr.ondulo.jpg" alt="" />
+                <Image src={Pic} alt="Dr. Ondulo"  className='object-cover w-full h-56 rounded shadow-lg sm:h-96' />
+                {/* <img className="object-cover w-full h-56 rounded shadow-lg sm:h-96" src="dr.ondulo.jpg" alt="" /> */}
             </div>
             <div className="flex flex-col justify-center">
         
