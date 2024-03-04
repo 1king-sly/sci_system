@@ -42,8 +42,8 @@ export default function Home() {
 {/* Hero Section */}
 <div className='w-full h-[70vh] relative  '>
 <Image src={datas[currentDataIndex].image} alt='hero-images' className=' w-full h-full object-cover  ' /> 
-<h1 className='w-full h-full flex items-center text-4xl text-purple-900 ps-20 absolute inset-0'>{datas[currentDataIndex].desc}</h1>
-<div className='w-full h-full bg-sky-900 opacity-20 absolute inset-0'></div>   
+<h1 className='w-full h-full flex items-center text-4xl text-white ps-20 absolute inset-0 z-50'>{datas[currentDataIndex].desc}</h1>
+<div className='w-full h-full bg-gray-900 opacity-75 absolute inset-0'></div>   
 
 </div>
 
