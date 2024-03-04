@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  userName   String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  image      String?
+  club       ClubType?
+  role       RoleType
+  researches Research[]
+  Event      Event[]
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  createdById Int
+  dateOfEvent DateTime
+  venue       String
+  timeOfEvent DateTime
+  gallery     String[]  @default([])
+  type        EventType
+}
+
+enum EventType {
+  GENERAL
+  GDSC
+  ACS
+  HEALTHIT
+  IOT
+}
+
+model Research {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  status    Status
+  ans1      String
+  ans2      String
+  ans3      String
+  ans4      String
+  updatedBy String?
+  title     String
+}
+
+enum Status {
+  PENDING
+  INPROGRESS
+  DONE
+  REJECTED
+}
+
+enum ClubType {
+  GDSC
+  ACS
+  HealthIT
+  IoT
+  GENERAL
+}
+
+enum RoleType {
+  Member
+  Lead
+  CoLead
+  CoTeam
+  Patron
+  Admin
+}
