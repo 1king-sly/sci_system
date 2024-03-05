@@ -16,6 +16,8 @@ datasource db {
 model User {
   id         Int        @id @default(autoincrement())
   userName   String
+  email      String@unique
+  hashedPassword String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   image      String?
@@ -23,6 +25,9 @@ model User {
   role       RoleType
   researches Research[]
   Event      Event[]
+  school      School?
+  studentType StudentType?
+  level       Level?
 }
 
 model Event {
@@ -30,10 +35,14 @@ model Event {
   createdBy   User      @relation(fields: [createdById], references: [id])
   createdById Int
   dateOfEvent DateTime
+  desc        String
   venue       String
   timeOfEvent DateTime
   gallery     String[]  @default([])
   type        EventType
+  speaker     String
+  host        String
+  poster      String
 }
 
 enum EventType {
@@ -80,4 +89,26 @@ enum RoleType {
   CoTeam
   Patron
   Admin
+}
+
+enum School{
+  CSE
+  ETS
+  FORENSICS
+  MASTERSCSE
+}
+
+enum StudentType{
+  STUDENT
+  CLASSREP
+  SCHOOLREP
+  DEPUTYCLASSREP
+  DEPUTYSCHOOLREP
+}
+
+enum Level {
+    FIRST
+    SECOND
+    THIRD
+    FOURTH
 }
