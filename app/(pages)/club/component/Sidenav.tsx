@@ -19,16 +19,16 @@ export default function Sidenav() {
       name:'CLUBS INFO',href:'/club/#clubsInfo',id:'clubsInfo'
     },
     {
-    name:'GDSC CLUB',href:'/club/#gdsc',id:'gdsc'
+    name:'GDSC CLUB',href:'/club/#GDSCclub',id:'GDSCclub'
   },
     {
-    name:'Health IT',href:'/club/#healthIT',id:'healthIT'
+    name:'Health IT',href:'/club/#HealthIt',id:'HealthIt'
   },
     {
-    name:'ACS CLUB',href:'/club/#acs',id:'acs'
+    name:'ACS CLUB',href:'/club/#ACSclub',id:'ACSclub'
   },
     {
-    name:'IoT CLUB',href:'/events/#IoT',id:'IoT'
+    name:'IOT CLUB',href:'/events/#IOTClub',id:'IOTclub'
   },
   
 ]
