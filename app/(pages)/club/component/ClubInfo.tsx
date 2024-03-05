@@ -3,7 +3,7 @@ import React from 'react'
 export default function ClubInfo() {
   return (
     <>
-        <div className="bg-sky-400 bg-opacity-35 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-h-screen-xl md:px-24 lg:px-8 lg:py-6">
+        <div id='clubsInfo' className="bg-sky-400 bg-opacity-35 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-h-screen-xl md:px-24 lg:px-8 lg:py-6">
         <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
           <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
           
