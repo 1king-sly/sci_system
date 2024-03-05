@@ -12,7 +12,7 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
 
-export const addEventt = async (formData: any) => {
+export const addEvent = async (formData: any) => {
   try {
     const eventType = formData.eventType
     const date = formData.date;
