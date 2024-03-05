@@ -123,10 +123,6 @@ export const authOptions = {
   },
     
   async session({ session, token }: { session: any; token: any }) {
-
-    
-
-
     return{
       ...session,
       id:token.sub,

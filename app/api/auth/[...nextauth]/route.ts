@@ -1,7 +1,7 @@
 import NextAuth  from 'next-auth';
 
 
-import { authOptions } from '@/utils/authUptions';
+import { authOptions } from '@/app/utils/authUptions';
 
 const secret = authOptions.secret || 'default-secret';
 
