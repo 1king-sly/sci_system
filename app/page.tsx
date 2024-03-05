@@ -9,6 +9,7 @@ import UpcomingEvents from './(ui)/Component/UpcomingEvents';
 import DeptMission from './(ui)/Component/DeptMission';
 import DeanSection from './(ui)/Component/DeanSection';
 import Footer from './(ui)/Component/Footer';
+import Image from 'next/image';
 
 export default function Home() {
 
@@ -37,7 +38,8 @@ export default function Home() {
       <div className='w-full h-full flex gap-10 flex-col'>
         {/* Hero Section */}
         <div className="relative">
-            <img src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" className="absolute inset-0 object-cover w-full h-full" alt="" />
+            <Image src={datas[currentDataIndex].image} alt='hero-images' className="absolute inset-0 object-cover w-full h-full"></Image>
+            {/* <img src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" className="absolute inset-0 object-cover w-full h-full" alt="" /> */}
             <div className="relative bg-gray-900 bg-opacity-75">
               <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                 <div className="flex flex-col items-center justify-between xl:flex-row">
