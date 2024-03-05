@@ -358,7 +358,91 @@ export const updateUser = async(formData:any) =>{
   }
 }
 
+export const fetchLeads = async (club:string) =>{
+  if(!club){
+    throw new Error ("Club missing")
+  }
+  try{
+    const leads = await prisma.user.findMany({
+      where:{
+        club:ClubType[club as keyof typeof ClubType],
+        role:{
+          in:[RoleType.Lead,RoleType.CoLead,RoleType.CoTeam]
+        }
+      },
+      orderBy:{
+        role:'asc'
+      }
+    })
+    return leads
+
+  }catch(error:any){
+    console.error('Failed to fetch Leads')
+  }
+
+}
+
+export const fetchClassReps = async (level:string) =>{
+  if(!level){
+    throw new Error ('No level provided')
+  }
+
+  try{
+
+    const reps = await prisma.user.findMany({
+      where:{
+        level:Level[level as keyof typeof Level],
+        studentType:{
+          in:[StudentType.CLASSREP,StudentType.DEPUTYCLASSREP]
+        }
+      },
+      orderBy:{
+        level:'desc',
+        studentType:'asc'
+      }
+    })
+
+    return reps
+
+  }catch(error:any){
+    console.error('Failed to fetch class representatives',error)
+  }
+}
 
 
 
+export const fetchSchoolReps = async () =>{
+    try{
+      const reps = await prisma.user.findMany({
+        where:{
+          studentType:{
+            in:[StudentType.SCHOOLREP,StudentType.DEPUTYSCHOOLREP]
+          }
+        },
+        orderBy:{
+          studentType:'asc'
+        }
+      })
+
+      return reps
+
+    }catch(error:any){
+      console.error('Failed to fetch student representatives',error)
+    }
+}
+
+export const fetchPatron = async () =>{
+  try{
+    const patron = await prisma.user.findMany({
+      where:{
+        role:RoleType.Patron
+      }
+    })
+
+    return patron
+
+  }catch(error:any){
+    console.error('Failed to fetch patron')
+  }
+}
 
