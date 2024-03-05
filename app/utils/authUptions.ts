@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/app/lib/prismadb';
-import {  RoleType } from '@prisma/client';
+import {  RoleType,StudentType,School,ClubType,Level } from '@prisma/client';
 import NextAuth from 'next-auth';
 
 type User = {
@@ -15,6 +15,10 @@ type User = {
   role: RoleType;
   createdAt: Date;
   updatedAt:Date;
+  club:ClubType | null ,
+  school:School | null,
+  studentType:StudentType | null,
+  level: Level | null
 };
 type SessionStrategyType = 'jwt';
 
@@ -48,6 +52,10 @@ export const authOptions = {
             createdAt: true,
             updatedAt: true,
             email: true,
+            school:true,
+            studentType:true,
+            club:true,
+            level:true,
           },
         });
       
@@ -61,7 +69,6 @@ export const authOptions = {
           throw new Error('Password Invalid');
         }
       
-       
       
         return {
           id: `${user.id}`,
@@ -70,7 +77,11 @@ export const authOptions = {
           role: user.role,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
-          hashedPassword: user.hashedPassword,       
+          hashedPassword: user.hashedPassword,
+          school:user.school,
+          studentType:user.studentType, 
+          club:user.club,  
+          level:user.level   
           
         };
       },
@@ -98,6 +109,10 @@ export const authOptions = {
         role:user.role,
         createdAt:user.createdAt,
         updatedAt:user.updatedAt,
+        club:user.club,
+        school:user.school,
+        studentType:user.studentType,
+        level:user.level
 
       }
     }
@@ -120,6 +135,10 @@ export const authOptions = {
       role:token.role,
       createdAt:token.createdAt,
       updatedAt:token.updatedAt,
+      club:token.club,
+      school:token.school,
+      studentType:token.studentType,
+      level:token.level,
     }
     },
   
