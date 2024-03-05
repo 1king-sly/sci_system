@@ -4,13 +4,13 @@ import AboutCs from '../../(ui)/Component/AboutCs'
 import Programs from '../../(ui)/Component/Programs'
 import Representatives from '@/app/(ui)/Component/Representatives'
 import Staff from '@/app/(ui)/Component/Staff'
-
+import DeptMission from '@/app/(ui)/Component/DeptMission'
 export default function page() {
   return (
     <>
         <div className='w-full'>
             <div className="grid grid-cols-4 py-4">
-                <div className="col-span-3 border-l-2">
+                <div className="col-span-4 border-l-2">
                 <div className="bg-sky-400 bg-opacity-30 px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-h-screen-xl md:px-24 lg:px-8 lg:py-4 lg:m-6">
                     <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
                         <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
@@ -35,6 +35,7 @@ export default function page() {
                 </div>
                     <div id='Introduction'><AboutCs></AboutCs></div>
                     <div id='Programs'><Programs></Programs></div>
+                    <div className='' id='Mission'><DeptMission></DeptMission></div>
                     <div id='Staff'><Staff></Staff></div>
                     <div id='Student-Representatives'><Representatives></Representatives></div>
                 </div>
