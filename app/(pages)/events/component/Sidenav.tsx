@@ -23,7 +23,7 @@ export default function Sidenav() {
     name:'GDSC Events',href:'/events/#gdsc',id:'gdsc'
   },
     {
-    name:'HealthIT Events',href:'/events/#healthIT',id:'healthIT'
+    name:'Health IT Events',href:'/events/#healthIT',id:'healthIT'
   },
     {
     name:'ACS Events',href:'/events/#acs',id:'acs'
@@ -31,22 +31,32 @@ export default function Sidenav() {
   
 ]
   return (
-    <div className='w-[20vw] mt-10 h-full flex  fixed justify-center'>
+    <div className="col-span-1">
+    <div className="px-4 py-8   sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-8 lg:px-10 lg:py-10">
+    {/* <div className='w-[20vw] mt-10 h-full flex  fixed justify-center'>
+      <div className='w-4/5 h-full flex flex-col gap-3 '> */}
+    <div className="  h-full ">
 
-      <div className='w-4/5 h-full flex flex-col gap-3 '>
+<div className="text-center  mb-4 items-center justify-center gap-2">
 
         {links.map((link)=>{
 
           return (
+            <div
+            className='cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2'
+            key={link.name} onClick={() => scrollToSection(link.id)}
+        >
 
-            <a key={link.name} className='cursor-pointer' onClick={() => scrollToSection(link.id)}>{link.name}</a>
-
+            <a key={link.name} className='mb-2 mr-4 text-sm font-bold  tracking-wider uppercase' onClick={() => scrollToSection(link.id)}>{link.name}</a>
+            </div>
           )
 
         })}
       </div>
     
     
+    </div>
+    </div>
     </div>
   )
 }
