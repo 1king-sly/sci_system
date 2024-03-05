@@ -1,25 +1,26 @@
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import GitHubProvider from 'next-auth/providers/github';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/app/lib/prismadb';
-import { School, UserType } from '@prisma/client';
+import {  RoleType } from '@prisma/client';
 import NextAuth from 'next-auth';
 
 type User = {
   id: string;
-  firstName: string;
-  secondName: string;
+  userName: string;
   hashedPassword: string;
   email: string;
-  registrationNumber: string;
-  userType: UserType;
+  role: RoleType;
   createdAt: Date;
   updatedAt:Date;
-  school:School | null
-
 };
 type SessionStrategyType = 'jwt';
 
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
+  throw new Error(' client ID or client secret is not defined');
+}
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -41,15 +42,12 @@ export const authOptions = {
           },
           select: {
             id: true,
-            firstName: true,
-            secondName: true,
-            userType: true,
+            userName:true,
+            role: true,
             hashedPassword: true,
-            registrationNumber: true,
             createdAt: true,
             updatedAt: true,
             email: true,
-            school:true,
           },
         });
       
@@ -67,21 +65,25 @@ export const authOptions = {
       
         return {
           id: `${user.id}`,
-          firstName :user.firstName,
-          secondName :user.secondName,
+          userName :user.userName,
           email :user.email,
-          registrationNumber: user.registrationNumber,
-          userType: user.userType,
+          role: user.role,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
-          hashedPassword: user.hashedPassword,
-          school:user.school,
-
-          
+          hashedPassword: user.hashedPassword,       
           
         };
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+
   ],
   callbacks:{
 
@@ -91,14 +93,11 @@ export const authOptions = {
       return{
         ...token,
         id:user.id,
-        firstName: user.firstName,
-        secondName:user.secondName,
+        userName: user.userName,
         email: user.email,
-        userType:user.userType,
-        registrationNumber:user.registrationNumber,
+        role:user.role,
         createdAt:user.createdAt,
         updatedAt:user.updatedAt,
-         school:user.school,
 
       }
     }
@@ -116,16 +115,11 @@ export const authOptions = {
     return{
       ...session,
       id:token.sub,
-      firstName:token.firstName,
-      secondName:token.secondName,
+      userName:token.userName,
       email:token.email,
-      userType:token.userType,
-      registrationNumber:token.registrationNumber,
+      role:token.role,
       createdAt:token.createdAt,
       updatedAt:token.updatedAt,
-      school:token.school,
-
-
     }
     },
   
