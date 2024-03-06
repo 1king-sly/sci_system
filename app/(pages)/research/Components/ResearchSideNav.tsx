@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SideNav() {
+export default function ResearchSideNav() {
   return (
     <>
                 <div className="col-span-1 bg-slate-200 ">
