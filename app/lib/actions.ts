@@ -22,9 +22,10 @@ export const addEvent = async (formData: any) => {
     const poster = formData.poster;
     const time = formData.time;
     const desc = formData.desc
+    const title = formData.title
 
     
-    if (!eventType || !date || !venue || !speaker || !host || !poster || !time || !desc) {
+    if (!eventType || !date || !venue || !speaker || !host || !poster || !time || !desc || !title) {
       throw new Error('Required field is missing'); 
     }
 
@@ -35,6 +36,7 @@ export const addEvent = async (formData: any) => {
       const userId = parseInt(user.id);
       const newEvent = await prisma.event.create({
         data:{
+          title:title,
           createdById:userId,
           dateOfEvent:date,
           venue:venue,
@@ -181,7 +183,21 @@ export const fetchUsers = async () =>{
   }
 }
 
-export const fetchSampleUpcomingEvents = async (eventType:string) =>{
+export const fetchSampleUpcomingEvents = async () =>{
+   
+     try{
+      const events = await prisma.event.findMany({
+        orderBy:{
+          dateOfEvent:'desc'
+        },
+        take:3
+       })
+       return events
+     }catch(error:any){
+      console.error('Failed to fetch upcoming events', error)
+     }
+}
+export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
     if(!eventType){
      try{
       const events = await prisma.event.findMany({

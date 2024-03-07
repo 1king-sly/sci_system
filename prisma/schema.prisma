@@ -35,6 +35,7 @@ model Event {
   createdBy   User      @relation(fields: [createdById], references: [id])
   createdById Int
   dateOfEvent DateTime
+  title       String
   desc        String
   venue       String
   timeOfEvent DateTime
