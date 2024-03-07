@@ -217,7 +217,8 @@ export default function page() {
         width={150}
         height={150}
       />
-    ) : (
+    ) :
+     (
       <Image
         src={pdf}
         alt="Document Preview"
@@ -239,6 +240,8 @@ export default function page() {
                         name="file"
                         type="file"
                         className="sr-only"
+                        // accept='.jpg,.jpeg,.png'
+                        onChange={handleChange}
                         />
                     </label>
                     <p className="pl-1">or drag and drop</p>

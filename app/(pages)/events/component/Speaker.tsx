@@ -10,7 +10,7 @@ export default function Speaker() {
         
         <div id="speaker">
             {/* <!-- image -->  */}
-            <Image src={Pic} alt='Speaker Photo' width={200} height={200} className='rounded-full w-36 h-36 mx-auto p-2'></Image>
+            {/* <Image src={Pic} alt='Speaker Photo' width={200} height={200} className='rounded-full w-36 h-36 mx-auto p-2'></Image> */}
             <p>Speaker's Name</p>
             <p>Speaker's Title</p>
         </div>
