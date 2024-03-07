@@ -26,7 +26,7 @@ model User {
   researches Research[]
   Event      Event[]
   school      School?
-  studentType StudentType?
+  userType UserType?
   level       Level?
 }
 
@@ -99,12 +99,14 @@ enum School{
   MASTERSCSE
 }
 
-enum StudentType{
+enum UserType{
   STUDENT
   CLASSREP
   SCHOOLREP
   DEPUTYCLASSREP
   DEPUTYSCHOOLREP
+  LECTURER
+  COD
 }
 
 enum Level {

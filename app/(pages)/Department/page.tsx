@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import DeptSideBar from '@/app/(ui)/Component/DeptSideBar'
 import AboutCs from '../../(ui)/Component/AboutCs'
@@ -22,14 +23,7 @@ export default function page() {
                                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae.
                             </p>
                             </div>
-                            {/* <!-- <div>
-                            <a
-                                href="/"
-                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                            >
-                                Get started
-                            </a>
-                            </div> --> */}
+                          
                         </div>
                     </div>
                 </div>

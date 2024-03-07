@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/utils/authUptions";
-import { ClubType, EventType, RoleType, School, StudentType,Level } from '@prisma/client';
+import { ClubType, EventType, RoleType, School, UserType,Level } from '@prisma/client';
 
 const cron = require('node-cron');
 
@@ -334,7 +334,7 @@ export const updateUser = async(formData:any) =>{
       data.club = ClubType[club as keyof typeof ClubType]
     }
     if(studentType !== null && studentType !==''){
-      data.studentType = StudentType[club as keyof typeof StudentType]
+      data.studentType = UserType[club as keyof typeof UserType]
     }
     if(level !== null && level !==''){
       data.level = Level[club as keyof typeof Level]
@@ -384,23 +384,20 @@ export const fetchLeads = async (club:string) =>{
 
 }
 
-export const fetchClassReps = async (level:string) =>{
-  if(!level){
-    throw new Error ('No level provided')
-  }
+export const fetchClassReps = async () =>{
+ 
 
   try{
 
     const reps = await prisma.user.findMany({
       where:{
-        level:Level[level as keyof typeof Level],
-        studentType:{
-          in:[StudentType.CLASSREP,StudentType.DEPUTYCLASSREP]
+        userType:{
+          in:[UserType.CLASSREP,UserType.DEPUTYCLASSREP]
         }
       },
       orderBy:{
         level:'desc',
-        studentType:'asc'
+        userType:'asc'
       }
     })
 
@@ -411,18 +408,42 @@ export const fetchClassReps = async (level:string) =>{
   }
 }
 
+export const fetchStaff = async () =>{
+ 
+
+  try{
+
+    const reps = await prisma.user.findMany({
+      where:{
+        userType:{
+          in:[UserType.LECTURER]
+        }
+      },
+      orderBy:{
+        level:'desc',
+        userType:'asc'
+      }
+    })
+
+    return reps
+
+  }catch(error:any){
+    console.error('Failed to Staff',error)
+  }
+}
+
 
 
 export const fetchSchoolReps = async () =>{
     try{
       const reps = await prisma.user.findMany({
         where:{
-          studentType:{
-            in:[StudentType.SCHOOLREP,StudentType.DEPUTYSCHOOLREP]
+          userType:{
+            in:[UserType.SCHOOLREP,UserType.DEPUTYSCHOOLREP]
           }
         },
         orderBy:{
-          studentType:'asc'
+          userType:'asc'
         }
       })
 
