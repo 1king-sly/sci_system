@@ -8,7 +8,7 @@ export default function AboutCs() {
         <div className="grid gap-20 row-gap-8 lg:grid-cols-2">
             <div>
                 <Image src={Pic} alt="Dr. Ondulo"  className='object-cover w-full h-56 rounded shadow-lg sm:h-96' />
-                {/* <img className="object-cover w-full h-56 rounded shadow-lg sm:h-96" src="dr.ondulo.jpg" alt="" /> */}
+              
             </div>
             <div className="flex flex-col justify-center">
         
@@ -16,7 +16,7 @@ export default function AboutCs() {
             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
             DEPARTMENT OF COMPUTER SCIENCE   <span className="relative px-1">
                 <div className="absolute inset-x-0 bottom-0 h-3 transform -skew-x-12 bg-teal-accent-400"></div>
-                {/* <!-- <span className="relative inline-block text-deep-purple-accent-400">a lazy dog</span> --> */}
+               
                 </span>
             </h2>
             <p className="text-base text-gray-700 md:text-lg">

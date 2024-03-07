@@ -26,7 +26,7 @@ model User {
   researches Research[]
   Event      Event[]
   school      School?
-  studentType StudentType?
+  userType UserType?
   level       Level?
 }
 
@@ -35,6 +35,7 @@ model Event {
   createdBy   User      @relation(fields: [createdById], references: [id])
   createdById Int
   dateOfEvent DateTime
+  title       String
   desc        String
   venue       String
   timeOfEvent DateTime
@@ -98,12 +99,14 @@ enum School{
   MASTERSCSE
 }
 
-enum StudentType{
+enum UserType{
   STUDENT
   CLASSREP
   SCHOOLREP
   DEPUTYCLASSREP
   DEPUTYSCHOOLREP
+  LECTURER
+  COD
 }
 
 enum Level {
