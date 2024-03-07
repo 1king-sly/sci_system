@@ -11,9 +11,6 @@ export default function EventBanner() {
         <div className="px-4 py-16 ">
           
             <div className="px-4 py-16">
-              <h2 className=" mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-               EVENT BANNER
-              </h2>
             </div>
 
         </div>

@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image'
+import Pic from '@/public/ResearchBanner.jpeg'
 
 export default function DeptMission() {
   return (
@@ -62,16 +64,16 @@ export default function DeptMission() {
                     <p className="mb-2 text-lg font-bold">Core Values</p>
                     <ul className="mt-2 space-y-2">
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">News</a>
+                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Quality</a>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">World</a>
+                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Research</a>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Games</a>
+                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Excellence</a>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">References</a>
+                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Respect</a>
                         </li>
                         </ul>
                     </div>
@@ -95,15 +97,15 @@ export default function DeptMission() {
             {/* images */}
             <div className="flex items-center justify-center -mx-4 lg:pl-8">
                 <div className="flex flex-col items-end px-3">
-                <img
+                <Image
                     className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
-                    src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                    alt=""
+                    src={Pic}//A picture of the Department
+                    alt="Department Pic"
                 />
-                <img className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+                <Image className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src={Pic} alt="Department Pic" />
                 </div>
                 <div className="px-3">
-                <img className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80" src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="" />
+                <Image className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80" src={Pic} alt="Department Pic" />
                 </div>
             </div>
             </div>

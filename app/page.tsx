@@ -4,11 +4,11 @@ import pic from '@/public/students.png'
 import pic2 from '@/public/club.jpg'
 import pic3 from '@/public/students.png'
 import { usePathname } from "next/navigation";
-import Cards from './(ui)/Component/Cards';
-import UpcomingEvents from './(ui)/Component/UpcomingEvents';
-import DeptMission from './(ui)/Component/DeptMission';
-import DeanSection from './(ui)/Component/DeanSection';
-import Footer from './(ui)/Component/Footer';
+import Cards from './(pages)/Component/Cards';
+import UpcomingEvents from './(pages)/Component/UpcomingEvents';
+import DeptMission from './(pages)/Component/DeptMission';
+import DeanSection from './(pages)/Component/DeanSection';
+import Footer from './(pages)/Component/Footer';
 import Image from 'next/image';
 
 export default function Home() {

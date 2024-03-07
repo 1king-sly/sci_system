@@ -1,5 +1,5 @@
-import DeptSideBar from '@/app/(ui)/Component/DeptSideBar'
-import NavBar1 from "@/app/(ui)/Component/NavBar1";
+import DeptSideBar from '@/app/(pages)/Component/DeptSideBar'
+import NavBar1 from "@/app/(pages)/Component/NavBar1";
 
 export default function RootLayout({
   children,

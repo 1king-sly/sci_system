@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image'
+import ClubPic from '@/public/ClubPic.jpg'
 
 export default function ClubBriefDesc() {
   return (
@@ -22,7 +24,7 @@ export default function ClubBriefDesc() {
                         </div>
                       </div>
                     <div className="relative ">
-                      <img className="object-cover w-full h-56 sm:h-96 " src="https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+                      <Image className="object-cover w-full h-56 sm:h-96 " src={ClubPic} alt="" />
                       <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
                     </div>
         </div> 
@@ -44,7 +46,7 @@ export default function ClubBriefDesc() {
             </div>
             </div>
         <div className="relative">
-            <img className="object-cover w-full h-56 sm:h-96" src="https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+            <Image className="object-cover w-full h-56 sm:h-96" src={ClubPic} alt="" />
             <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
         </div>
         </div> 
@@ -58,7 +60,7 @@ export default function ClubBriefDesc() {
             </div>
             <p className="mb-4 text-base text-gray-700 md:text-lg">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus perspiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus persClubPiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!</p>
             <div className="flex items-center">
                 
@@ -66,7 +68,7 @@ export default function ClubBriefDesc() {
             </div>
             </div>
         <div className="relative">
-            <img className="object-cover w-full h-56 sm:h-96" src="https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+            <Image className="object-cover w-full h-56 sm:h-96" src={ClubPic} alt="" />
             <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
         </div>
         </div>
@@ -81,7 +83,7 @@ export default function ClubBriefDesc() {
                         </div>
                         <p className="mb-4 text-base text-gray-700 md:text-lg">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus perspiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus persClubPiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!                        </p>
                         <div className="flex items-center">
                           
@@ -89,7 +91,7 @@ export default function ClubBriefDesc() {
                         </div>
                       </div>
                     <div className="relative ">
-                      <img className="object-cover w-full h-56 sm:h-96 " src="https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+                      <Image className="object-cover w-full h-56 sm:h-96 " src={ClubPic} alt="" />
                       <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
                     </div>
         </div>  

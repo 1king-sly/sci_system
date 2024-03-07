@@ -1,7 +1,7 @@
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import React from 'react'
 import EventBanner from '../component/EventBanner'
-import EventBrief from '../component/EventBrief'
+import EventBriefDesc from '../component/EventBriefDesc'
 
 export default async function page({ params }: {params: {id:string} }) {
     const id = params.id
@@ -11,8 +11,8 @@ export default async function page({ params }: {params: {id:string} }) {
         <div className="col-span-4 border-l-2 p-4">
             <EventBanner></EventBanner>
             <h2 className="text-4xl font-bold py-4 text-left">Title of the Event, with few additional words maybe</h2>
-            <EventBrief></EventBrief>
-            
+            <EventBriefDesc></EventBriefDesc>
+
         </div>
     </div>
     </>

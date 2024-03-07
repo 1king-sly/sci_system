@@ -43,7 +43,6 @@ export default function DeptSideBar() {
     <div className="px-4 py-8 fixed  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-8 lg:px-10 lg:py-10">
     <div className="  h-full ">
     
-    {/* <div className='w-[20vw] mt-10 h-full flex flex-col  fixed items-center'> */}
     <div className="text-center  mb-4 items-center justify-center gap-2">
 
     {links.map((link) => {
@@ -81,12 +80,9 @@ export default function DeptSideBar() {
                 </div>
         );
     })}
-{/* </div> */}
 </div>
 </div>
 </div>
 </div>
-// </div>
-
   )
 }

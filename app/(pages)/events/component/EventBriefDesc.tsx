@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function EventBrief() {
+export default function EventBriefDesc() {
   return (
     <>
     <div className="text-xl mb-5">

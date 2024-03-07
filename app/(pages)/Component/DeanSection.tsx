@@ -8,7 +8,6 @@ export default function DeanSection() {
     <div className="grid gap-20 row-gap-8 lg:grid-cols-2">
         <div>
             <Image src={Dean} alt="Dean"  className='object-cover w-full h-56 rounded shadow-lg sm:h-96' />
-            {/* <img className="object-cover w-full h-56 rounded shadow-lg sm:h-96" src="dotanga.jpg" alt="" /> */}
           </div>
         <div className="flex flex-col justify-center">
        
@@ -17,7 +16,6 @@ export default function DeanSection() {
             ABOUT THE SCHOOL OF COMPUTING AND INFORMATICS
             <span className="relative px-1">
               <div className="absolute inset-x-0 bottom-0 h-3 transform -skew-x-12 bg-teal-accent-400"></div>
-                {/* <span className="relative inline-block text-deep-purple-accent-400">a lazy dog</span>  */}
             </span>
           </h2>
           <p className="text-base text-gray-700 md:text-lg">

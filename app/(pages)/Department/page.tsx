@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-import DeptSideBar from '@/app/(ui)/Component/DeptSideBar'
-import AboutCs from '../../(ui)/Component/AboutCs'
-import Programs from '../../(ui)/Component/Programs'
-import Representatives from '@/app/(ui)/Component/Representatives'
-import Staff from '@/app/(ui)/Component/Staff'
-import DeptMission from '@/app/(ui)/Component/DeptMission'
+import DeptSideBar from '@/app/(pages)/Component/DeptSideBar'
+import AboutCs from '../Component/AboutCs'
+import Programs from '../Component/Programs'
+import Representatives from '@/app/(pages)/Component/Representatives'
+import Staff from '@/app/(pages)/Component/Staff'
+import DeptMission from '@/app/(pages)/Component/DeptMission'
 export default function page() {
   return (
     <>

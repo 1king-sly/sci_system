@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar1 from "./(ui)/Component/NavBar1";
+import NavBar1 from "./(pages)/Component/NavBar1";
 import AuthContext from './context/AuthContext'
 import ToasterContext from './context/ToasterContext'
 
