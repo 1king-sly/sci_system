@@ -17,11 +17,11 @@ export default function page() {
               <h2 className="font-bold text-3xl">EVENTS PAGE</h2>
               <p className='text-xl'>Know More About School of Computing and Informatics Events</p>
           </div> 
-            <UpcomingSection></UpcomingSection>
-            <GeneralSection></GeneralSection>
-            <GDSCEvents></GDSCEvents>
-            <HealthITEvents></HealthITEvents>
-            <ACSEvents></ACSEvents>
+            <div id='upcoming'><UpcomingSection></UpcomingSection></div>
+            <div id='general'><GeneralSection></GeneralSection></div>
+            <div id='gdsc'><GDSCEvents></GDSCEvents></div>
+            <div id='healthIT'><HealthITEvents></HealthITEvents></div>
+            <div id='acs'><ACSEvents></ACSEvents></div>
           </div>
         </div>
       </div>  

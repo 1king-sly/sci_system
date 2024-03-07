@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React from 'react'
 
 export default function Sidenav() {
@@ -40,13 +41,14 @@ export default function Sidenav() {
         {links.map((link)=>{
 
           return (
-            <div
+            <Link
             className='cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2'
             key={link.name} onClick={() => scrollToSection(link.id)}
+            href={link.href}
         >
 
-            <a key={link.name} className='mb-2 mr-4 text-sm font-bold  tracking-wider uppercase' onClick={() => scrollToSection(link.id)}>{link.name}</a>
-            </div>
+            <h1 key={link.name} className='mb-2 mr-4 text-sm font-bold  tracking-wider uppercase' onClick={() => scrollToSection(link.id)}>{link.name}</h1>
+            </Link>
           )
 
         })}
