@@ -198,20 +198,6 @@ export const fetchSampleUpcomingEvents = async () =>{
      }
 }
 export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
-    if(!eventType){
-     try{
-      const events = await prisma.event.findMany({
-        orderBy:{
-          dateOfEvent:'desc'
-        },
-        take:3
-       })
-       return events
-     }catch(error:any){
-      console.error('Failed to fetch upcoming events', error)
-     }
-
-    }
     try{
 
       const events = await prisma.event.findMany({
