@@ -1,8 +1,54 @@
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
-import React from 'react'
 import StaffPic from '@/public/Staff.jpeg'
+import { fetchStaff } from '@/app/lib/actions';
+
+
+interface User {
+    id: number;
+    userName: string;
+    email: string;
+    createdAt:any
+    updatedAt:any
+    hashedPassword:string
+    image: string | null;
+    club:any | null
+    role:any 
+    userType:any
+    level:any
+    school:any
+    
+}
 
 export default function Staff() {
+
+    const [staffs, setStaffs] = useState<User[] | null>(null); 
+    const [loading, setLoading] = useState(true);
+
+   
+
+useEffect(() => {
+    const fetchStaffs = async () => {
+        try {
+            const staffsData = await fetchStaff();
+            if (staffsData !== undefined) {
+                setStaffs(staffsData);
+            } else {
+                console.error('No staffs data received');
+            }
+        } catch (error) {
+            console.error('Error fetching staff:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchStaffs();
+}, []);
+
+    if (loading) {
+        return <p className='w-full h-full flex items-center justify-center'>Fetching Staff members...</p>;
+    }
   return (
     <>
         <div id="staff" className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -13,67 +59,27 @@ export default function Staff() {
             Members of Staff </h2>
             </div>
         <div className="grid max-w-screen gap-8 row-gap-5 mb-8 sm:grid-cols-2 lg:grid-cols-3 sm:mx-auto">
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div> 
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div>
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div>
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div>
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div>
-            <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                <Image src={StaffPic}  alt="" className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
-                {/* <img className="object-cover w-full h-56 md:h-64 xl:h-80" src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" /> */}
-                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                    <p className="mb-4 text-lg font-bold text-gray-100">The Starry Night</p>
-                    <p className="text-sm tracking-wide text-gray-300">
-                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
-                    </p>
-                </div>
-            </div>  
 
+            { staffs !== null && staffs.length>0 ?(
+                staffs.map(staff => (
+                    <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl" key={staff.id}>
+                <Image src={staff.image || StaffPic}  alt={`image of ${staff.userName}`}
+                className="object-cover w-full h-56 md:h-64 xl:h-80"></Image>
+                <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                    <p className="mb-4 text-lg font-bold text-gray-100">{staff.userName} 
+                    </p>
+                    <p className="text-sm tracking-wide text-gray-300">
+                        Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889.
+                    </p>
+                </div>
+            </div>
+
+                )
+                  )
+            ):(
+                <p>No Staff  members fetched</p>
+
+            )}
         </div>
 
         </div>
