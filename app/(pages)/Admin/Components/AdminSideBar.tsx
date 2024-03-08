@@ -11,10 +11,10 @@ export default function AdminSideBar() {
     
     const links = [
         {
-        name:'Analytics',href:'/Analytics',
+        name:'Analytics',href:'/Admin/Analytics',
     },
         {
-        name:'Events',href:'/events',
+        name:'Events',href:'/Admin/EventsDashboard',
     },
         {
         name:'Members',href:'/members',
