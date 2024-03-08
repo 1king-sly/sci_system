@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function page() {
   return (
@@ -15,11 +16,11 @@ export default function page() {
     <li  id="completed-btn">Completed</li>
     <li id="cancelled-btn">Canceled</li>
    </ul>
-   <a href="CreateEvent.html">
+   <Link href="/Admin/addEvents">
    <button className="flex items-center px-2 py-2 bg-slate-800 rounded text-white">
    New event
     <svg  xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
-   </button></a>
+   </button></Link>
  </div>
 
   <div className="bg-white mx-10 h-fit rounded shadow-sm ">

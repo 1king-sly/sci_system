@@ -17,7 +17,7 @@ export default function AdminSideBar() {
         name:'Events',href:'/Admin/EventsDashboard',
     },
         {
-        name:'Members',href:'/members',
+        name:'Members',href:'/Admin/Members',
     },
 ]
   return (
