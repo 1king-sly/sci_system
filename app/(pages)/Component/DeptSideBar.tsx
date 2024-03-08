@@ -39,8 +39,8 @@ export default function DeptSideBar() {
     },
 ]
   return (
-    <div className="col-span-1">
-    <div className="px-4 py-8 fixed  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-8 lg:px-10 lg:py-10">
+    <div className="col-span-1 max-[768px]:hidden">
+    <div className="px-4 py-8 fixed md:px-8 lg:px-10 lg:py-10">
     <div className="  h-full ">
     
     <div className="text-center  mb-4 items-center justify-center gap-2">
