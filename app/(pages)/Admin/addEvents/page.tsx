@@ -208,7 +208,45 @@ export default function page() {
                     <svg className="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
                     </svg>
-                    <button type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Upload Image</button>
+                    <div className="text-center">
+                      {formData.imagePreview ? (
+                      /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.file?.name || '') ? (
+                      <Image
+                      src={formData.imagePreview}
+                      alt="File Preview"
+                      className="mb-4 max-w-full max-h-96"
+                      width={150}
+                      height={150}
+                      />
+                      ) :
+                      (
+                      <Image
+                      src={pdf}
+                      alt="Document Preview"
+                      className="mb-4 max-w-full max-h-96"
+                      width={150}
+                      height={150}
+                      />
+                      )
+                      ) : null} 
+
+                      <div className="px-2.5 py-2 mt-4 flex text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="thumbnail-upload"
+                          className="border-2 relative cursor-pointer text-gray-900 rounded-md bg-white font-semibold  h-[30px] "
+                        >
+                          <span className='p-2'>Upload Image</span>
+                          <input
+                            id="thumbnail-upload"
+                            name="thumbnail"
+                            type="file"
+                            className="sr-only"
+                            // accept='.jpg,.jpeg,.png'
+                            onChange={handleChange}
+                            />
+                        </label>
+                      </div>
+                    </div>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">Displayed on chapter page, upcoming events page and social media</p>
                 </div>
@@ -270,12 +308,47 @@ export default function page() {
                     <svg className="h-40 w-40 border-2 rounded text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
                     </svg>
-                    <button type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Upload Image</button>
+                    <div className="text-center">
+                        {formData.imagePreview ? (
+                        /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.file?.name || '') ? (
+                        <Image
+                        src={formData.imagePreview}
+                        alt="File Preview"
+                        className="mb-4 max-w-full max-h-96"
+                        width={150}
+                        height={150}
+                        />
+                        ) :
+                        (
+                        <Image
+                        src={pdf}
+                        alt="Document Preview"
+                        className="mb-4 max-w-full max-h-96"
+                        width={150}
+                        height={150}
+                        />
+                        )
+                        ) : null} 
+
+                        <div className="px-2.5 py-2 mt-4 flex text-sm leading-6 text-gray-600">
+                          <label
+                            htmlFor="Speaker-upload"
+                            className="border-2 relative cursor-pointer text-gray-900 rounded-md bg-white font-semibold  h-[30px] "
+                          >
+                            <span className='p-4'>Upload Image</span>
+                            <input
+                              id="Speaker-upload"
+                              name="Speaker"
+                              type="file"
+                              className="sr-only"
+                              // accept='.jpg,.jpeg,.png'
+                              onChange={handleChange}
+                              />
+                          </label>
+                        </div>
+                      </div>
                   </div>
-
                 </div>
-
-
 
                 <div className="bg-slate-600 my-5 py-1 flex justify-end pr-5 gap-3 text-white font-semibold">
                   <button type='submit' className=" p-2"> Publish</button>
