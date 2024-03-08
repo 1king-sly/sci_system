@@ -27,11 +27,7 @@ import { NextResponse } from 'next/server'
                 email:email,
                 userName:userName,
                 hashedPassword:hashedPassword,
-                role: 'Lead',
-                school:'CSE',
-                club:'GDSC',
-                userType:'STUDENT',
-                level:'SECOND',
+                role: 'Member',
             },
         });
         
