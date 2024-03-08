@@ -27,7 +27,7 @@ import { NextResponse } from 'next/server'
                 email:email,
                 userName:userName,
                 hashedPassword:hashedPassword,
-                role: 'Member'     
+                role: 'Member',
             },
         });
         

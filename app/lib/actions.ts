@@ -118,7 +118,7 @@ export const createUser = async (formData:any)=>{
         email:email,
         role:RoleType[role as keyof typeof RoleType],
         club:ClubType[club as keyof typeof ClubType],
-        hashedPassword:hashedPassword
+        hashedPassword:hashedPassword,
       }
     })
 
@@ -372,9 +372,6 @@ export const fetchLeads = async (club:string) =>{
           in:[RoleType.Lead,RoleType.CoLead,RoleType.CoTeam]
         }
       },
-      orderBy:{
-        role:'asc'
-      }
     })
     return leads
 
@@ -395,11 +392,9 @@ export const fetchClassReps = async () =>{
           in:[UserType.CLASSREP,UserType.DEPUTYCLASSREP]
         }
       },
-      orderBy:{
-        level:'desc',
-        userType:'asc'
-      }
     })
+
+
 
     return reps
 
@@ -419,10 +414,6 @@ export const fetchStaff = async () =>{
           in:[UserType.LECTURER]
         }
       },
-      orderBy:{
-        level:'desc',
-        userType:'asc'
-      }
     })
 
     return reps
@@ -442,10 +433,9 @@ export const fetchSchoolReps = async () =>{
             in:[UserType.SCHOOLREP,UserType.DEPUTYSCHOOLREP]
           }
         },
-        orderBy:{
-          userType:'asc'
-        }
       })
+
+
 
       return reps
 
