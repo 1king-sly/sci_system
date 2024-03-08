@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import AuthForm from './AuthForm';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function NavBar1() {
   const pathname = usePathname();
@@ -15,6 +16,10 @@ export default function NavBar1() {
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
+  const closeDropDown = () => {
+    setVisible(!toggleVisible);
+  }
+  
   const toggleAuthForm = () => {
     setViewAuth((prev) => !prev);
   }
@@ -23,7 +28,7 @@ export default function NavBar1() {
   }
   return (
     <>
-    <div className='w-full flex items-center h-[20vh]  font-serif z-50 fixed bg-gray-900 max-[425px]:hidden'>
+    <div className='w-full flex items-center h-[20vh]  font-serif z-50 fixed bg-gray-900 max-[768px]:hidden'>
       <div className='w-full h-full mx-auto py-5 px-4  md:px-24 lg:px-8 flex items-center'> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
 
         <div className='flex justify-start w-1/3 cursor-pointer'>
@@ -56,7 +61,10 @@ export default function NavBar1() {
       </div>
     </div>
     <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50 max-[425px]:hidden`, !viewAuth && 'hidden')}>
-    <AuthForm></AuthForm>
+    <div className='flex flex-col items-center justify-center'>
+      <XMarkIcon className='h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
+      <AuthForm></AuthForm>
+      </div>
     </div>
 
     {/* Mobile NavBar */}
@@ -102,8 +110,12 @@ export default function NavBar1() {
                   <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">RESEARCH</Link> </li>
                   <li>
                     <Link
-                      href="/"
+                      href="#"
                       className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                      onClick={() => {
+                        toggleAuthForm();
+                        closeDropDown();
+                      }}
                     >
                       Login
                     </Link> 
