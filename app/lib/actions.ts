@@ -15,6 +15,8 @@ const nodemailer = require('nodemailer');
 
 export const addEvent = async (formData: FormData) => {
 
+  console.log(formData)
+
   try {
     const date = formData.get('date') as unknown as Date
     ;
@@ -38,7 +40,9 @@ export const addEvent = async (formData: FormData) => {
       throw new Error('Required field is missing'); 
     }
 
-    const newDate = date+''+time
+    const newDate = date+''+'T00:00:00.000Z'
+
+    const newTime = date+''+'T'+time+''+':00.000Z'
 
     const slug = slugify(title, { lower: true, strict: true });
 
@@ -59,10 +63,10 @@ export const addEvent = async (formData: FormData) => {
         data:{
           title:title,
           createdById:userId,
-          dateOfEvent:date,
+          dateOfEvent:newDate,
           venue:venue,
           slug:uniqueSlug,
-          timeOfEvent:time,
+          timeOfEvent:newTime,
           speaker:speaker,
           host:host,
           poster:poster,
@@ -209,9 +213,9 @@ export const fetchSampleUpcomingEvents = async () =>{
    
      try{
       const events = await prisma.event.findMany({
-        orderBy:{
-          dateOfEvent:'desc'
-        },
+        // orderBy:{
+        //   dateOfEvent:'desc'
+        // },
         take:3
        })
        return events
@@ -226,9 +230,9 @@ export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
         where:{
           type:EventType[eventType as keyof typeof EventType]
         },
-        orderBy:{
-          dateOfEvent:'desc'
-        },
+        // orderBy:{
+        //   dateOfEvent:'desc'
+        // },
         take:3
       })
 

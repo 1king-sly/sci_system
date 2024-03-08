@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { fetchSampleUpcomingEvents } from '@/app/lib/actions';
 
+import pic from '@/public/ProfilePic.jpeg'
+
   
 interface Event {
     id: number;
@@ -68,7 +70,7 @@ useEffect(() => {
                         </div>
                         <div className="flex items-center">
                             <Link href="/" aria-label="Author" className="mr-3">
-                                <Image alt="avatar" src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" className="object-cover w-10 h-10 rounded-full shadow-sm" />
+                                <Image alt="avatar" src={pic}className="object-cover w-10 h-10 rounded-full shadow-sm" />
                             </Link>
                             <div>
                                 <Link href="/" aria-label="Author" className="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">{event.speaker}</Link>
