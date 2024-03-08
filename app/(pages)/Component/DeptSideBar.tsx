@@ -56,7 +56,7 @@ export default function DeptSideBar() {
                       >
                           <div className='flex-col'>
                               <div className='flex gap-2' onClick={() => scrollToSection(link.id)}>
-                              <a className="mb-2 mr-4 text-sm font-bold  tracking-wider uppercase" key={link.name} onClick={() => scrollToSection(link.id)}>{link.name}</a>
+                              <Link href={link.href} className="mb-2 mr-4 text-sm font-bold  tracking-wider uppercase" key={link.name} onClick={() => scrollToSection(link.id)}>{link.name}</Link>
                                 <ChevronDownIcon className='mb-2 w-6 max-[425px]:w-4 ml-16' onClick={toggleVisible} ></ChevronDownIcon>
                               </div>
                               <div className={clsx(`text-center`,!visible && 'hidden')}>
@@ -76,7 +76,7 @@ export default function DeptSideBar() {
                     })}
                     key={link.name} onClick={() => scrollToSection(link.id)}
                 >
-                    <a className="mb-2 mr-4 text-sm font-bold  tracking-wider uppercase" key={link.name} onClick={() => scrollToSection(link.id)}>{link.name}</a>
+                    <Link href={link.href} className="mb-2 mr-4 text-sm font-bold  tracking-wider uppercase" key={link.name} onClick={() => scrollToSection(link.id)}>{link.name}</Link>
                 </div>
         );
     })}
