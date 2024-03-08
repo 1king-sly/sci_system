@@ -1,5 +1,6 @@
 'use server';
 import prisma from '@/app/lib/prismadb';
+import slugify from 'slugify';
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
@@ -12,45 +13,64 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
 
-export const addEvent = async (formData: any) => {
+export const addEvent = async (formData: FormData) => {
+
   try {
-    const eventType = formData.eventType
-    const date = formData.date;
-    const venue = formData.venue;
-    const speaker = formData.speaker;
-    const host = formData.host;
-    const poster = formData.poster;
-    const time = formData.time;
-    const desc = formData.desc
-    const title = formData.title
+    const date = formData.get('date') as unknown as Date
+    ;
+    const venue = formData.get('venue') as unknown as string
+    ;
+    const speaker = formData.get('speaker') as unknown as string
+    ;
+    const host = formData.get('host') as unknown as string
+    ;
+    const poster = formData.get('poster') as unknown as string
+    ;
+    const time = formData.get('time') as unknown as string
+    ;
+    const desc = formData.get('desc') as unknown as string
+    
+    const title = formData.get('title') as unknown as string
+    
 
     
-    if (!eventType || !date || !venue || !speaker || !host || !poster || !time || !desc || !title) {
+    if (!date || !venue || !speaker || !host || !poster || !time || !desc || !title) {
       throw new Error('Required field is missing'); 
     }
 
+    const newDate = date+''+time
+
+    const slug = slugify(title, { lower: true, strict: true });
+
+    const timestamp = Date.now();
+    const uniqueSlug = `${slug}-${timestamp}`;
+
 
     const user = await getServerSession(authOptions)
+
    
     if (user) {
       const userId = parseInt(user.id);
+      const club = user.club as unknown 
+      if(!club){
+        console.error('Club missing')
+      }
       const newEvent = await prisma.event.create({
         data:{
           title:title,
           createdById:userId,
           dateOfEvent:date,
           venue:venue,
+          slug:uniqueSlug,
           timeOfEvent:time,
           speaker:speaker,
           host:host,
           poster:poster,
-          type:EventType[eventType as keyof typeof EventType],
+          type:EventType[club as keyof typeof club],
           desc:desc,
         }
       });
       revalidatePath('/');
-      // revalidatePath('/');
-
       if(newEvent){
         const users = await fetchUsers()
         {users?.map(async (user)=>{
@@ -82,6 +102,8 @@ export const addEvent = async (formData: any) => {
           });
         })}
       }
+
+      console.log('Created event',newEvent )
       return newEvent
   
     }

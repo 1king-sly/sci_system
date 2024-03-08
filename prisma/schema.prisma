@@ -37,6 +37,7 @@ model Event {
   dateOfEvent DateTime
   title       String
   desc        String
+  slug        String      @unique
   venue       String
   timeOfEvent DateTime
   gallery     String[]  @default([])

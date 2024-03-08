@@ -60,7 +60,7 @@ export default function NavBar1() {
         </div>
       </div>
     </div>
-    <div onClick={closeAuthMenu} className={clsx(`my-[25vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50 max-[425px]:hidden`, !viewAuth && 'hidden')}>
+    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50 max-[425px]:hidden`, !viewAuth && 'hidden')}>
     <div className='flex flex-col items-center justify-center'>
       <XMarkIcon className='h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
       <AuthForm></AuthForm>
