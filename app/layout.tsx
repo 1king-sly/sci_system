@@ -24,7 +24,7 @@ export default function RootLayout({
        <ToasterContext/>
 
         <div className='w-screen h-screen flex flex-col overflow-hidden gap-1 mb-0'>
-            <div className="shadow-md h-[17vh] ">
+            <div className="shadow-md h-[20vh] ">
               <NavBar1></NavBar1>
               </div>
             <div className="flex-1 flex w-full bg-white overflow-y-auto">{children}
