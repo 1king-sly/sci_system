@@ -7,19 +7,7 @@ import React from 'react'
 import { useState } from 'react';
 
 export default function AdminSideBar() {
-    const scrollToSection = (id:string) => {
-        const element = document.getElementById(id);
-        if(element){
-            element.scrollIntoView({behavior:'smooth'})
-        }
-    }
-
     const pathName = usePathname();
-    const [visible, SetVisible] = useState(false);
-
-    const toggleVisible = () =>{
-        SetVisible(prev => !prev);
-    }
     
     const links = [
         {
@@ -42,9 +30,7 @@ export default function AdminSideBar() {
     {links.map((link) => {
         return (
                 <div
-                    className={clsx(`cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2`, {
-                        'bg-sky-100 text-blue-600': pathName === link.href,
-                    })}
+                    className={clsx(`cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2`, {})}
                     key={link.name}
                 >
                     <Link href={link.href} className="mb-2 mr-4 text-sm font-bold  tracking-wider uppercase" key={link.name}>{link.name}</Link>
