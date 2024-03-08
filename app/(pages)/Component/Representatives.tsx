@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 import { fetchSchoolReps,fetchClassReps } from '@/app/lib/actions';
+import pic from '@/public/ProfilePic.jpeg'
 
 interface User {
   id: number;
@@ -66,7 +67,7 @@ useEffect(() => {
               sReps.map(rep=>(
        <div className="transition duration-300 transform bg-white rounded shadow-sm hover:-translate-y-1 hover:shadow md:text-center" key={rep.id}>
         <div className="relative">
-        <Image className="object-cover w-full h-64 rounded-t lg:h-80 xl:h-96" src={rep.image || "https://images.pexels.com/photos/3182796/pexels-photo-3182796.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"} alt={`Image of ${rep.userName}`} />
+        <Image className="object-cover w-full h-64 rounded-t lg:h-80 xl:h-96" src={rep.image || pic} alt={`Image of ${rep.userName}`} />
         <div className="absolute inset-0 bg-gray-800 bg-opacity-25"></div>
         </div>
         <div className="px-6 py-8 border border-t-0 rounded-b sm:px-8">
@@ -110,7 +111,7 @@ useEffect(() => {
               cReps.map(rep=>(
                 ( rep !== null && rep.level === 'FIRST'?(
                   <div className="flex" key={rep.id}>
-                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"} alt={`Image of ${rep.userName}`} />
+                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| pic} alt={`Image of ${rep.userName}`} />
                   <div className="flex flex-col justify-center">
                   <p className="text-lg font-bold">{rep.userName} </p>
                   <p className="text-sm text-gray-800">{rep.school} </p>
@@ -138,7 +139,7 @@ useEffect(() => {
               cReps.map(rep=>(
                 ( rep !== null && rep.level === 'SECOND'?(
                   <div className="flex" key={rep.id}>
-                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"} alt={`Image of ${rep.userName}`} />
+                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| pic} alt={`Image of ${rep.userName}`} />
                   <div className="flex flex-col justify-center">
                   <p className="text-lg font-bold">{rep.userName} </p>
                   <p className="text-sm text-gray-800">{rep.school} </p>
@@ -167,7 +168,7 @@ useEffect(() => {
               cReps.map(rep=>(
                 ( rep !== null && rep.level === 'THIRD'?(
                   <div className="flex" key={rep.id}>
-                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"} alt={`Image of ${rep.userName}`} />
+                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| pic} alt={`Image of ${rep.userName}`} />
                   <div className="flex flex-col justify-center">
                   <p className="text-lg font-bold">{rep.userName} </p>
                   <p className="text-sm text-gray-800">{rep.school} </p>
@@ -194,7 +195,7 @@ useEffect(() => {
               cReps.map(rep=>(
                 ( rep !== null && rep.level === 'FOURTH'?(
                   <div className="flex" key={rep.id}>
-                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"} alt={`Image of ${rep.userName}`} />
+                  <Image className="object-cover w-20 h-20 mr-4 rounded-full shadow" src={ rep.image|| pic} alt={`Image of ${rep.userName}`} />
                   <div className="flex flex-col justify-center">
                   <p className="text-lg font-bold">{rep.userName} </p>
                   <p className="text-sm text-gray-800">{rep.school} </p>

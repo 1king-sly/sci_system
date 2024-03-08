@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/app/lib/prismadb';
-import {  RoleType,StudentType,School,ClubType,Level } from '@prisma/client';
+import {  RoleType,UserType,School,ClubType,Level } from '@prisma/client';
 import NextAuth from 'next-auth';
 
 type User = {
@@ -17,14 +17,12 @@ type User = {
   updatedAt:Date;
   club:ClubType | null ,
   school:School | null,
-  studentType:StudentType | null,
+  userType:UserType | null,
   level: Level | null
 };
 type SessionStrategyType = 'jwt';
 
-// if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
-//   throw new Error(' client ID or client secret is not defined');
-// }
+
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -53,7 +51,7 @@ export const authOptions = {
             updatedAt: true,
             email: true,
             school:true,
-            studentType:true,
+            userType:true,
             club:true,
             level:true,
           },
@@ -79,7 +77,7 @@ export const authOptions = {
           updatedAt: user.updatedAt,
           hashedPassword: user.hashedPassword,
           school:user.school,
-          studentType:user.studentType, 
+          userType:user.userType, 
           club:user.club,  
           level:user.level   
           
@@ -111,7 +109,7 @@ export const authOptions = {
         updatedAt:user.updatedAt,
         club:user.club,
         school:user.school,
-        studentType:user.studentType,
+        userType:user.userType,
         level:user.level
 
       }
@@ -133,7 +131,7 @@ export const authOptions = {
       updatedAt:token.updatedAt,
       club:token.club,
       school:token.school,
-      studentType:token.studentType,
+      userType:token.userType,
       level:token.level,
     }
     },
