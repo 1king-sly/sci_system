@@ -13,6 +13,7 @@ declare module "next-auth" {
     role: string,
     email:string,
     id:string,
+    club:string,
 
     
   }
