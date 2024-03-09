@@ -29,14 +29,14 @@ export default function NavBar1() {
   return (
     <>
     <div className='w-full flex items-center h-[20vh]  font-serif z-50 fixed bg-gray-900 max-[768px]:hidden'>
-      <div className='w-full h-full mx-auto py-5 px-4  md:px-24 lg:px-8 flex items-center'> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
+      <div className='w-full h-full mx-auto py-5 px-4  md:px-4 lg:px-8 flex items-center'> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
 
         <div className='flex justify-start w-1/3 cursor-pointer'>
           <Link href='/'>
             <Image src={logo} alt='Logo'  className='cursor-pointer ' onClick={closeAuthMenu}></Image>
           </Link>
         </div>
-        <div className='gap-4 flex-1 justify-evenly hidden text-sm text-white space-x-8 lg:flex'>
+        <div className='lg:gap-4 max-[1024px]:gap-1 flex lg:flex-1 max-[1024px]:flex-auto flex-row justify-evenly  text-sm text-white space-x-8 max-[1024px]:space-x-2 lg:flex'>
         <Link href="/"> 
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/'})}>HOME</h1>
         </Link>
@@ -62,13 +62,13 @@ export default function NavBar1() {
     </div>
     <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full h-full flex items-start justify-center bg-transparent z-50 max-[425px]:hidden`, !viewAuth && 'hidden')}>
     <div className='flex flex-col items-center justify-center'>
-      <XMarkIcon className='h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
+      <XMarkIcon className='cursor-pointer h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
       <AuthForm></AuthForm>
       </div>
     </div>
 
     {/* Mobile NavBar */}
-    <div className="lg:hidden ">
+    <div className="min-[769px]:hidden ">
           {/* Mobile menu dropdown */}
           <div className="absolute top-0 left-0 w-full">
             <div className="p-5 bg-gray-900 border rounded shadow-sm">
@@ -103,11 +103,11 @@ export default function NavBar1() {
 
               <nav className={clsx(`w-full h-[480px] flex flex-col items-center justify-center bg-slate-900 z-50 relative p-10 rounded-md transition-all ease-in-out duration-300 `, !visible && 'hidden')}>
                 <ul className="space-y-4 z-[1000]">
-                  <li><Link href="/" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">HOME</Link> </li>    
-                  <li><Link href="/department" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">DEPARTMENT</Link> </li>
-                  <li><Link href="/club" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">CLUBS</Link> </li>
-                  <li><Link href="/events" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">EVENTS</Link> </li>
-                  <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">RESEARCH</Link> </li>
+                  <li><Link href="/" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>HOME</Link> </li>    
+                  <li><Link href="/department" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>DEPARTMENT</Link> </li>
+                  <li><Link href="/club" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>CLUBS</Link> </li>
+                  <li><Link href="/events" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>EVENTS</Link> </li>
+                  <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>RESEARCH</Link> </li>
                   <li>
                     <Link
                       href="#"
