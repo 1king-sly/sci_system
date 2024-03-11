@@ -26,8 +26,8 @@ export default function ResearchSideNav() {
     <>
 
   <div className="col-span-1">
-    <div className="px-2 py-8 fixed  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-2 lg:px-3 lg:py-10">
-    <div className="  h-full ">
+    <div className="px-4 py-4">
+    <div className="  h-full fixed">
     <div className="text-center  mb-4 items-center justify-center gap-2">
 
     {links.map((link) => {
