@@ -9,12 +9,12 @@ export default function page() {
             </div>
             <div className="flex justify-between items-center px-10 py-10">
             <ul className="flex gap-4"> 
-                <li>Overview</li>
-                <li>Members</li>
-                <li>Events</li>
-                <li>Attendees</li>
-                <li>Tickets</li>
-                <li>Sponsors</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Overview</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Members</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Events</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Attendees</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Tickets</li>
+                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Sponsors</li>
             </ul>
             
             </div>

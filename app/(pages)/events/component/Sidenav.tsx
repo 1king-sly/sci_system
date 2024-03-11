@@ -33,8 +33,8 @@ export default function Sidenav() {
 ]
   return (
     <div className="col-span-1">
-    <div className="px-4 py-8  fixed sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-8 lg:px-10 lg:py-10">
-    <div className="  h-full ">
+    <div className="px-4 py-4 mx-auto">
+    <div className="  h-full fixed">
 
 <div className="text-center  mb-4 items-center justify-center gap-2">
 

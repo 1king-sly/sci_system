@@ -46,7 +46,7 @@ useEffect(() => {
        return <p className='w-full h-full flex items-center justify-center'>Fetching  events...</p>;
    }
   return (
-    <div id="general" className="py-5">
+    <div id="general" className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-10">
     <h2 className="font-bold mb-4">GENERAL ANNOUNCEMENTS</h2>
 
     {events !== null && events.length > 0 ?(
