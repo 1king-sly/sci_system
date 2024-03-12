@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
 
-    <div className='w-full h-full flex  overflow-hidden gap-1 mb-0'>
+    <div className='w-full h-full flex  overflow-hidden overflow-x-hidden gap-1 mb-0'>
     <div className=" w-[20vw] max-[768px]:hidden">
         <Sidenav/>
 
