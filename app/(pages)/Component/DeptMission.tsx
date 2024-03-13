@@ -4,7 +4,7 @@ import Pic from '@/public/ResearchBanner.jpeg'
 
 export default function DeptMission() {
   return (
-        <div className="px-4 py-16 relative m-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-10">
+        <div className="px-4 py-16  m-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-10">
             <div className="grid max-w-screen-lg gap-12 lg:grid-cols-2 sm:mx-auto">
             <div className="flex flex-col justify-center">
                 <div>

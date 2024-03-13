@@ -120,7 +120,7 @@ export default function AuthForm() {
 
   return (
     <>
-      <div className='w-[30vw] mx-16 bg-white px-4 lg:px-10 py-6 mt-2 gap-2 rounded-md  shadow-lg'>
+      <div className='w-full mx-16 bg-white px-4 lg:px-10 py-6 mt-2 gap-2 rounded-md  shadow-lg'>
         <form>
           {variant === 'REGISTER' && (
              <>
