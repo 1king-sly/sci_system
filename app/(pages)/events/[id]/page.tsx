@@ -7,21 +7,23 @@ import EventVenue from '../component/EventVenue'
 import Speaker from '../component/Speaker'
 import Organizers from '../component/Organizers'
 import Socials from '../component/Socials'
+import { fetchSingleEvent } from '@/app/lib/actions'
+import { Suspense } from 'react'
 
-export default async function page({ params }: {params: {id:string} }) {
-    const id = params.id
+export default async function page() {
   return (
     <>
     <div className="w-full grid grid-cols-4">
         <div className="col-span-4 border-l-2 p-4">
+          <Suspense>
             <EventBanner></EventBanner>
             <EventBriefDesc></EventBriefDesc>
-            <h2 className="text-4xl font-bold py-4 text-left">Title of the Event, with few additional words maybe</h2>
             <Socials></Socials>
             <EventDescription></EventDescription>
             <EventVenue></EventVenue>
             <Speaker></Speaker>
             <Organizers></Organizers>
+            </Suspense>
         </div>
     </div>
     </>

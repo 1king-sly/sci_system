@@ -103,11 +103,11 @@ export default function NavBar1() {
 
               <nav className={clsx(`w-full h-[480px] flex flex-col items-center justify-center bg-slate-900 z-50 relative p-10 rounded-md transition-all ease-in-out duration-300 `, !visible && 'hidden')}>
                 <ul className="space-y-4 z-[1000]">
-                  <li><Link href="/" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>HOME</Link> </li>    
-                  <li><Link href="/department" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>DEPARTMENT</Link> </li>
-                  <li><Link href="/club" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>CLUBS</Link> </li>
-                  <li><Link href="/events" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>EVENTS</Link> </li>
-                  <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={closeDropDown}>RESEARCH</Link> </li>
+                  <li><Link href="/" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>HOME</Link> </li>    
+                  <li><Link href="/department" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>DEPARTMENT</Link> </li>
+                  <li><Link href="/club" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>CLUBS</Link> </li>
+                  <li><Link href="/events" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>EVENTS</Link> </li>
+                  <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>RESEARCH</Link> </li>
                   <li>
                     <Link
                       href="#"

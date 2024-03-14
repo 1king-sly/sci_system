@@ -101,10 +101,10 @@ export default function Event() {
             if (create) {
               toast.dismiss();
               toggleVisible();
-              toast.success('Exam created Successfully');
+              toast.success('Event created Successfully');
             } else {
               toast.dismiss();
-              toast.error('Error creating exam');
+              toast.error('Error creating Event');
             }
           }
 

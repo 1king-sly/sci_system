@@ -1,42 +1,153 @@
 'use client'
-import React , {useState } from 'react'
-import pdf from '@/public/pdf.png'
+import React , {useState, useEffect} from 'react'
+import clsx from 'clsx';
 import Image from 'next/image';
 import Button from '../../Component/Button';
+import { addEvent } from '@/app/lib/actions';
+import toast from 'react-hot-toast';
+
 
 export default function page() {
+  const[visible,setVisible]= useState(false);
+  const [loading, setisLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
-    category: 'clusterId',
-    level: '',
-    file: null as { name: string, type: string, data: string } | null,
+    date: '',
+    venue: '',
+    poster:'',
     imagePreview: null as string | null,
-    cloudinaryFileUrl: null as string | null,
+    speaker:'',
+    host:'',
+    time:'',
+    desc:'',
+   
+
+
+
+
+   
     });
 
+  const toggleLoading = () => {
+    setisLoading((prevLoading) => !prevLoading);
+  };
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement>) => {
+ 
+
+
+
+  const handleSubmit = async () => {
+    const event = window.event;
+    if (!event) {
+      return;
+    }
+    event.preventDefault();
+
+    if(formData.title === ''|| formData.title===null || formData.date === ''|| formData.date===null || formData.venue === ''|| formData.venue===null || formData.speaker === ''|| formData.speaker===null ||   formData.time === ''|| formData.time===null  || formData.desc === ''|| formData.desc===null ){
+      toast.error('Please fill all the fields')
+        toggleLoading();
+        throw new Error('Missing fields')
+
+
+
+      }
+
+
+      toggleLoading();
+
+
+      try {
+        const formDataToUpload = new FormData();
+        formDataToUpload.append('file',formData.imagePreview as unknown as  Blob);
+        formDataToUpload.append('upload_preset', 'psy5tipf');
+
+        const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
+          method: 'POST',
+          body: formDataToUpload
+        });
+
+
+        if (!response.ok) {
+          throw new Error('Failed to upload file to Cloudinary');
+        }
+
+        const data = await response.json();
+
+        const fileUrl = data.secure_url;
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            poster: fileUrl,
+          }));
+
+
+          const newFormData =  new FormData();
+
+          newFormData.append('poster',fileUrl)
+          newFormData.append('date',formData.date)
+          newFormData.append('venue',formData.venue)
+          newFormData.append('speaker',formData.speaker)
+          newFormData.append('host',formData.host)
+          newFormData.append('time',formData.time)
+          newFormData.append('desc',formData.desc)
+          newFormData.append('title',formData.title)
+
+          if(data){
+            const create = await addEvent(newFormData);
+            if (create) {
+              toast.dismiss();
+              toggleVisible();
+              toast.success('Event created Successfully');
+            } else {
+              toast.dismiss();
+              toast.error('Error creating Event');
+            }
+          }
+
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }finally{
+        toggleLoading();
+
+      }   
+  };
+  
+  
+  useEffect(() => {
+    setDisabled(loading);
+  }, [loading]);
+
+ 
+ 
+
+  const handleChange = async (event: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement>)  => {
     const { name, value, files } = event.target as HTMLInputElement;
   
     if (name === 'file' && files && files.length > 0) {
       const file = files[0];
-      const reader = new FileReader();
+
+      if (file) {
+
+       
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const base64String = reader.result?.toString().split(',')[1];
   
-      reader.onload = () => {
-        const base64String = reader.result?.toString().split(',')[1];
-  
-        setFormData({
-          ...formData,
-          file: {
-            name: file.name,
-            type: file.type,
-            data: base64String || '', 
-          },
-          imagePreview: reader.result as string,
-        });
-      };
-  
-      reader.readAsDataURL(file);
+         
+    
+          setFormData({
+            ...formData, 
+            imagePreview: reader.result as string,
+          });
+        };
+    
+        reader.readAsDataURL(file);
+
+      
+      }
+     
     } else {
       setFormData({
         ...formData,
@@ -45,6 +156,9 @@ export default function page() {
     }
   };
 
+  const toggleVisible = () => {
+    setVisible((prev) => !prev)
+  }
   return (
     <div className='w-full'>
       <div className="bg-sky-100">
@@ -89,7 +203,7 @@ export default function page() {
                             <div className="text-center">
 
                               {formData.imagePreview ? (
-                /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.file?.name || '') ? (
+                /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.imagePreview || '') ? (
                   <Image
                     src={formData.imagePreview}
                     alt="File Preview"
@@ -100,7 +214,7 @@ export default function page() {
                 ) :
                 (
                   <Image
-                    src={pdf}
+                    src={formData.imagePreview}
                     alt="Document Preview"
                     className="mb-4 max-w-full max-h-96"
                     width={150}
@@ -120,7 +234,7 @@ export default function page() {
                                     name="file"
                                     type="file"
                                     className="sr-only"
-                                    // accept='.jpg,.jpeg,.png'
+                                    accept='.jpg,.jpeg,.png'
                                     onChange={handleChange}
                                     />
                                 </label>
@@ -138,21 +252,35 @@ export default function page() {
                 <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Title</label>
                   <div className="mt-2">
-                    <input id="about" name="about" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></input>
+                    <input 
+                    name="title" 
+                    title='title'
+                    id="title"
+                    onChange={handleChange} 
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></input>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">0/100</p>
                 </div>
-                <div className="col-span-full py-5">
+                {/*sHORT dESCRIPTION*/}
+                {/* <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Short description</label>
                   <div className="mt-2">
-                    <textarea className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    <textarea 
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">Displayed on chapter page and newsletters</p>
-                </div>
+                </div> */}
                 <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Event Description</label>
                   <div className="mt-2">
-                    <textarea className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    <textarea 
+                    name="desc"
+                    id="Description"
+                    title='Description'
+                    placeholder='Event Description'                
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">Displayed only on the event page. Add images by dragging them into the section above</p>
                 </div>
@@ -165,6 +293,7 @@ export default function page() {
                 id="time" 
                 title='time'
                 placeholder='Event Time' 
+                onChange={handleChange}
                 className='resize-none p-2 h-10 w-[10vw] border-2 flex items-center rounded-md outline-sky-200 overflow-hidden'
                 ></input>
               <label className='p-2 '>Date</label>
@@ -173,6 +302,7 @@ export default function page() {
                 id="date"
                 title='date'
                 placeholder='Date of Event'
+                onChange={handleChange}
                 className='resize-none p-2 h-10 w-[10vw] border-2 flex items-center rounded-md outline-sky-200 overflow-hidden'
                ></input>
                </div>
@@ -185,7 +315,7 @@ export default function page() {
                         name="venue"
                         id="venue"
                         title='venue'
-                        // placeholder='Event Venue'
+                        onChange={handleChange}
                         className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     /></div>
                   </div>
@@ -193,16 +323,16 @@ export default function page() {
                     <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Event Host</label>
                     <div className="mt-2">
                       <input type="text"
-                        name="Host"
-                        id="Host"
-                        title='Host'
-                        // placeholder='Host'
+                        name="host"
+                        id="host"
+                        title='host'
+                        onChange={handleChange}
                         className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                       /></div>
                   </div>
                 </div>
                 {/* Thumbnail */}
-                <div className="col-span-full py-5">
+                {/* <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Event thumbnail</label>
                   <div className="mt-2 flex items-center gap-x-3">
                     <svg className="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -210,7 +340,7 @@ export default function page() {
                     </svg>
                     <div className="text-center">
                       {formData.imagePreview ? (
-                      /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.file?.name || '') ? (
+                      /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.imagePreview || '') ? (
                       <Image
                       src={formData.imagePreview}
                       alt="File Preview"
@@ -221,7 +351,7 @@ export default function page() {
                       ) :
                       (
                       <Image
-                      src={pdf}
+                      src={formData.imagePreview}
                       alt="Document Preview"
                       className="mb-4 max-w-full max-h-96"
                       width={150}
@@ -249,7 +379,7 @@ export default function page() {
                     </div>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">Displayed on chapter page, upcoming events page and social media</p>
-                </div>
+                </div> */}
                   
                 <div className="bg-slate-600 my-5 py-1">
                   <ul  className="flex px-5  items-center gap-5 list-disc">
@@ -262,47 +392,49 @@ export default function page() {
                   <div className="mt-2 flex flex-row gap-4 ">
                   <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">First Name</label>
                     <input type="text"
-                      name="SpeakerName"
-                      id="SpeakerName"
-                      title='SpeakerName'
-                      // placeholder='Host'
+                      name="speaker"
+                      id="FirstName"
+                      title='FirstName'
+                      onChange={handleChange}
                       className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                       />
-                  <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Second Name</label>
+                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Second Name</label>
                     <input type="text"
-                    name="SpeakerName"
-                    id="SpeakerName"
-                    title='SpeakerName'
-                    // placeholder='Host'
+                    name="SecondName"
+                    id="SecondName"
+                    title='SecondName'
+                    onChange={handleChange}
                     className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    />
-                  <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Company</label>
+                    /> */}
+                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Company</label>
                     <input type="text"
-                    name="SpeakerName"
-                    id="SpeakerName"
-                    title='SpeakerName'
-                    // placeholder='Host'
+                    name="SpeakerCompany"
+                    id="SpeakerCompany"
+                    title='SpeakerCompany'
+                    onChange={handleChange}
                     className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    />
-                  <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Title</label>
+                    /> */}
+                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Title</label>
                     <input type="text"
                       name="SpeakerTitle"
                       id="SpeakerTitle"
                       title='SpeakerTitle'
-                      // placeholder='Host'
+                      onChange={handleChange}
                       className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    />
+                    /> */}
                     </div>
                     </div>
                   {/* Speaker's Biography */}
-                  <div className="col-span-full ">
+                  {/* <div className="col-span-full ">
                     <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900"></label>Biography(displayed on event page)
                     <div className="mt-2">
-                      <textarea className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-sky-100 "></textarea>
+                      <textarea 
+                      onChange={handleChange}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-sky-100 "></textarea>
                     </div>
-                  </div>
+                  </div> */}
                 {/* Speaker's Image */}
-                <div className="col-span-full py-5">
+                {/* <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Speaker's Image</label>
                   <div className="mt-2 flex items-center gap-x-3">
                     <svg className="h-40 w-40 border-2 rounded text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -310,7 +442,7 @@ export default function page() {
                     </svg>
                     <div className="text-center">
                         {formData.imagePreview ? (
-                        /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.file?.name || '') ? (
+                        /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.imagePreview || '') ? (
                         <Image
                         src={formData.imagePreview}
                         alt="File Preview"
@@ -321,7 +453,7 @@ export default function page() {
                         ) :
                         (
                         <Image
-                        src={pdf}
+                        src={formData.imagePreview}
                         alt="Document Preview"
                         className="mb-4 max-w-full max-h-96"
                         width={150}
@@ -341,17 +473,19 @@ export default function page() {
                               name="Speaker"
                               type="file"
                               className="sr-only"
-                              // accept='.jpg,.jpeg,.png'
                               onChange={handleChange}
                               />
                           </label>
                         </div>
                       </div>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="bg-slate-600 my-5 py-1 flex justify-end pr-5 gap-3 text-white font-semibold">
-                  <button type='submit' className=" p-2"> Publish</button>
+                  <button type='submit'  className={clsx(`p-2`)}
+                  onClick={handleSubmit}
+                  > Publish</button>
+                  {/* <Button onClick={handleSubmit} type='submit'>Submit</Button> */}
                   <button className="p-2">Save draft</button>
                 </div>
               </div>
