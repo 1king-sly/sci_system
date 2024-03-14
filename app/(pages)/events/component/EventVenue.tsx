@@ -39,7 +39,7 @@ export default function EventVenue() {
         }
       };
 
-  // fetchEvents();
+  fetchEvents('');
 }, []);
 
   if (loading){

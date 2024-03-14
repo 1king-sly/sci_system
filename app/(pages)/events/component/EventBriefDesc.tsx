@@ -41,7 +41,7 @@ export default function EventBriefDesc() {
         }
       };
 
-  // fetchEvents();
+  fetchEvents('');
 }, []);
 
   if (loading){
@@ -66,7 +66,7 @@ export default function EventBriefDesc() {
     </div>
       ))
     ) :(
-      <p>No Events Description</p>
+      <p>No Events Brief Description</p>
     )}
     </>
     )

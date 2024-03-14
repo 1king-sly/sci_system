@@ -39,7 +39,7 @@ export default function EventDescription() {
         }
       };
 
-  // fetchEvents();
+  fetchEvents('');
 }, []);
 
   if (loading){

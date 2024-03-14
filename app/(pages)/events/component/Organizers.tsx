@@ -41,7 +41,7 @@ export default function Organizers() {
         }
       };
 
-  // fetchEvents();
+  fetchEvents('');
 }, []);
 
   if (loading){
@@ -86,7 +86,7 @@ export default function Organizers() {
     </div>  
     ))
     ) : (
-        <p>No Upcoming Events scheduled</p>
+        <p>No Events Organizers</p>
     )}
     </>
   )

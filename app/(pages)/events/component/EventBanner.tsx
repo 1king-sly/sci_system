@@ -43,11 +43,11 @@ export default async function EventBanner() {
         }
       };
 
-  // fetchEvents();
+  fetchEvents('');
 }, []);
 
   if (loading){
-    return <div>Loading...</div>;
+    return <p className='w-full h-full flex items-center justify-center'>Loading  events...</p>;
   }
 
 
