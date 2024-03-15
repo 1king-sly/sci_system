@@ -10,7 +10,7 @@ import Socials from '../component/Socials'
 import { fetchSingleEvent } from '@/app/lib/actions'
 import { Suspense } from 'react'
 
-export default async function page() {
+export default async function page({params}: {params: {id : string}}) {
   return (
     <>
     <div className="w-full grid grid-cols-4">
