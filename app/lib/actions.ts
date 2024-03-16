@@ -244,8 +244,11 @@ export const fetchSingleBlog = async (slug:string) =>{
     const blog = await prisma.blog.findUnique({
       where:{
         slug:slug
-      }
-    })
+      },
+      include: {
+        createdBy: true,
+      },
+    }) 
 
     
     if (blog) {
