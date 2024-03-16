@@ -211,18 +211,19 @@ export const fetchBlogs = async () =>{
       {
         orderBy:{
           createdAt:'desc'
-        }
+        },
+        take:1
       }
     )
     return blogs
 
   }catch(error:any){
-    console.error("Fetching blogs", error)
+    console.error("Failed to fetch latest blog", error)
   }
  
 }
 
-export const fetchSampleBlogs = async () =>{
+export const fetchLatestBlogs = async () =>{
   try{
     const blogs = await prisma.blog.findMany({
       orderBy:{
@@ -234,7 +235,7 @@ export const fetchSampleBlogs = async () =>{
     return blogs
 
   }catch(error:any){
-    console.error('Error fetching sample blogs', error)
+    console.error('Error fetching latest blogs', error)
   }
 }
 
@@ -246,6 +247,20 @@ export const fetchSingleBlog = async (slug:string) =>{
       }
     })
 
+    
+    if (blog) {
+      await prisma.blog.update({
+        where: {
+          id: blog.id
+        },
+        data: {
+          views: {
+            increment: 1
+          }
+        }
+      });
+    }
+
     return blog
 
   }catch(error:any){
@@ -253,6 +268,23 @@ export const fetchSingleBlog = async (slug:string) =>{
   }
 }
 
+export const fetchTrendingBlogs = async () =>{
+
+  try{
+
+    const blogs = await prisma.blog.findMany({
+      orderBy:{
+        views:'desc'
+      },
+      take:5
+    })
+
+    return blogs
+
+  }catch(error:any){
+    console.error('Error fecthing trending blogs',error)
+  }
+}
 
 export const createUser = async (formData:any)=>{
   const firstName = formData.firstName

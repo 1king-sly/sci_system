@@ -1,11 +1,17 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 export default function MiniNavBar() {
+
+    const session = useSession()
+
+    const user = session.data?.userName
   return (
     <>
         <div className="fixed w-full z-50 flex justify-between px-10 py-1 bg-sky-200">
-            <div><p>Hello UserName</p></div>
+            <div><p>Hello, {user || 'User'}</p></div>
             <div className="flex gap-6"> 
             <Link href="/Admin/addEvents">
                 <div className="flex items-center mx-2">

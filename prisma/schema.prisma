@@ -75,6 +75,7 @@ model Blog {
   createdBy   User      @relation(fields: [createdById], references: [id])
   createdById Int
   createdAt DateTime @default(now())
+  views         Int  @default(0)
   title       String
   desc        String
   slug        String      @unique
