@@ -21,53 +21,23 @@ interface Event {
   host: string;
   poster: string;
 }
-export default async function EventBanner() {
+export default  function EventBanner({poster}:{poster:any}) {
  
-  const [events, setEvents] = useState<Event[] |null>(null);
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-      const fetchEvents = async (EventId: string) => {
-        try {
-          const eventsData = await fetchSingleEvent(EventId);
-          if (eventsData !== undefined) {
-            setEvents(eventsData);
-          } else {
-            console.error('No events data received');
-          }
-        } catch (error) {
-          console.error('Error fetching events:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-  fetchEvents('');
-}, []);
-
-  if (loading){
-    return <p className='w-full h-full flex items-center justify-center'>Loading  events...</p>;
-  }
-
+ 
 
   return (
     <>
-    {events !==null && events.length > 0 ? (
-      events.map(event => (
-        <div  className="relative flex flex-col justify-center text-center">
-          <Image src={event.poster || Banner} alt='Banner' className="absolute rounded-3xl object-cover w-full h-full"></Image>
-          <div className="rounded-3xl relative bg-gray-900 bg-opacity-50 ">
+    
+        <div  className="relative flex flex-col justify-center text-center w-full h-[500px]">
+          <Image src={poster || Banner} alt='Banner' width={400} height={400} className="absolute rounded-3xl object-fit w-full h-full"></Image>
+          <div className="rounded-3xl relative bg-gray-900 bg-opacity-50 w-full h-full ">
             <div className="px-4 py-16 ">
               <div className="px-4 py-16">
               </div>
             </div>
           </div>
         </div>
-      ))
-      ):(
-        <p>No Events Banner</p>
-      )}
+     
     </>
   )
 }

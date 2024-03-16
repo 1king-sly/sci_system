@@ -18,6 +18,7 @@ interface Event {
   speaker: string;
   host: string;
   poster: string;
+  slug:string
 }
 
 export default function Organizers() {
@@ -51,7 +52,7 @@ export default function Organizers() {
     <>
     {events !== null && events.length > 0 ? ( 
       events.map(event => (
-    <div>
+    <div key={event.id}>
       <h3 className="text-4xl text-center py-10">Organizers</h3>
       <div className="grid gap-6 row-gap-8  grid-cols-4">
         <div className="flex flex-col gap-5">

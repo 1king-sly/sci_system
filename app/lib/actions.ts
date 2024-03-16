@@ -15,7 +15,6 @@ const nodemailer = require('nodemailer');
 
 export const addEvent = async (formData: FormData) => {
 
-  console.log(formData)
 
   try {
     const date = formData.get('date') as unknown as Date
@@ -107,7 +106,6 @@ export const addEvent = async (formData: FormData) => {
         })}
       }
 
-      console.log('Created event',newEvent )
       return newEvent
   
     }
@@ -243,14 +241,16 @@ export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
     }
 }
 
-export const fetchSingleEvent = async (id:string) =>{
-
+export const fetchSingleEvent = async (slug:string) =>{
+  console.log(slug)
   try{
     const event = await prisma.event.findUnique({
       where:{
-        id:parseInt(id)
+        slug:slug
       }
     })
+    console.log(event)
+    return event
   }catch(error:any){
     console.error('Failed to fetch Single Event',error)
   }

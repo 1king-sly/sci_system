@@ -7,7 +7,7 @@ import { addEvent } from '@/app/lib/actions';
 import toast from 'react-hot-toast';
 
 
-export default function page() {
+export default function Page() {
   const[visible,setVisible]= useState(false);
   const [loading, setisLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -58,6 +58,7 @@ export default function page() {
 
 
       try {
+        toast.loading('Publishing Event')
         const formDataToUpload = new FormData();
         formDataToUpload.append('file',formData.imagePreview as unknown as  Blob);
         formDataToUpload.append('upload_preset', 'psy5tipf');
