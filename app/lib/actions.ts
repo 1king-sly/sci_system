@@ -118,6 +118,141 @@ export const addEvent = async (formData: FormData) => {
   }
 };
 
+export const addBlog = async (formData: FormData) => {
+
+
+  try {
+    
+   
+    const poster = formData.get('poster') as unknown as string
+    ;
+  
+    const desc = formData.get('desc') as unknown as string
+    
+    const title = formData.get('title') as unknown as string
+    
+
+    
+    if ( !poster || !desc || !title) {
+      throw new Error('Required field is missing'); 
+    }
+
+    const slug = slugify(title, { lower: true, strict: true });
+
+    const timestamp = Date.now();
+    const uniqueSlug = `${slug}-${timestamp}`;
+
+
+    const user = await getServerSession(authOptions)
+
+   
+    if (user) {
+      const userId = parseInt(user.id);
+    
+      const newBlog = await prisma.blog.create({
+        data:{
+          title:title,
+          createdById:userId,
+          slug:uniqueSlug,
+          poster:poster,
+          desc:desc,
+        }
+      });
+      revalidatePath('/');
+      if(newBlog){
+        const users = await fetchUsers()
+        {users?.map(async (user)=>{
+          const email = user.email
+          const userName = user.userName
+          const transporter:any = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            tls: {
+              ciphers: "SSLv3",
+              rejectUnauthorized: false,
+          },
+            secure: false, 
+            auth: {
+              user: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+              pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+            },
+          });
+    
+          const info = await transporter.sendMail({
+            from: {
+              name:'Byrone Kinsly',
+              address:process.env.NEXT_PUBLIC_PERSONAL_EMAIL
+            }, 
+            to: email, 
+            subject: "NEW BLOG CREATED", 
+            text:` Hello ${userName}, A new blog has been posted of title:  ${title} check it out and have fun with tech `,
+            html: `<b> Hello ${userName}, A new blog has been posted of title:  ${title} check it out and have fun with tech </b>`, 
+          });
+        })}
+      }
+
+      return newBlog
+  
+    }
+  } catch (error) {
+    console.error(error, 'Failed to create event');
+    
+  } finally {
+    
+    revalidatePath('/');
+  }
+};
+
+export const fetchBlogs = async () =>{
+
+  try{
+
+    const blogs = await prisma.blog.findMany(
+      {
+        orderBy:{
+          createdAt:'desc'
+        }
+      }
+    )
+    return blogs
+
+  }catch(error:any){
+    console.error("Fetching blogs", error)
+  }
+ 
+}
+
+export const fetchSampleBlogs = async () =>{
+  try{
+    const blogs = await prisma.blog.findMany({
+      orderBy:{
+        createdAt:'desc'
+      },
+      take:5
+    })
+
+    return blogs
+
+  }catch(error:any){
+    console.error('Error fetching sample blogs', error)
+  }
+}
+
+export const fetchSingleBlog = async (slug:string) =>{
+  try{
+    const blog = await prisma.blog.findUnique({
+      where:{
+        slug:slug
+      }
+    })
+
+    return blog
+
+  }catch(error:any){
+    console.error('Error fetching single Blog',error)
+  }
+}
+
 
 export const createUser = async (formData:any)=>{
   const firstName = formData.firstName
@@ -242,14 +377,12 @@ export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
 }
 
 export const fetchSingleEvent = async (slug:string) =>{
-  console.log(slug)
   try{
     const event = await prisma.event.findUnique({
       where:{
         slug:slug
       }
     })
-    console.log(event)
     return event
   }catch(error:any){
     console.error('Failed to fetch Single Event',error)

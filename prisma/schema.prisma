@@ -25,6 +25,7 @@ model User {
   role       RoleType
   researches Research[]
   Event      Event[]
+  Blog        Blog[]
   school      School?
   userType UserType?
   level       Level?
@@ -67,6 +68,17 @@ model Research {
   ans4      String
   updatedBy String?
   title     String
+}
+
+model Blog {
+  id          Int       @id @default(autoincrement())
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  createdById Int
+  createdAt DateTime @default(now())
+  title       String
+  desc        String
+  slug        String      @unique
+  poster      String
 }
 
 enum Status {

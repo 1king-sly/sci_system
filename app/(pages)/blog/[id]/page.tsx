@@ -15,8 +15,8 @@ export default function page({params}: {params: {id : string}}) {
           <div className='text-sm md:flex-none lg:flex gap-4 my-2 mx-5'>
             <Image src={Pic} alt='AuthorPic' className='h-16 w-16 rounded-full'></Image>
             <div className='items-center justify-center'>
-              <h1 className='font-bold'>By Author's Name</h1>
-              <h1>Author's Title</h1>
+              <h1 className='font-bold'>By Author Name</h1>
+              <h1>Author Title</h1>
               <h1>Published on: 25/01/2024</h1>
             </div>
           </div>
