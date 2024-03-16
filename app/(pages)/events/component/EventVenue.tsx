@@ -3,59 +3,20 @@ import React from 'react'
 import { fetchSingleEvent } from '@/app/lib/actions';
 import { useEffect, useState } from 'react';
 
-interface Event {
-    id: number;
-    createdById: number;
-    dateOfEvent: Date;
-    title: string;
-    desc: string;
-    venue: string;
-    timeOfEvent: Date;
-    gallery: string[];
-    type: any;
-    speaker: string;
-    host: string;
-    poster: string;
-  }
-
-export default function EventVenue() {
-    const [events, setEvents] = useState<Event[] |null>(null);
-  const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
-      const fetchEvents = async (EventId: string) => {
-        try {
-          const eventsData = await fetchSingleEvent(EventId);
-          if (eventsData !== undefined) {
-            setEvents(eventsData);
-          } else {
-            console.error('No events data received');
-          }
-        } catch (error) {
-          console.error('Error fetching events:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-  fetchEvents('');
-}, []);
-
-  if (loading){
-    return <div>Loading...</div>;
-  }
+export default function EventVenue({event}:{event:any}) {
+ 
 
   return (
     <>
-    {events !== null && events.length > 0 ? ( 
-                events.map(event => (
+  
         <div className="P-10 my-4 bg-opacity-15 bg-slate-400" >
             <div className="flex justify-start gap-4 p-5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 32 32"><rect width="32" height="32" fill="none"/><path fill="#07aff8" d="M16 2C8.4 2 2 8.4 2 16s6.4 14 14 14s14-6.4 14-14S23.6 2 16 2m4.587 20L15 16.41V7h2v8.582l5 5.004z"/><path fill="none" d="M20.587 22L15 16.41V7h2v8.582l5 5.005z"/></svg>
                 <div>
                 <h4 className="text-lg">When</h4>
-                <p className="text-sm">{event.dateOfEvent} <br/> {event.timeOfEvent}</p>
+                <p className="text-sm">{event?.dateOfEvent.toLocaleDateString()} <br/> {event?.timeOfEvent.toLocaleTimeString()}</p>
                 </div>
                 </div>
             <div  className="flex justify-start gap-4 p-5">
@@ -69,10 +30,7 @@ export default function EventVenue() {
                 </div>
             </div>
         </div>
-        ))
-        ) : (
-            <p>No Events date and time</p>
-        )}
+      
     </>
   )
 }
