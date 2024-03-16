@@ -8,11 +8,14 @@ import Socials from '../events/component/Socials'
 import Speaker from '../events/component/Speaker'
 import Organizers from '../events/component/Organizers'
 
-export default function page() {
+export default async function page() {
+
+  // const event = await fetchLatestBlog()
+
   return (
     <div className='w-full'>
       <MiniNavBar></MiniNavBar>
-    <div className='w-full px-16 py-16'>
+    {/* <div className='w-full px-16 py-16'>
       <EventBanner></EventBanner>
       <h2 className="text-4xl font-bold py-4 text-left">Title of the Event, with few additional words maybe</h2>
       <EventBriefDesc></EventBriefDesc>
@@ -21,7 +24,7 @@ export default function page() {
       <EventVenue></EventVenue>
       <Speaker></Speaker>
       <Organizers></Organizers>
-    </div>
+    </div> */}
     </div>
   )
 }
