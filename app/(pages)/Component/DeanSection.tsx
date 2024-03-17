@@ -4,10 +4,10 @@ import Image from 'next/image'
 
 export default function DeanSection() {
   return (
-    <div className="px-4 py-10 relative  bg-white m-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div className="px-4 py-10 relative  bg-white  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
     <div className="grid gap-20 row-gap-8 lg:grid-cols-2">
         <div>
-            <Image src={Dean} alt="Dean"  className='object-cover w-full h-56 rounded shadow-lg sm:h-96' />
+            <Image src={Dean} alt="Dean"  className='object-fit w-full h-56 rounded shadow-lg sm:h-96' />
           </div>
         <div className="flex flex-col justify-center">
        

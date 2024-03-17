@@ -61,7 +61,7 @@ useEffect(() => {
     <div>
         <h2 id="SCIreps" className="max-w-lg underline mb-6 font-sans text-left text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
         SCI Representatives </h2>
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
         <div className="grid max-w-screen-lg gap-16 row-gap-5 md:row-gap-8 sm:mx-auto lg:grid-cols-2">
           {sReps !== null && sReps.length>0 ?(
               sReps.map(rep=>(
@@ -74,15 +74,6 @@ useEffect(() => {
         <h5 className="mb-2 text-xl font-bold leading-none sm:text-2xl">
           {rep.userName}       
  </h5>
-        <p className="mb-5 text-gray-700">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae. Sed ut perspiciatis unde.
-        </p>
-        <button
-        type="submit"
-        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-        >
-        Read more
-        </button>
         </div>
         </div>
               ))
@@ -126,7 +117,7 @@ useEffect(() => {
         </div>
 
         </div>
-        <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+        <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
 
         <p className="max-w-lg mb-5 font-sans text-lg font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none md:mb-6 group">
         <span className="inline-block mb-1 sm:mb-4">
@@ -155,7 +146,7 @@ useEffect(() => {
 
 
         </div>
-        <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+        <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
 
         <p className="max-w-lg mb-5 font-sans text-lg font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none md:mb-6 group">
         <span className="inline-block mb-1 sm:mb-4">
@@ -182,7 +173,7 @@ useEffect(() => {
           )}
         </div> 
         </div>
-        <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+        <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
 
         <p className="max-w-lg mb-5 font-sans text-lg font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none md:mb-6 group">
         <span className="inline-block mb-1 sm:mb-4">

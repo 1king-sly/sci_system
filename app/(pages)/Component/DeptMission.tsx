@@ -4,7 +4,7 @@ import Pic from '@/public/ResearchBanner.jpeg'
 
 export default function DeptMission() {
   return (
-        <div className="px-4 py-16  m-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-10">
+        <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-8">
             <div className="grid max-w-screen-lg gap-12 lg:grid-cols-2 sm:mx-auto">
             <div className="flex flex-col justify-center">
                 <div>
@@ -25,7 +25,7 @@ export default function DeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Mission</p>
                     <p className="text-gray-700">
-                        All recipes are written using certain conventions, which define the characteristics of common ingredients. The rules vary from place to place.
+                        Our School Aims to create Industry Ready Experts Who Solve Real World Problems.
                     </p>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ export default function DeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Vision</p>
                     <p className="text-gray-700">
-                        The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. Michael Knight a young loner.
+                        Create The Best Tech Experts Who Bring Solutions To Real World Problems.
                     </p>
                     </div>
                 </div>

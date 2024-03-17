@@ -381,10 +381,8 @@ export const fetchSampleUpcomingEvents = async () =>{
    
      try{
       const events = await prisma.event.findMany({
-        // orderBy:{
-        //   dateOfEvent:'desc'
-        // },
-        take:3
+        take:3,
+       
        })
        return events
      }catch(error:any){
