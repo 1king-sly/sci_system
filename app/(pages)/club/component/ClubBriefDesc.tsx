@@ -5,7 +5,8 @@ import ClubPic from '@/public/ClubPic.jpg'
 export default function ClubBriefDesc() {
   return (
     <>
-        <div id="GDSCclub" className="px-20 py-10">
+    <div className='w-full h-full'>
+        <div id="GDSCclub" className="px-20 py-10 w-full ">
                     <div className="lg:col-span-2">
                         
                         <div className="mb-3">
@@ -15,9 +16,8 @@ export default function ClubBriefDesc() {
                           </a>
                         </div>
                         <p className="mb-4 text-base text-gray-700 md:text-lg">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus perspiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!                        </p>
+                          A brief description about the club, why students should join the club.
+                        </p>
                         <div className="flex items-center">
                           
                          
@@ -37,9 +37,8 @@ export default function ClubBriefDesc() {
             Health IT Academy</p></a>
             </div>
             <p className="mb-4 text-base text-gray-700 md:text-lg">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus perspiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!                        </p>
+              A brief description about the club, why students should join the club.
+            </p>
             <div className="flex items-center">
                 
                 
@@ -59,9 +58,8 @@ export default function ClubBriefDesc() {
             Association Of Computing Students</p></a>
             </div>
             <p className="mb-4 text-base text-gray-700 md:text-lg">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus persClubPiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!</p>
+              A brief description about the club, why students should join the club.
+            </p>
             <div className="flex items-center">
                 
                 
@@ -82,19 +80,19 @@ export default function ClubBriefDesc() {
                           </a>
                         </div>
                         <p className="mb-4 text-base text-gray-700 md:text-lg">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis natus sequi, neque ipsam sunt excepturi. Temporibus repellat tempora nemo amet eaque deserunt minus aperiam, consequatur, numquam explicabo totam mollitia laudantium.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quasi aliquid facilis dignissimos, iusto nulla dolor dolore dicta, temporibus natus persClubPiciatis incidunt non sunt itaque, ipsa possimus mollitia quod. Obcaecati?
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis doloremque assumenda hic maiores nesciunt adipisci, nam aut animi harum laborum saepe perferendis, quibusdam officiis tempora eaque deleniti aliquam repudiandae fugiat!                        </p>
+                          A brief description about the club, why students should join the club.
+                        </p>
                         <div className="flex items-center">
                           
                          
                         </div>
                       </div>
                     <div className="relative ">
-                      <Image className="object-cover w-full h-56 sm:h-96 " src={ClubPic} alt="" />
+                      <Image className="object-cover w-full h-56 sm:h-96" src={ClubPic} alt="" height={2500} width={2500}/>
                       <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
                     </div>
-        </div>  
+        </div> 
+        </div> 
     </>
     )
 }

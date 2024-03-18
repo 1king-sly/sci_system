@@ -6,9 +6,8 @@ import Banner from '@/public/pexels-pixabay-33045.jpg'
 import { fetchSingleBlog } from '@/app/lib/actions'
 
 
-export default async function page({params}: {params: {slug : string}}) {
-
-  const blog = await fetchSingleBlog(params.slug)
+export default async function page({params}: {params: {id : string}}) {
+  const blog = await fetchSingleBlog(params.id)
 
   if(!blog){
     return null
@@ -20,14 +19,14 @@ export default async function page({params}: {params: {slug : string}}) {
           <h1 className='text-2xl font-serif font-bold uppercase my-2 mx-5'>{blog.title} </h1>
           {/* Author's Info */}
           <div className='text-sm md:flex-none lg:flex gap-4 my-2 mx-5'>
-            <Image src={blog.createdBy.image || Pic} alt='AuthorPic' className='h-16 w-16 rounded-full'></Image>
+            <Image src={blog.createdBy.image || Pic} alt='AuthorPic' className='h-16 w-16 rounded-full' width={400} height={400}></Image>
             <div className='items-center justify-center'>
               <h1 className='font-bold'>{blog.createdBy.userName}</h1>
               <h1>Published on: {blog.createdAt.toLocaleDateString()}</h1>
             </div>
           </div>
           <div className='mx-5 my-5'>
-          <Image src={blog.poster || Banner} alt='BlogBanner' className='p-5'></Image>
+          <Image src={blog.poster || Banner} alt='BlogBanner' className='p-5 w-full h-full object-contain' width={400} height={400}></Image>
           <h1 className='text-xl font-semibold h-[10px] truncate '>{blog.desc} </h1>
           <p>
            {blog.desc}

@@ -44,7 +44,7 @@ export default function page() {
       closeCompleted();
       closeDraft();
     }}
-    >Live</li>
+    >Upcoming</li>
     <li  id="draft-btn" className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full' 
     onClick={() => {
       toggleDraft();
@@ -57,7 +57,6 @@ export default function page() {
       closeDraft();
       closeLive();
     }}>Completed</li>
-    <li id="cancelled-btn" className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Canceled</li>
    </ul>
    <Link href="/Admin/addEvents">
    <button className="flex items-center px-2 py-2 bg-slate-800 rounded text-white">

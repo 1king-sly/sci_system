@@ -7,45 +7,43 @@ import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { addBlog } from '@/app/lib/actions'
 import Button from '../../Component/Button'
+import { useEffect } from 'react' 
+import { DeltaStatic } from 'quill';
+import { Sources } from 'react-quill';
 
 export default function page() {
     const [value, setValue] = useState('');
     const[visible,setVisible]= useState(false);
     const [loading, setisLoading] = useState(false);
-
+    const [disabled, setDisabled] = useState(false);
     const [formData, setFormData] = useState({
       title: '',
-      desc:'',
       poster:'',
       imagePreview: null as string | null,
-    });
-
+      desc:'',
+      });
+  
     const toggleLoading = () => {
       setisLoading((prevLoading) => !prevLoading);
     };
   
+
     const handleSubmit = async () => {
-      const blog = window.event;
-      if (!blog) {
+      const event = window.event;
+      if (!event) {
         return;
       }
-      blog.preventDefault();
+      event.preventDefault();
   
       if(formData.title === ''|| formData.title===null || formData.desc === ''|| formData.desc===null ){
         toast.error('Please fill all the fields')
           toggleLoading();
           throw new Error('Missing fields')
-  
-  
-  
-        }
-  
-  
+        }  
         toggleLoading();
-  
-  
+
         try {
-          toast.loading('Publishing Event')
+          toast.loading('Publishing Blog')
           const formDataToUpload = new FormData();
           formDataToUpload.append('file',formData.imagePreview as unknown as  Blob);
           formDataToUpload.append('upload_preset', 'psy5tipf');
@@ -73,7 +71,7 @@ export default function page() {
             const newFormData =  new FormData();
   
             newFormData.append('poster',fileUrl)
-            newFormData.append(value,formData.desc)
+            newFormData.append('desc',formData.desc)
             newFormData.append('title',formData.title)
   
             if(data){
@@ -81,10 +79,10 @@ export default function page() {
               if (create) {
                 toast.dismiss();
                 toggleVisible();
-                toast.success('Event created Successfully');
+                toast.success('Blog created Successfully');
               } else {
                 toast.dismiss();
-                toast.error('Error creating Event');
+                toast.error('Error creating Blog');
               }
             }
   
@@ -95,7 +93,15 @@ export default function page() {
   
         }   
     };
-
+    
+    
+    useEffect(() => {
+      setDisabled(loading);
+    }, [loading]);
+  
+   
+   
+  
     const handleChange = async (event: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement>)  => {
       const { name, value, files } = event.target as HTMLInputElement;
     
@@ -130,15 +136,27 @@ export default function page() {
         });
       }
     };
+  
 
     const toggleVisible = () => {
       setVisible((prev) => !prev)
     }
+
+    const handleChangeQuill = (value: string, delta: DeltaStatic, source: Sources, editor: ReactQuill.UnprivilegedEditor) => {
+      setValue(value);
+      setFormData({
+        ...formData,
+        desc: value,
+      });
+    }
   return (
     <div className='w-full h-full'>
       <div className='mx-20 my-10'>
-        <label className='text-xl font-serif'>Add Your Title:</label>
-        <input name='Title' id='Title' placeholder='Title' 
+        <label className='text-xl font-serif'>Add Your Title</label>
+        <input name="title" 
+               title='title'
+               id="title" 
+               placeholder='Title' 
         onChange={handleChange}
         className='border-2 w-full py-2 text-xl pl-4 font-black font-mono uppercase mb-5'></input>
         
@@ -200,8 +218,8 @@ export default function page() {
                     </div>
                   </div>
 
-        <label className='text-xl font-serif'>Add Your Blog Body:</label>
-        <ReactQuill theme='bubble' value={value} onChange={setValue} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
+        <label className='text-xl font-serif'>Add Your Blog Body</label>
+        <ReactQuill theme='bubble' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
         <Button onClick={handleSubmit}>Publish</Button>
       </div>
     </div>

@@ -25,8 +25,10 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const latestBlogData = await fetchBlogs();
-        if (latestBlogData && latestBlogData.length > 0) {
+
+        if (latestBlogData) {
             setLatestBlog(latestBlogData[0]);
+            
         }
 
         const latestBlogsData = await fetchLatestBlogs();
@@ -49,14 +51,11 @@ export default function Page() {
 
   return (
     <div className='w-full h-full'>
-      <div className='md:h-[20vh] w-full border-b-2 mx-auto items-center'>
-        <h1 className='md:text-9xl font-bold text-center text-5xl'>THE BLOG</h1>
-      </div>
       <div className='lg:flex lg:grid-cols-2 md:mx-10 mx-5 lg:border-b-2'>
         {latestBlog && (
           <div className='md:w-full lg:w-2/3 lg:px-10 lg:py-10 md:py-5 py-3 lg:border-r-2 gap-4'>
             <div className='w-full'>
-              <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg' />
+              <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-full object-contain' width={400} height={400} />
             </div>
             <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
             <h1 className='text-3xl font-serif font-bold'>{latestBlog.title}</h1>
@@ -66,7 +65,7 @@ export default function Page() {
               {latestBlog.desc}
             </p>
             <Link href={`/blog/${latestBlog.slug}`}>
-              <a className='hover:underline hover:duration-300'>Read More -&gt;</a>
+              Read More -&gt;
             </Link>
           </div>
         )}
@@ -98,7 +97,7 @@ export default function Page() {
 
             <div key={blog.id} className='w-full lg:border-r-2 py-5 md:pr-5 '>
               <div className='w-full '>
-                <Image src={blog.poster || Banner} alt='Blog-Banner' className=' rounded-lg' />
+                <Image src={blog.poster || Banner} alt='Blog-Banner' className=' rounded-lg' width={400} height={400} />
               </div>
               <h1 className='opacity-95 '>{blog.createdAt.toLocaleDateString()}</h1>
               <h1 className='text-3xl font-serif font-bold'>{blog.title}</h1>

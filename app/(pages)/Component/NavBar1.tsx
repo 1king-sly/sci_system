@@ -26,6 +26,7 @@ export default function NavBar1() {
   const closeAuthMenu = () =>{
     setViewAuth(!toggleAuthForm);
   }
+  const status = "notauthenticated"
   return (
     <>
     <div className='w-full flex items-center h-[20vh] font-serif z-50 bg-gray-900 max-[768px]:hidden'>
@@ -52,10 +53,24 @@ export default function NavBar1() {
         <Link href="/research">
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/research'})}>RESEARCH</h1>
         </Link>
-        {/* <Link href="#"> */}
+        <Link href='/blog'>
           <h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
+          onClick={closeAuthMenu}
+          >BLOG</h1></Link>
+        {/* <Link href="#"> */}
+          {/* <h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
           onClick={toggleAuthForm}
-          >LOGIN</h1>
+          >LOGIN</h1> */}
+                          {status === "notauthenticated" ? (
+                <Link href='#'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
+                onClick={toggleAuthForm}
+                >LOGIN</h1></Link>   
+                ):(
+                    <>
+
+                        <Link href='/logout'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'>LOGOUT</h1></Link>
+                    </>
+                )}
         {/* </Link> */}
         </div>
       </div>

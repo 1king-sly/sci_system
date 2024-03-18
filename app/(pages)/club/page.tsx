@@ -9,8 +9,8 @@ import Footer from '@/app/(pages)/Component/Footer'
 export default function page() {
   return (
     <>
-      <div>
-          <div  className="w-full col-span-4 border-l-2 px-3 mt-4 ">
+      <div className='w-full'>
+          <div  className="w-full  border-l-2 px-3 mt-4  ">
           <ClubInfo></ClubInfo>
           <ClubsLink></ClubsLink>
           <Leads></Leads>
