@@ -486,8 +486,6 @@ export default function Page() {
                   <button type='submit'  className={clsx(`p-2`)}
                   onClick={handleSubmit}
                   > Publish</button>
-                  {/* <Button onClick={handleSubmit} type='submit'>Submit</Button> */}
-                  <button className="p-2">Save draft</button>
                 </div>
               </div>
             </div>
