@@ -219,7 +219,7 @@ export default function page() {
                   </div>
 
         <label className='text-xl font-serif'>Add Your Blog Body:</label>
-        <ReactQuill theme='bubble' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
+        <ReactQuill theme='snow' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
         <Button onClick={handleSubmit}>Publish</Button>
       </div>
     </div>

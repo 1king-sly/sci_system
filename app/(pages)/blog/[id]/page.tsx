@@ -26,7 +26,7 @@ export default async function page({params}: {params: {id : string}}) {
             </div>
           </div>
           <div className='mx-5 my-5'>
-          <Image src={blog.poster || Banner} alt='BlogBanner' className='p-5 w-full h-full object-contain' width={400} height={400}></Image>
+          <Image src={blog.poster || Banner} alt='BlogBanner' className='p-5 w-full h-96 object-cover' width={1500} height={1500}></Image>
           <h1 className='text-xl font-semibold h-[10px] truncate '>{blog.desc} </h1>
           <p>
            {blog.desc}
