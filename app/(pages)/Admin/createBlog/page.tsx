@@ -10,6 +10,7 @@ import Button from '../../Component/Button'
 import { useEffect } from 'react' 
 import { DeltaStatic } from 'quill';
 import { Sources } from 'react-quill';
+import clsx from 'clsx'
 
 export default function page() {
     const [value, setValue] = useState('');
@@ -150,18 +151,23 @@ export default function page() {
       });
     }
   return (
-    <div className='w-full h-full'>
-      <div className='mx-20 my-10'>
-        <label className='text-xl font-serif'>Add Your Title:</label>
+    <div className='w-full h-screen '>
+      <div className='bg-sky-100'>
+        <div className="border-l-2 text-center py-2 text-3xl bg-slate-400">
+          <p>Name of Club</p>
+        </div>
+      <div className='bg-white mx-10 rounded h-fit'>
+      <div className='px-4 py-4'>
+        <label className='block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900'>Add Your Title</label>
         <input name="title" 
                title='title'
                id="title" 
                placeholder='Title' 
         onChange={handleChange}
-        className='border-2 w-full py-2 text-xl pl-4 font-black font-mono uppercase mb-5'></input>
+        className='mt-2 border-2 w-full py-2 text-xl pl-4 font-black font-mono uppercase mb-5'></input>
         
         <div className="col-span-full mb-5">
-                    <label className="block font-medium leading-6 text-gray-900 text-xl font-serif">Blog Banner</label>
+                    <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Blog Banner</label>
                     <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       {/* Poster */}
                       <div className="text-center">
@@ -218,9 +224,16 @@ export default function page() {
                     </div>
                   </div>
 
-        <label className='text-xl font-serif'>Add Your Blog Body:</label>
-        <ReactQuill theme='snow' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
-        <Button onClick={handleSubmit}>Publish</Button>
+        <label className='block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900'>Add Your Blog Body</label>
+        <ReactQuill theme='snow' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='mt-2 border-2 mb-5'></ReactQuill>
+        {/* <Button onClick={handleSubmit}>Publish</Button> */}
+        <div className="bg-slate-600 my-5 py-1 flex justify-end pr-5 gap-3 text-white font-semibold">
+          <button type='submit'  className={clsx(`p-2`)}
+            onClick={handleSubmit}
+          > Publish</button>
+        </div> 
+      </div>
+      </div>
       </div>
     </div>
   )

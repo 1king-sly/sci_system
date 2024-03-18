@@ -97,7 +97,7 @@ export default function Page() {
 
             <div key={blog.id} className='w-full lg:border-r-2 py-5 md:pr-5 '>
               <div className='w-full '>
-                <Image src={blog.poster || Banner} alt='Blog-Banner' className=' rounded-lg' width={400} height={400} />
+                <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-96 object-cover rounded-lg' width={400} height={400} />
               </div>
               <h1 className='opacity-95 '>{blog.createdAt.toLocaleDateString()}</h1>
               <h1 className='text-3xl font-serif font-bold'>{blog.title}</h1>
