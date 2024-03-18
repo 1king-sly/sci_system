@@ -64,7 +64,7 @@ export default function Page() {
               <br />
               {latestBlog.desc}
             </p>
-            <Link href={`/blog/${latestBlog.slug}`}>
+            <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
               Read More -&gt;
             </Link>
           </div>

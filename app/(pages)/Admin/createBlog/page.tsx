@@ -152,7 +152,7 @@ export default function page() {
   return (
     <div className='w-full h-full'>
       <div className='mx-20 my-10'>
-        <label className='text-xl font-serif'>Add Your Title</label>
+        <label className='text-xl font-serif'>Add Your Title:</label>
         <input name="title" 
                title='title'
                id="title" 
@@ -218,7 +218,7 @@ export default function page() {
                     </div>
                   </div>
 
-        <label className='text-xl font-serif'>Add Your Blog Body</label>
+        <label className='text-xl font-serif'>Add Your Blog Body:</label>
         <ReactQuill theme='bubble' value={value} onChange={handleChangeQuill} placeholder='Write your Blog...' className='border-2 mb-5'></ReactQuill>
         <Button onClick={handleSubmit}>Publish</Button>
       </div>
