@@ -115,6 +115,7 @@ enum UserType {
   DEPUTYSCHOOLREP
   LECTURER
   COD
+  ADMIN
 }
 
 enum Level {

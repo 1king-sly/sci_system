@@ -23,7 +23,7 @@ export default function EventVenue({event}:{event:any}) {
                 <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#07aff8" d="M12 2c-4.2 0-8 3.22-8 8.2c0 3.18 2.45 6.92 7.34 11.23c.38.33.95.33 1.33 0C17.55 17.12 20 13.38 20 10.2C20 5.22 16.2 2 12 2m-1.77 10.66l-1.41-1.41a.996.996 0 1 1 1.41-1.41l.71.71l2.83-2.83a.996.996 0 1 1 1.41 1.41l-3.54 3.54c-.38.38-1.02.38-1.41-.01"/></svg>
                 <div>
                 <h4 className="text-lg">Where</h4>
-                    <h1 className='text-sm'>{event.venue}</h1>
+                    <h1 className='text-sm'>{event?.venue}</h1>
                     <h1 className='text-sm'>Masinde Muliro University of Science and Technology</h1>
                     <h1 className='text-sm'>Kakamega</h1>
                     <h1 className='text-sm'>Kakamega, 50100</h1>

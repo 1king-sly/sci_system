@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import AuthForm from './AuthForm';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
 
 export default function NavBar1() {
   const pathname = usePathname();
@@ -26,7 +27,9 @@ export default function NavBar1() {
   const closeAuthMenu = () =>{
     setViewAuth(!toggleAuthForm);
   }
-  const status = "notauthenticated"
+
+  const session = useSession()
+
   return (
     <>
     <div className='w-full flex items-center h-[20vh] font-serif z-50 bg-gray-900 max-[768px]:hidden'>
@@ -61,14 +64,15 @@ export default function NavBar1() {
           {/* <h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
           onClick={toggleAuthForm}
           >LOGIN</h1> */}
-                          {status === "notauthenticated" ? (
-                <Link href='#'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
-                onClick={toggleAuthForm}
-                >LOGIN</h1></Link>   
+                          {session?.status === "authenticated" ? (
+                              <Link href='#'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'>Profile</h1></Link>
+              
                 ):(
                     <>
 
-                        <Link href='/logout'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'>LOGOUT</h1></Link>
+<Link href='#'><h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
+                onClick={toggleAuthForm}
+                >LOGIN</h1></Link>   
                     </>
                 )}
         {/* </Link> */}

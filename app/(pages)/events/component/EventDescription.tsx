@@ -3,20 +3,7 @@ import React from 'react'
 import { fetchSingleEvent } from '@/app/lib/actions';
 import { useEffect, useState } from 'react';
 
-interface Event {
-  id: number;
-  createdById: number;
-  dateOfEvent: Date;
-  title: string;
-  desc: string;
-  venue: string;
-  timeOfEvent: Date;
-  gallery: string[];
-  type: any;
-  speaker: string;
-  host: string;
-  poster: string;
-}
+
 
 export default function EventDescription({desc}:{desc:any}) {
  
