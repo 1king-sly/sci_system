@@ -19,6 +19,7 @@ interface Event {
     speaker: string;
     host: string;
     poster: string;
+    slug:string;
 }
 
 export default function UpcomingEvents() {
@@ -57,27 +58,28 @@ useEffect(() => {
             </p>
             {events !== null && events.length > 0 ? ( 
                 events.map(event => (
-                    <div className="border-t border-b py-4" key={event.id}>
+                    <Link key={event.id} href={`/events/${event.slug}`}>
+                     <div className="border-t border-b py-4" key={event.id}>
                         <p className="mb-2 text-xs font-semibold tracking-wide text-gray-600 uppercase">
                             {event.dateOfEvent.toLocaleDateString()}
                         </p>
                         <div className="mb-3">
-                            <Link href="/" aria-label="Article" className="inline-block text-black transition-colors duration-200 hover:text-deep-purple-accent-400">
                                 <p className="font-sans text-xl font-extrabold leading-none tracking-tight lg:text-2xl">
                                     {event.title}
                                 </p>
-                            </Link>
                         </div>
                         <div className="flex items-center">
-                            <Link href="/" aria-label="Author" className="mr-3">
+                            
                                 <Image alt="avatar" src={pic}className="object-cover w-10 h-10 rounded-full shadow-sm" />
-                            </Link>
+                            
                             <div>
-                                <Link href="/" aria-label="Author" className="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">{event.speaker}</Link>
+                               {event.speaker}
                                 <p className="text-sm font-medium leading-4 text-gray-600">{event.host}</p>
                             </div>
                         </div>
                     </div>
+                    </Link>
+                   
                 ))
             ) : (
                 <p>No Upcoming Events scheduled</p>
