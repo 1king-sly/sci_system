@@ -9,6 +9,7 @@ import { useState } from 'react';
 import AuthForm from './AuthForm';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
 export default function NavBar1() {
   const pathname = usePathname();
@@ -57,7 +58,7 @@ export default function NavBar1() {
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/research'})}>RESEARCH</h1>
         </Link>
         <Link href='/blog'>
-          <h1 className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full'
+          <h1 className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/blog'})}
           onClick={closeAuthMenu}
           >BLOG</h1></Link>
         {/* <Link href="#"> */}
