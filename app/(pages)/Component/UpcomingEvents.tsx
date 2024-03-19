@@ -20,6 +20,7 @@ interface Event {
     host: string;
     poster: string;
     slug:string;
+    createdBy:any
 }
 
 export default function UpcomingEvents() {
@@ -70,7 +71,7 @@ useEffect(() => {
                         </div>
                         <div className="flex items-center">
                             
-                                <Image alt="avatar" src={pic}className="object-cover w-10 h-10 rounded-full shadow-sm" />
+                                <Image alt="avatar" src={event.createdBy.image || pic}className="object-cover w-10 h-10 rounded-full shadow-sm" width={400} height={400} />
                             
                             <div>
                                {event.speaker}

@@ -12,17 +12,17 @@ import { updateUser } from '@/app/lib/actions';
 
 export default function ProfileForm({user}:{user:any}) {
 
+
     const [loading, setisLoading] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [formData, setFormData] = useState({
-      firstName: '',
-      secondName: '',
-      password: '',
+      userName: '',
       file: null as { name: string, type: string, binary: string } | null,
       imagePreview: null as string | null,
-      registrationNumber:'',
       userId:user.id,
-      cloudinaryFileUrl:''
+      cloudinaryFileUrl:'',
+      email:'',
+      userType:'',
     });
   
     const toggleLoading = () => {
@@ -69,16 +69,15 @@ export default function ProfileForm({user}:{user:any}) {
             cloudinaryFileUrl: cloudinaryFileUrl,
           });
     
-          toast.dismiss();
 
           const newFormData =  new FormData();
 
           newFormData.append('file',cloudinaryFileUrl)
-          newFormData.append('firstName',formData.firstName)
-          newFormData.append('secondName',formData.secondName)
-          newFormData.append('password',formData.password)
-          newFormData.append('registrationNumber',formData.registrationNumber)
+          newFormData.append('userName',formData.userName)
+         
           newFormData.append('userId',formData.userId)
+          newFormData.append('email',formData.email)
+          newFormData.append('userType',formData.userType)
 
         const create = await updateUser(newFormData)
     
@@ -176,7 +175,7 @@ export default function ProfileForm({user}:{user:any}) {
                 </h2>
                 <div className="max-w-sm mx-auto md:w-2/3">
                     <div className=" relative ">
-                        <input type="text" id="user-info-email" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder={user.email}   onChange={handleChange}
+                        <input type="text" id="user-info-email" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder={user.email} value={formData.email}   onChange={handleChange} name='email'
 />
                         </div>
                     </div>
@@ -189,13 +188,13 @@ export default function ProfileForm({user}:{user:any}) {
                     <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                         <div>
                             <div className=" relative ">
-                                <input type="text" id="user-info-name" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder={user.userName}   onChange={handleChange}
+                                <input type="text" id="user-info-name" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder={user.userName} value={formData.userName}   onChange={handleChange} name='userName'
 />
                                 </div>
                             </div>
                             <div>
                                 <div className=" relative ">
-                                    <input type="text" id="user-info-phone" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent cursor-not-allowed " placeholder={user.school} disabled
+                                    <input type="text" id="user-info-phone" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent cursor-not-allowed  " disabled placeholder={user.school}   name='school'
                                     />
                                     </div>
                                 </div>
