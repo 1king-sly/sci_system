@@ -23,19 +23,19 @@ export default function DeptSideBar() {
     
     const links = [
         {
-        name:'Introduction',href:'/department#Introduction',id:'Introduction',
+        name:'Introduction',href:'/Department#Introduction',id:'Introduction',
     },
         {
-        name:'Programs',href:'/department#Programs',id:'Programs',
+        name:'Programs',href:'/Department#Programs',id:'Programs',
     },
         {
-        name:'Mission and Vision',href:'/department#Mission',id:'Mission',
+        name:'Mission and Vision',href:'/Department#Mission',id:'Mission',
     },
         {
-        name:'Staff',href:'/department#Staff',id:'Staff',
+        name:'Staff',href:'/Department#Staff',id:'Staff',
     },
         {
-        name:'Student Representatives',href:'/department#Student-Representatives',id:'Student-Representatives',
+        name:'Student Representatives',href:'/Department#Student-Representatives',id:'Student-Representatives',
     },
 ]
   return (
@@ -49,7 +49,7 @@ export default function DeptSideBar() {
                 if (link.name === 'Programs') {
           
                     return (
-                      <div>
+                      <>
                       <div
                           className={clsx(`cursor-pointer w-full px-2 py-1 rounded-md flex h-auto items-center justify-center text-sm hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 gap-2 text-gray-800`, {'bg-sky-100 text-blue-600': pathName === link.href,})}
                           key={link.name}
@@ -66,7 +66,7 @@ export default function DeptSideBar() {
                                 <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='C.Forensics'>Msc. Computer Science</h1></div>
                           </div>
                       </div>
-                      </div>
+                      </>
                     );
                   }
         return (
