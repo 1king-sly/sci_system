@@ -33,21 +33,9 @@ export default function AuthForm() {
     setVariant((prevVariant) => (prevVariant === 'LOGIN' ? 'REGISTER' : 'LOGIN'));
   }, []);
 
-//   const session = useSession();
 
   const router = useRouter();
 
-//   useEffect(() => {
-//     if (session?.status === 'authenticated') {
-//       if (session.data.userType === 'ADMIN') {
-//         router.push('/Admin/Dashboard');
-//       } else if(session.data.userType === 'STUDENT') {
-//         router.push('/Student/Dashboard');
-//       } else{
-//         router.push('/Teacher/Dashboard');
-//       }
-//     }
-//   });
 
   const handleGuestSubmit = async() =>{
     const event = window.event;
@@ -200,16 +188,6 @@ export default function AuthForm() {
             {variant === 'LOGIN' ? 'Sign up' : 'Login'}
           </div>
         </div>
-        <div className='mt-4 text-gray-100 '>
-            <button
-              type='submit'
-              onClick={() => handleGuestSubmit()}
-              disabled={disabled}
-              className={clsx(`flex justify-center rounded-md px-2 py-1 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600`,disabled&&'opacity-50 cursor-default')}
-            >
-              Access as Guest
-            </button>
-          </div>
       </div>
     </>
   );
