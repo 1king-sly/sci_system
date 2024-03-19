@@ -166,22 +166,12 @@ export default function Page() {
         <div className="border-l-2 text-center py-2 text-3xl bg-slate-400">
           <p>Name of Club</p>
         </div>
-        <div className="flex justify-between items-center px-10 py-10">
-          <ul className="flex gap-4"> 
-            <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Attendees</li>
-            <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Edit</li>
-            <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Cohost</li> 
-          </ul>
-        </div>
 
         <div className="bg-white mx-10 h-fit rounded shadow-sm ">
   
           <div id="main-content" className="flex-grow overflow-auto px-4 py-4">
             <div id="attendees">
             <div>
-              <p>
-                Edit
-              </p>
               <div className="bg-slate-600 ">
                 <ul  className="flex justify-center items-center gap-3">
                 <li>General information</li>
@@ -262,16 +252,6 @@ export default function Page() {
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">0/100</p>
                 </div>
-                {/*sHORT dESCRIPTION*/}
-                {/* <div className="col-span-full py-5">
-                  <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Short description</label>
-                  <div className="mt-2">
-                    <textarea 
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-gray-600">Displayed on chapter page and newsletters</p>
-                </div> */}
                 <div className="col-span-full py-5">
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Event Description</label>
                   <div className="mt-2">
@@ -331,57 +311,7 @@ export default function Page() {
                         className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                       /></div>
                   </div>
-                </div>
-                {/* Thumbnail */}
-                {/* <div className="col-span-full py-5">
-                  <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Event thumbnail</label>
-                  <div className="mt-2 flex items-center gap-x-3">
-                    <svg className="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-                    </svg>
-                    <div className="text-center">
-                      {formData.imagePreview ? (
-                      /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.imagePreview || '') ? (
-                      <Image
-                      src={formData.imagePreview}
-                      alt="File Preview"
-                      className="mb-4 max-w-full max-h-96"
-                      width={150}
-                      height={150}
-                      />
-                      ) :
-                      (
-                      <Image
-                      src={formData.imagePreview}
-                      alt="Document Preview"
-                      className="mb-4 max-w-full max-h-96"
-                      width={150}
-                      height={150}
-                      />
-                      )
-                      ) : null} 
-
-                      <div className="px-2.5 py-2 mt-4 flex text-sm leading-6 text-gray-600">
-                        <label
-                          htmlFor="thumbnail-upload"
-                          className="border-2 relative cursor-pointer text-gray-900 rounded-md bg-white font-semibold  h-[30px] "
-                        >
-                          <span className='p-2'>Upload Image</span>
-                          <input
-                            id="thumbnail-upload"
-                            name="thumbnail"
-                            type="file"
-                            className="sr-only"
-                            // accept='.jpg,.jpeg,.png'
-                            onChange={handleChange}
-                            />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-gray-600">Displayed on chapter page, upcoming events page and social media</p>
-                </div> */}
-                  
+                </div>                  
                 <div className="bg-slate-600 my-5 py-1">
                   <ul  className="flex px-5  items-center gap-5 list-disc">
                     <li>People</li>
@@ -391,7 +321,7 @@ export default function Page() {
                 <div className='col-span-full py-5'>
                   <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Speaker</label>
                   <div className="mt-2 flex flex-row gap-4 ">
-                  <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">First Name</label>
+                  <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Name</label>
                     <input type="text"
                       name="speaker"
                       id="FirstName"
@@ -399,88 +329,8 @@ export default function Page() {
                       onChange={handleChange}
                       className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                       />
-                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Second Name</label>
-                    <input type="text"
-                    name="SecondName"
-                    id="SecondName"
-                    title='SecondName'
-                    onChange={handleChange}
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    /> */}
-                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Company</label>
-                    <input type="text"
-                    name="SpeakerCompany"
-                    id="SpeakerCompany"
-                    title='SpeakerCompany'
-                    onChange={handleChange}
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    /> */}
-                  {/* <label className="block text-sm rounded px-4 font-medium leading-6 text-gray-900">Title</label>
-                    <input type="text"
-                      name="SpeakerTitle"
-                      id="SpeakerTitle"
-                      title='SpeakerTitle'
-                      onChange={handleChange}
-                      className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    /> */}
                     </div>
                     </div>
-                  {/* Speaker's Biography */}
-                  {/* <div className="col-span-full ">
-                    <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900"></label>Biography(displayed on event page)
-                    <div className="mt-2">
-                      <textarea 
-                      onChange={handleChange}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-sky-100 "></textarea>
-                    </div>
-                  </div> */}
-                {/* Speaker's Image */}
-                {/* <div className="col-span-full py-5">
-                  <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Speaker's Image</label>
-                  <div className="mt-2 flex items-center gap-x-3">
-                    <svg className="h-40 w-40 border-2 rounded text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-                    </svg>
-                    <div className="text-center">
-                        {formData.imagePreview ? (
-                        /\.(jpg|jpeg|png|gif|jfif)$/i.test(formData.imagePreview || '') ? (
-                        <Image
-                        src={formData.imagePreview}
-                        alt="File Preview"
-                        className="mb-4 max-w-full max-h-96"
-                        width={150}
-                        height={150}
-                        />
-                        ) :
-                        (
-                        <Image
-                        src={formData.imagePreview}
-                        alt="Document Preview"
-                        className="mb-4 max-w-full max-h-96"
-                        width={150}
-                        height={150}
-                        />
-                        )
-                        ) : null} 
-
-                        <div className="px-2.5 py-2 mt-4 flex text-sm leading-6 text-gray-600">
-                          <label
-                            htmlFor="Speaker-upload"
-                            className="border-2 relative cursor-pointer text-gray-900 rounded-md bg-white font-semibold  h-[30px] "
-                          >
-                            <span className='p-4'>Upload Image</span>
-                            <input
-                              id="Speaker-upload"
-                              name="Speaker"
-                              type="file"
-                              className="sr-only"
-                              onChange={handleChange}
-                              />
-                          </label>
-                        </div>
-                      </div>
-                  </div>
-                </div> */}
 
                 <div className="bg-slate-600 my-5 py-1 flex justify-end pr-5 gap-3 text-white font-semibold">
                   <button type='submit'  className={clsx(`p-2`)}

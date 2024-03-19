@@ -12,7 +12,13 @@ export default function MiniNavBar() {
     <>
         <div className="fixed w-full z-50 flex justify-between px-10 py-1 bg-sky-200">
             <div><p>Hello, {user || 'User'}</p></div>
-            <div className="flex gap-6"> 
+            <div className="flex gap-6">
+            <Link href="/Admin/createBlog">
+                <div className="flex items-center mx-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#07aff8" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"/></svg>
+                <p>Create Blog</p>
+            </div> 
+            </Link> 
             <Link href="/Admin/addEvents">
                 <div className="flex items-center mx-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#07aff8" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"/></svg>

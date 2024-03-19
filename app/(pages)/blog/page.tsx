@@ -55,7 +55,7 @@ export default function Page() {
         {latestBlog && (
           <div className='md:w-full lg:w-2/3 lg:px-10 lg:py-10 md:py-5 py-3 lg:border-r-2 gap-4'>
             <div className='w-full'>
-              <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-full object-contain' width={400} height={400} />
+              <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-96 object-cover'  width={1400} height={1400} />
             </div>
             <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
             <h1 className='text-3xl font-serif font-bold'>{latestBlog.title}</h1>
@@ -64,7 +64,7 @@ export default function Page() {
               <br />
               {latestBlog.desc}
             </p>
-            <Link href={`/blog/${latestBlog.slug}`}>
+            <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
               Read More -&gt;
             </Link>
           </div>
@@ -77,7 +77,7 @@ export default function Page() {
             <Link href={`/blog/${blog.slug}`} key={blog.id} >
 
             <div key={blog.id} className='w-full grid grid-cols-2  mb-5 border-b-2'>
-              <Image src={blog.poster || Banner} alt='blogBanner' height={150} width={200} className='m-2 mb-6 rounded' />
+            <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[30vh] object-cover rounded-lg' width={1400} height={1400} />
               <div className='flex flex-col gap-2 m-2'>
                 <h1>{blog.createdAt.toLocaleDateString()}</h1>
                 <h1 className='text-2xl font-serif font-bold'>{blog.title}</h1>
@@ -96,8 +96,8 @@ export default function Page() {
             <Link href={`/blog/${blog.slug}`} key={blog.id}>
 
             <div key={blog.id} className='w-full lg:border-r-2 py-5 md:pr-5 '>
-              <div className='w-full '>
-                <Image src={blog.poster || Banner} alt='Blog-Banner' className=' rounded-lg' width={400} height={400} />
+              <div className='w-full h-[30vh]'>
+                <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[30vh] object-cover rounded-lg' width={1400} height={1400} />
               </div>
               <h1 className='opacity-95 '>{blog.createdAt.toLocaleDateString()}</h1>
               <h1 className='text-3xl font-serif font-bold'>{blog.title}</h1>
