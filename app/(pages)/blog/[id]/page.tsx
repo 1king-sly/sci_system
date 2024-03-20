@@ -6,6 +6,7 @@ import Banner from '@/public/pexels-pixabay-33045.jpg'
 import { fetchSingleBlog } from '@/app/lib/actions'
 import { JSDOM } from "jsdom";
 import DOMPurify from 'dompurify'
+import NotFound from '@/app/not-found'
 
 const window = new JSDOM("").window;
 const DOMPurifyServer = DOMPurify(window);
@@ -15,7 +16,7 @@ export default async function page({params}: {params: {id : string}}) {
   const blog = await fetchSingleBlog(params.id)
 
   if(!blog){
-    return null
+    return <NotFound/>
   }
   return (
     <div className='w-full lg:mx-20 lg:my-10'>

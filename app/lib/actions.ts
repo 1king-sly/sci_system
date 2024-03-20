@@ -279,7 +279,7 @@ export const fetchTrendingBlogs = async () =>{
       orderBy:{
         views:'desc'
       },
-      take:5
+      take:3
     })
 
     return blogs
@@ -608,25 +608,71 @@ export const fetchClassReps = async () =>{
   }
 }
 
-export const fetchStaff = async () =>{
- 
-
-  try{
-
-    const reps = await prisma.user.findMany({
-      where:{
-        userType:{
-          in:[UserType.LECTURER]
-        }
+export const fetchStaff = async (page: number, perPage: number) => {
+  const offset = (page - 1) * perPage;
+  try {
+    const students = await prisma.user.findMany({
+      where: {
+        userType: {
+          in: [
+            UserType.LECTURER,
+          ],
+        },
       },
-    })
+      skip: offset,
+      take: perPage,
+    });
 
-    return reps
 
-  }catch(error:any){
-    console.error('Failed to Staff',error)
+    return students;
+  } catch (error: any) {
+    console.error('Failed to fetch Staff', error);
   }
-}
+};
+
+
+export const fetchStudents = async (page: number, perPage: number,query:string) => {
+
+
+  const offset = (page - 1) * perPage;
+  try {
+
+    if(query && typeof query === 'string' && query.trim()){
+
+      const student = await prisma.user.findUnique({
+        where:{
+          userName:{
+            contains:query.trim
+          }
+        }
+      })
+
+      return student
+
+    }
+
+    const students = await prisma.user.findMany({
+      where: {
+        userType: {
+          in: [
+            UserType.STUDENT,
+            UserType.CLASSREP,
+            UserType.SCHOOLREP,
+            UserType.DEPUTYCLASSREP,
+            UserType.DEPUTYSCHOOLREP,
+          ],
+        },
+      },
+      skip: offset,
+      take: perPage,
+    });
+
+
+    return students;
+  } catch (error: any) {
+    console.error('Failed to fetch Students', error);
+  }
+};
 
 
 

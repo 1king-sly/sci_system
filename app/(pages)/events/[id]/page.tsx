@@ -9,12 +9,18 @@ import Organizers from '../component/Organizers'
 import Socials from '../component/Socials'
 import { fetchSingleEvent } from '@/app/lib/actions'
 import { Suspense } from 'react'
+import NotFound from '@/app/not-found'
+
 
 export default async function page({params}: {params: {id : string}}) {
 
   
 
     const event = await fetchSingleEvent(params.id)
+
+    if(!event){
+      return <NotFound/>
+    }
 
   return (
     <>

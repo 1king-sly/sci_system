@@ -23,6 +23,8 @@ export default function ProfileForm({user}:{user:any}) {
       cloudinaryFileUrl:'',
       email:'',
       userType:'',
+      level:'',
+      password:''
     });
   
     const toggleLoading = () => {
@@ -78,6 +80,7 @@ export default function ProfileForm({user}:{user:any}) {
           newFormData.append('userId',formData.userId)
           newFormData.append('email',formData.email)
           newFormData.append('userType',formData.userType)
+          newFormData.append('password',formData.password)
 
         const create = await updateUser(newFormData)
     
@@ -151,7 +154,7 @@ export default function ProfileForm({user}:{user:any}) {
                        {user.userName}
                     </h1>
 
-                    <label htmlFor="file-upload" className='absolute right-0 mr-2'>
+                    <label htmlFor="file-upload" className='absolute right-0 pr-4'>
         <p>
             Change Avatar
         </p>
@@ -194,6 +197,12 @@ export default function ProfileForm({user}:{user:any}) {
                             </div>
                             <div>
                                 <div className=" relative ">
+                                    <input type="text" id="user-info-phone" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent cursor-not-allowed  " disabled placeholder={`${user.level} Year  `} name='level' 
+                                    />
+                                    </div>
+                                </div>
+                            <div>
+                                <div className=" relative ">
                                     <input type="text" id="user-info-phone" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent cursor-not-allowed  " disabled placeholder={user.school}   name='school'
                                     />
                                     </div>
@@ -207,13 +216,8 @@ export default function ProfileForm({user}:{user:any}) {
                             </h2>
                             <div className="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex">
                                 <div className=" relative ">
-                                    <input type="text" id="user-info-password" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent cursor-not-allowed " disabled placeholder={user.hashedPassword}/>
+                                    <input type="password" id="user-info-password" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent  "  placeholder='change Password' name='password' value={formData.password}   onChange={handleChange}/>
                                     </div>
-                                </div>
-                                <div className="text-center md:w-3/12 md:pl-6">
-                                    <button type="button" className="py-2 px-4  bg-pink-600 hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                                        Change
-                                    </button>
                                 </div>
                             </div>
                             <hr/>

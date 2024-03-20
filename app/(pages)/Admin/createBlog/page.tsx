@@ -8,11 +8,11 @@ import toast from 'react-hot-toast'
 import { addBlog } from '@/app/lib/actions'
 import Button from '../../Component/Button'
 import { useEffect } from 'react' 
-import { DeltaStatic } from 'quill';
+import DeltaStatic  from 'quill';
 import { Sources } from 'react-quill';
 import clsx from 'clsx'
 
-export default function page() {
+export default function Page() {
     const [value, setValue] = useState('');
     const[visible,setVisible]= useState(false);
     const [loading, setisLoading] = useState(false);
