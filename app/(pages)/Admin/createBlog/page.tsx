@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import DeltaStatic  from 'quill';
 import { Sources } from 'react-quill';
 import clsx from 'clsx'
+import type { UnprivilegedEditor } from 'react-quill'; 
 
 export default function Page() {
     const [value, setValue] = useState('');
@@ -164,7 +165,7 @@ export default function Page() {
                id="title" 
                placeholder='Title' 
         onChange={handleChange}
-        className='mt-2 border-2 w-full py-2 text-xl pl-4 font-black font-mono uppercase mb-5'></input>
+        className='mt-2 border-2 w-full py-2 text-lg pl-4  uppercase mb-5'></input>
         
         <div className="col-span-full mb-5">
                     <label className="block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900">Blog Banner</label>

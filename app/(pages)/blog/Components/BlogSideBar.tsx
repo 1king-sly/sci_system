@@ -49,7 +49,7 @@ export default function BlogSideBar() {
                 <Image src={blog.poster || Banner} alt='blogBanner' height={1400} width={1400} className='m-2 mb-6 rounded w-full h-[15vh] object-cover'></Image>{/*remember object-cover*/}
                 <div className='flex flex-col gap-2 m-2'>
                     <h1>{blog.createdAt.toLocaleDateString()}</h1>
-                    <h1 className='md:text-2xl sm:text-base font-serif font-bold'>{blog.title}</h1>
+                    <h1 className=' font-bold'>{blog.title}</h1>
                 </div>
             </div>
                 </Link>

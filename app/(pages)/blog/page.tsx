@@ -5,6 +5,7 @@ import Banner from '@/public/pexels-pixabay-33045.jpg';
 import Link from 'next/link';
 import { fetchBlogs, fetchLatestBlogs, fetchTrendingBlogs } from '@/app/lib/actions';
 import Spinner from '../events/component/Spinner';
+import DOMPurify from 'dompurify'
 
 interface Blog {
     id: number;
@@ -80,10 +81,8 @@ export default function Page() {
                 <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-96 object-cover'  width={1400} height={1400} />
               </div>
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
-              <h1 className='text-3xl font-serif font-bold'>{latestBlog.title}</h1>
+              <h1 className='text-3xl font-bold'>{latestBlog.title}</h1>
               <p className='opacity-95 h-[30px] truncate'>
-                Blog Desription
-                <br />
                 {latestBlog.desc}
               </p>
               <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
@@ -105,7 +104,7 @@ export default function Page() {
             <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[20vh] object-cover rounded-lg' width={1400} height={1400} />
               <div className='flex flex-col gap-2 m-2'>
                 <h1>{blog.createdAt.toLocaleDateString()}</h1>
-                <h1 className='text-2xl font-serif font-bold'>{blog.title}</h1>
+                <h1 className='font-bold'>{blog.title}</h1>
               </div>
             </div>
             
@@ -114,7 +113,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className='lg:mx-20 md:mx-10 mx-5 mt-12 lg:mt-24 bottom-0'>
+      <div className='lg:mx-20 md:mx-10 mx-5 mt-10 bottom-0'>
         <h1 className='text-xl font-serif mb-5 '>Latest Blogs</h1>
         <div className='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4'>
           {latestBlogs.map((blog) => (
@@ -125,9 +124,8 @@ export default function Page() {
                 <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[30vh] object-cover rounded-lg' width={1400} height={1400} />
               </div>
               <h1 className='opacity-95 '>{blog.createdAt.toLocaleDateString()}</h1>
-              <h1 className='text-3xl font-serif font-bold'>{blog.title}</h1>
+              <h1 className='font-bold '>{blog.title}</h1>
               <p className='opacity-95 h-[30px] truncate '>
-                <br />
                 {blog.desc}
               </p>
             </div>
