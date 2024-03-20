@@ -279,7 +279,7 @@ export const fetchTrendingBlogs = async () =>{
       orderBy:{
         views:'desc'
       },
-      take:5
+      take:3
     })
 
     return blogs
@@ -382,8 +382,15 @@ export const fetchSampleUpcomingEvents = async () =>{
      try{
       const events = await prisma.event.findMany({
         take:3,
+        orderBy:{
+          dateOfEvent:'desc'
+        },
+        include:{
+          createdBy:true,
+        }
        
        })
+
        return events
      }catch(error:any){
       console.error('Failed to fetch upcoming events', error)
@@ -396,9 +403,9 @@ export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
         where:{
           type:EventType[eventType as keyof typeof EventType]
         },
-        // orderBy:{
-        //   dateOfEvent:'desc'
-        // },
+        orderBy:{
+          dateOfEvent:'desc'
+        },
         take:3
       })
 
@@ -454,6 +461,8 @@ export const fetchSingleResearch = async (id:string) =>{
       }
     })
 
+    return research
+
   }catch(error:any){
     console.error("Failed to fetch Single Research",error)
   }
@@ -494,15 +503,18 @@ export const updateUser = async(formData:any) =>{
   if(!formData){
     throw new Error('Empty field passed')
   }
-  const id = formData.id
-  const email = formData.email
-  const role = formData.role
-  const password = formData.password
-  const image = formData.image
-  const club = formData.club
-  const school = formData.school
-  const studentType = formData.studentType
-  const level = formData.level
+
+
+
+  const id = formData.get('userId' as unknown as string)
+  const email = formData.get('email' as unknown as string)
+  const role = formData.get('role' as unknown as string)
+  const password = formData.get('password' as unknown as string)
+  const image = formData.get('file' as unknown as string)
+  const club = formData.get('club' as unknown as string)
+  const school = formData.get('school' as unknown as string)
+  const userType = formData.get('userType' as unknown as string)
+  const level = formData.get('level' as unknown as string)
 
   try{
     const data: Record<string, string> = {};
@@ -525,8 +537,8 @@ export const updateUser = async(formData:any) =>{
     if(club !== null && club !==''){
       data.club = ClubType[club as keyof typeof ClubType]
     }
-    if(studentType !== null && studentType !==''){
-      data.studentType = UserType[club as keyof typeof UserType]
+    if(userType !== null && userType !==''){
+      data.userType = UserType[userType as keyof typeof UserType]
     }
     if(level !== null && level !==''){
       data.level = Level[club as keyof typeof Level]
@@ -543,6 +555,7 @@ export const updateUser = async(formData:any) =>{
       data:data
 
     })
+
 
     return updateduser
 
@@ -595,25 +608,96 @@ export const fetchClassReps = async () =>{
   }
 }
 
-export const fetchStaff = async () =>{
- 
+export const fetchStaff = async (page: number, perPage: number,query:string) => {
+  const offset = (page - 1) * perPage;
+  try {
 
-  try{
+    if(typeof query === 'string' && query.trim()){
 
-    const reps = await prisma.user.findMany({
-      where:{
-        userType:{
-          in:[UserType.LECTURER]
+      const staff = await prisma.user.findMany({
+        where:{
+          userName:{
+            contains:query.trim()
+          }
+        },
+        orderBy:{
+          createdAt:'desc'
         }
+      })
+      return staff
+
+    }
+    const staff = await prisma.user.findMany({
+      where: {
+        userType: {
+          in: [
+            UserType.LECTURER,UserType.COD
+          ],
+        },
       },
-    })
+      orderBy:{
+        createdAt:'desc'
+      },
+      skip: offset,
+      take: perPage,
+    });
 
-    return reps
 
-  }catch(error:any){
-    console.error('Failed to Staff',error)
+    return staff;
+  } catch (error: any) {
+    console.error('Failed to fetch Staff', error);
   }
-}
+};
+
+
+export const fetchStudents = async (page: number, perPage: number,query:string) => {
+
+  try {
+
+    if(typeof query === 'string' && query.trim()){
+
+      const student = await prisma.user.findMany({
+        where:{
+          userName:{
+            contains:query.trim()
+          }
+        },
+        orderBy:{
+          createdAt:'desc'
+        }
+      })
+      return student
+
+    }
+
+    const offset = (page - 1) * perPage;
+
+
+    const students = await prisma.user.findMany({
+      where: {
+        userType: {
+          in: [
+            UserType.STUDENT,
+            UserType.CLASSREP,
+            UserType.SCHOOLREP,
+            UserType.DEPUTYCLASSREP,
+            UserType.DEPUTYSCHOOLREP,
+          ],
+        },
+      },
+      orderBy:{
+        createdAt:'desc'
+      },
+      skip: offset,
+      take: perPage,
+    });
+
+
+    return students;
+  } catch (error: any) {
+    console.error('Failed to fetch Students', error);
+  }
+};
 
 
 

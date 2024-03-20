@@ -18,7 +18,8 @@ type User = {
   club:ClubType | null ,
   school:School | null,
   userType:UserType | null,
-  level: Level | null
+  level: Level | null,
+  image:string  | null
 };
 type SessionStrategyType = 'jwt';
 
@@ -54,6 +55,7 @@ export const authOptions = {
             userType:true,
             club:true,
             level:true,
+            image:true,
           },
         });
       
@@ -79,7 +81,8 @@ export const authOptions = {
           school:user.school,
           userType:user.userType, 
           club:user.club,  
-          level:user.level   
+          level:user.level ,  
+          image:user.image ,  
           
         };
       },
@@ -110,7 +113,8 @@ export const authOptions = {
         club:user.club,
         school:user.school,
         userType:user.userType,
-        level:user.level
+        level:user.level,
+        image:user.image,
 
       }
     }
@@ -133,6 +137,7 @@ export const authOptions = {
       school:token.school,
       userType:token.userType,
       level:token.level,
+      image:token.image,
     }
     },
   
