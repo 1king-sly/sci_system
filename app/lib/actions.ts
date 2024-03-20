@@ -608,23 +608,42 @@ export const fetchClassReps = async () =>{
   }
 }
 
-export const fetchStaff = async (page: number, perPage: number) => {
+export const fetchStaff = async (page: number, perPage: number,query:string) => {
   const offset = (page - 1) * perPage;
   try {
-    const students = await prisma.user.findMany({
+
+    if(typeof query === 'string' && query.trim()){
+
+      const staff = await prisma.user.findMany({
+        where:{
+          userName:{
+            contains:query.trim()
+          }
+        },
+        orderBy:{
+          createdAt:'desc'
+        }
+      })
+      return staff
+
+    }
+    const staff = await prisma.user.findMany({
       where: {
         userType: {
           in: [
-            UserType.LECTURER,
+            UserType.LECTURER,UserType.COD
           ],
         },
+      },
+      orderBy:{
+        createdAt:'desc'
       },
       skip: offset,
       take: perPage,
     });
 
 
-    return students;
+    return staff;
   } catch (error: any) {
     console.error('Failed to fetch Staff', error);
   }
@@ -633,23 +652,26 @@ export const fetchStaff = async (page: number, perPage: number) => {
 
 export const fetchStudents = async (page: number, perPage: number,query:string) => {
 
-
-  const offset = (page - 1) * perPage;
   try {
 
-    if(query && typeof query === 'string' && query.trim()){
+    if(typeof query === 'string' && query.trim()){
 
-      const student = await prisma.user.findUnique({
+      const student = await prisma.user.findMany({
         where:{
           userName:{
-            contains:query.trim
+            contains:query.trim()
           }
+        },
+        orderBy:{
+          createdAt:'desc'
         }
       })
-
       return student
 
     }
+
+    const offset = (page - 1) * perPage;
+
 
     const students = await prisma.user.findMany({
       where: {
@@ -662,6 +684,9 @@ export const fetchStudents = async (page: number, perPage: number,query:string) 
             UserType.DEPUTYSCHOOLREP,
           ],
         },
+      },
+      orderBy:{
+        createdAt:'desc'
       },
       skip: offset,
       take: perPage,

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import pic from '@/public/ProfilePic.jpeg'
 import Search from '@/app/(pages)/Component/Search'
-import { fetchStudents } from '@/app/lib/actions';
+import { fetchStaff } from '@/app/lib/actions';
 import { ClubType,RoleType,School,UserType,Level } from '@prisma/client';
 
 export default function Page({searchParams}:{searchParams:string}) {
@@ -12,7 +12,7 @@ export default function Page({searchParams}:{searchParams:string}) {
   const params = new URLSearchParams(searchParams);
   const q = params.get('query') || '';
 
-  const [students, setStudents] = useState<{
+  const [users, setUsers] = useState<{
     id: number;
     userName: string;
     email: string;
@@ -30,9 +30,9 @@ export default function Page({searchParams}:{searchParams:string}) {
   const perPage = 4; 
 
   const fetchUsers = async () => {
-    const data = await fetchStudents(currentPage, perPage,q);
+    const data = await fetchStaff(currentPage, perPage,q);
     if (data && data.length > 0) {
-      setStudents(data);
+        setUsers(data);
     } else {
       setCurrentPage(1);
     }
@@ -84,32 +84,32 @@ export default function Page({searchParams}:{searchParams:string}) {
                         </thead>
                         <tbody>
 
-                        {students !== null ?(
+                        {users !== null ?(
 
-                students.map((student)=>(
-                  <tr key={student.id}>
+                users.map((user)=>(
+                  <tr key={user.id}>
                   <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                       <div className="flex items-center">
                           <div className="flex-shrink-0">
                               <Link href="#" className="relative block">
-                                  <Image alt="profil" src={student.image || pic} className="mx-auto object-cover rounded-full h-10 w-10 " width={400} height={400} />
+                                  <Image alt="profil" src={user.image || pic} className="mx-auto object-cover rounded-full h-10 w-10 " width={400} height={400} />
                               </Link>
                           </div>
                           <div className="ml-3">
                               <p className="text-gray-900 whitespace-no-wrap">
-                                  {student.userName}
+                                  {user.userName}
                               </p>
                           </div>
                       </div>
                   </td>
                   <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                       <p className="text-gray-900 whitespace-no-wrap">
-                          {student.userType}
+                          {user.userType}
                       </p>
                   </td>
                   <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                       <p className="text-gray-900 whitespace-no-wrap">
-                        {student.createdAt.toLocaleDateString()}
+                        {user.createdAt.toLocaleDateString()}
                       </p>
                   </td>
                   <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -117,12 +117,12 @@ export default function Page({searchParams}:{searchParams:string}) {
                           <span aria-hidden="true" className="absolute inset-0   opacity-50">
                           </span>
                           <span className="relative">
-                            {student.level} 
+                            {user.level} 
                           </span>
                       </span>
                   </td>
                   <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                      <Link href={`/adminstrator/students/${student.id}`} className="text-indigo-600 hover:text-indigo-900">
+                      <Link href={`/adminstrator/staff/${user.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Edit
                       </Link>
                   </td>
