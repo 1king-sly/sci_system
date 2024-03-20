@@ -15,7 +15,7 @@ export default async function page({params}: {params: {id : string}}) {
   return (
     <div className='w-full lg:mx-20 lg:my-10'>
       <div className='lg:flex md:flex-none'>
-        <div className='md:w-full lg:w-2/3 lg:border-r-2'>
+        <div className='md:w-full lg:w-3/4 lg:border-r-2'>
           <h1 className='text-2xl font-serif font-bold uppercase my-2 mx-5'>{blog.title} </h1>
           {/* Author's Info */}
           <div className='text-sm md:flex-none lg:flex gap-4 my-2 mx-5'>
@@ -32,7 +32,7 @@ export default async function page({params}: {params: {id : string}}) {
            {blog.desc}
           </p></div>
         </div>
-        <div className='md:w-full lg:w-1/3'>
+        <div className='md:w-full lg:w-1/4'>
           <BlogSideBar></BlogSideBar>
         </div>
       </div>
