@@ -19,7 +19,7 @@ type User = {
   school:School | null,
   userType:UserType | null,
   level: Level | null,
-  image:string  | null
+  image:string  
 };
 type SessionStrategyType = 'jwt';
 
@@ -82,20 +82,11 @@ export const authOptions = {
           userType:user.userType, 
           club:user.club,  
           level:user.level ,  
-          image:user.image ,  
+          image:user.image || '',  
           
         };
       },
     }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // }),
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_CLIENT_ID,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    // }),
-
   ],
   callbacks:{
 

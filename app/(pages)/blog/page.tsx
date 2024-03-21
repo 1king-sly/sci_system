@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { fetchBlogs, fetchLatestBlogs, fetchTrendingBlogs } from '@/app/lib/actions';
 import Spinner from '../events/component/Spinner';
 import DOMPurify from 'dompurify'
-
 interface Blog {
     id: number;
     createdById: number;
@@ -17,6 +16,7 @@ interface Blog {
     slug: string;
     poster: string; 
   }
+
 
 export default function Page() {
     const [latestBlog, setLatestBlog] = useState<Blog | null>(null);
@@ -81,10 +81,8 @@ export default function Page() {
                 <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-96 object-cover'  width={1400} height={1400} />
               </div>
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
-              <h1 className='text-3xl font-bold'>{latestBlog.title}</h1>
-              <p className='opacity-95 h-[30px] truncate'>
-                {latestBlog.desc}
-              </p>
+              <h1 className='text-3xl font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
+              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
               <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
                 Read More -&gt;
               </Link>
@@ -104,7 +102,7 @@ export default function Page() {
             <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[20vh] object-cover rounded-lg' width={1400} height={1400} />
               <div className='flex flex-col gap-2 m-2'>
                 <h1>{blog.createdAt.toLocaleDateString()}</h1>
-                <h1 className='font-bold'>{blog.title}</h1>
+                <h1 className='font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.title) }}></h1>
               </div>
             </div>
             
@@ -124,9 +122,8 @@ export default function Page() {
                 <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[30vh] object-cover rounded-lg' width={1400} height={1400} />
               </div>
               <h1 className='opacity-95 '>{blog.createdAt.toLocaleDateString()}</h1>
-              <h1 className='font-bold '>{blog.title}</h1>
-              <p className='opacity-95 h-[30px] truncate '>
-                {blog.desc}
+              <h1 className='font-bold ' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.title) }}></h1>
+              <p className='opacity-95 h-[30px] truncate ' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.desc) }}>
               </p>
             </div>
             

@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
 
     <div className='w-full h-full flex  overflow-hidden overflow-x-hidden gap-1 mb-0'>
-    <div className="flex-1 flex w-full bg-gray-100 overflow-y-scroll scroll-smooth">{children}</div>  
+    <div className="flex-1 flex w-full bg-gray-100 overflow-y-scroll scroll-smooth [&::-webkit-scrollbar]:hidden">{children}</div>  
   </div>
   );
 }

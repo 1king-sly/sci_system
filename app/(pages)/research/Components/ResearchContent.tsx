@@ -20,7 +20,7 @@ export default function ResearchContent() {
                           and Informatics Research 
                         </h2>
                         <p className=" mb-4 text-gray-400 md:text-lg">
-                          Computer Science C.O.D's Message on Research.
+                          Computer Science C.O.D Message on Research.
                           Learn More about our Projects and ongoing Research
                         </p>
                 
