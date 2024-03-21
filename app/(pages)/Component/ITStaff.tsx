@@ -30,7 +30,7 @@ export default function ITStaff() {
 useEffect(() => {
     const fetchStaffs = async () => {
         try {
-            const staffsData = await fetchStaff();
+            const staffsData = await fetchStaff(1,3,'IT');
             if (staffsData !== undefined) {
                 setStaffs(staffsData);
             } else {

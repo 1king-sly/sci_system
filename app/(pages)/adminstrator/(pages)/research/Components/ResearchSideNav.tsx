@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx';
+import Link from 'next/link';
 
 export default function ResearchSideNav() {
   const links = [
@@ -32,10 +33,10 @@ export default function ResearchSideNav() {
 
     {links.map((link) => {
         return (
-                <div
+                <div key={link.name}
                     className={clsx(`cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2`,)}
                 >
-                    <a className="mb-2 mr-4 text-sm font-bold  tracking-wider" key={link.name} >{link.name}</a>
+                    <Link href={link.href} className="mb-2 mr-4 text-sm font-bold  tracking-wider">{link.name}</Link>
                 </div>
         );
     })}

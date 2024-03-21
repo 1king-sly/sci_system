@@ -11,7 +11,6 @@ export default function SideNav() {
     const links = [
         {name: 'Introduction', href:'/Introduction'},
         {name: 'Courses', href:'#', icon: ChevronDownIcon},
-        // {name: 'Student', href:'/Student'},
         {name: 'Staff', href:'/Staff'},
     ];
 
@@ -21,7 +20,7 @@ export default function SideNav() {
         SetVisible((prev) => !prev);
     }
   return (
-    <div className='w-full mx-4 flex flex-col py-4 gap-3'>{/*hidden md:block*/}
+    <div className='w-full mx-4 flex flex-col py-4 gap-3'>
         {links.map((link ) => {
         const LinkIcon = link.icon;
 
@@ -29,7 +28,7 @@ export default function SideNav() {
         if (link.name === 'Courses') {
           
           return (
-            <div>
+            <div key={link.name}>
             <Link
                 className={clsx(`w-full px-2 py-1 rounded-md flex h-auto items-center justify-center text-sm hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 gap-2 text-gray-800`, {'bg-sky-100 text-blue-600': pathName === link.href,})}
                 key={link.name}
@@ -53,7 +52,7 @@ export default function SideNav() {
 
         
         return (
-            <div>
+            <div key={link.name}>
                 <Link
                     className={clsx(`w-full px-2 py-1 rounded-md flex h-12 items-center justify-center text-sm hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 gap-2 text-gray-800`, {'bg-sky-100 text-blue-600': pathName === link.href,})}
                     key={link.name}
