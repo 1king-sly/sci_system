@@ -83,7 +83,7 @@ export default function Page() {
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
               <h1 className='text-3xl font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
               <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
-              <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
+              <Link className='hover:underline duration-300' href={`/adminstrator/blog/${latestBlog.slug}`}>
                 Read More -&gt;
               </Link>
             </div>
@@ -96,7 +96,7 @@ export default function Page() {
         <div className='md:w-full lg:w-1/4 lg:px-3 lg:py-10 right-0 h-[42vh]'>
           <h1 className='text-2xl font-bold font-serif lg:px-2'>Popular Blogs</h1>
           {popularBlogs.map((blog) => (
-            <Link href={`/blog/${blog.slug}`} key={blog.id} >
+            <Link href={`/adminstrator/blog/${blog.slug}`} key={blog.id} >
 
             <div key={blog.id} className='w-full grid grid-cols-2  mb-5 border-b-2 max-h-[20vh] overflow-y-clip'>
             <Image src={blog.poster || Banner} alt='Blog-Banner' className='w-full h-[20vh] object-cover rounded-lg' width={1400} height={1400} />
@@ -115,7 +115,7 @@ export default function Page() {
         <h1 className='text-xl font-serif mb-5 '>Latest Blogs</h1>
         <div className='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4'>
           {latestBlogs.map((blog) => (
-            <Link href={`/blog/${blog.slug}`} key={blog.id}>
+            <Link href={`/adminstrator/blog/${blog.slug}`} key={blog.id}>
 
             <div key={blog.id} className='w-full lg:border-r-2 py-5 md:pr-5 max-h-[48vh]  '>
               <div className='w-full h-[30vh]'>

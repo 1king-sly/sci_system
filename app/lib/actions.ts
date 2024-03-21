@@ -377,48 +377,54 @@ export const fetchUsers = async () =>{
   }
 }
 
-export const fetchSampleUpcomingEvents = async () =>{
-   
-     try{
-      const events = await prisma.event.findMany({
-        take:3,
-        orderBy:{
-          dateOfEvent:'desc'
-        },
-        include:{
-          createdBy:true,
-        }
-       
-       })
+export const fetchSampleUpcomingEvents = async () => {
+    try {
+        const today = new Date();
+        const events = await prisma.event.findMany({
+            where: {
+                dateOfEvent: {
+                    gte: today
+                }
+            },
+            take: 3,
+            orderBy: {
+                dateOfEvent: 'asc' 
+            },
+            include: {
+                createdBy: true,
+            }
+        });
+        return events;
+    } catch (error) {
+        console.error('Failed to fetch upcoming events', error);
+        throw error;
 
-       return events
-     }catch(error:any){
-      console.error('Failed to fetch upcoming events', error)
-     }
-}
-export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
-    try{
-
-      const events = await prisma.event.findMany({
-        where:{
-          type:EventType[eventType as keyof typeof EventType]
-        },
-        orderBy:{
-          dateOfEvent:'desc'
-        },
-        include:{
-          createdBy:true,
-        },
-        take:3
-      })
-
-      return events
-
-    }catch(error:any){
-      console.error('Failed to fetch specific Events')
+    }
+  }
+export const fetchSampleClubUpcomingEvents = async (eventType: string) => {
+    try {
+        const today = new Date();
+        const events = await prisma.event.findMany({
+            where: {
+                type: EventType[eventType as keyof typeof EventType],
+                dateOfEvent: {
+                    gte: today 
+                }
+            },
+            orderBy: {
+                dateOfEvent: 'asc' 
+            }
+            ,include:{
+              createdBy:true,
+            },
+            take: 3
+        });
+        return events;
+    } catch (error) {
+        console.error('Failed to fetch specific Events', error);
+        throw error;
     }
 };
-
 
 export const fetchSingleEvent = async (slug:string) =>{
   try{

@@ -24,7 +24,7 @@ interface Event {
   slug:string;
   createdBy:any
 }
-export default function page() {
+export default function Page() {
   const [visible, setVisible] = useState(true);
   const [visibleDraft, setVisibleDraft] = useState(false);
   const [visibleCompleted, setVisibleCompleted] = useState(false);
@@ -113,7 +113,7 @@ export default function page() {
       <div id="live-content" className={clsx(``,!visible && 'hidden')}> 
       {events !== null && events.length > 0 ? (
         events.map(event => (
-          <div className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4'>
+          <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4'>
             <Image src={event.createdBy.image || pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
             <div>
               <h3 className="font-semibold text-md ">{event.title}</h3>
