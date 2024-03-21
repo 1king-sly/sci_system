@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import ReactQuill, { UnprivilegedEditor } from 'react-quill'
+import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.bubble.css'
 import Image from 'next/image'
@@ -93,55 +93,6 @@ export default function Page() {
   
         }   
     };
-
-
-    useEffect(() => {
-      // Load ReactQuill only on the client side
-      import('react-quill').then(({ default: ReactQuill }) => {
-          // Now you can safely use ReactQuill here
-          // ReactQuill will be available only in the client-side environment
-          const handleChangeQuill = (
-              value: string,
-              delta: DeltaStatic,
-              source: Sources,
-              editor: UnprivilegedEditor
-          ) => {
-              setValue(value);
-              setFormData({
-                  ...formData,
-                  desc: value,
-              });
-          };
-
-          // Initialize ReactQuill with handleChangeQuill function
-          const Quill = ReactQuill as any; // Cast ReactQuill to 'any' to avoid TypeScript errors
-          const quill = new Quill('#editor', {
-              theme: 'snow',
-              modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                      ['blockquote', 'code-block'],
-                      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-                      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-                      [{ 'direction': 'rtl' }],                         // text direction
-                      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-                      [{ 'font': [] }],
-                      [{ 'align': [] }],
-                      ['link', 'image', 'video'],
-                      ['clean']                                         // remove formatting button
-                  ]
-              }
-          });
-
-          quill.on('text-change', (delta: DeltaStatic, oldDelta: DeltaStatic, source: Sources) => {
-              handleChangeQuill(quill.root.innerHTML, delta, source, quill);
-          });
-      });
-  }, [formData]);
     
     
     useEffect(() => {
