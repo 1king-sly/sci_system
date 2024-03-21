@@ -6,12 +6,10 @@ import 'react-quill/dist/quill.bubble.css'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { addBlog } from '@/app/lib/actions'
-import Button from '../../Component/Button'
 import { useEffect } from 'react' 
 import DeltaStatic  from 'quill';
 import  Sources  from 'react-quill';
 import clsx from 'clsx'
-import type { UnprivilegedEditor } from 'react-quill'; 
 
 export default function Page() {
     const [value, setValue] = useState('');
@@ -227,7 +225,6 @@ export default function Page() {
 
         <label className='block text-sm bg-gray-300 rounded px-4 font-medium leading-6 text-gray-900'>Add Your Blog Body</label>
         <ReactQuill theme='snow' value={value} onChange={()=> handleChangeQuill} placeholder='Write your Blog...' className='mt-2 border-2 mb-5'></ReactQuill>
-        {/* <Button onClick={handleSubmit}>Publish</Button> */}
         <div className="bg-slate-600 my-5 py-1 flex justify-end pr-5 gap-3 text-white font-semibold">
           <button type='submit'  className={clsx(`p-2`)}
             onClick={handleSubmit}
