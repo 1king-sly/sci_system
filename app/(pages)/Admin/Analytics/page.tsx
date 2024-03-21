@@ -8,17 +8,12 @@ export default function page() {
             <p>Name of Club</p>
             </div>
             <div className="flex justify-between items-center px-10 py-10">
-            <ul className="flex gap-4"> 
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Overview</li>
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Members</li>
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Events</li>
-            </ul>
             
             </div>
 
             <div className="bg-white mx-10 h-56 rounded shadow-sm ">
             
-              <div id="main-content" className="flex-grow overflow-auto px-4 py-4">
+              <div id="main-content" className="flex-grow overflow-auto px-4 py-4 flex justify-between">
                 <div>
                   <div className="flex">
                     <h6 className="mr-2 text-4xl font-bold md:text-5xl text-deep-purple-accent-400">
