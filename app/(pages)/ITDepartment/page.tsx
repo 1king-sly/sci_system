@@ -3,9 +3,9 @@ import React from 'react'
 import DeptSideBar from '@/app/(pages)/Component/DeptSideBar'
 import AboutCs from '../Component/AboutCs'
 import ITPrograms from '@/app/(pages)/Component/ITPrograms'
-import Representatives from '@/app/(pages)/Component/Representatives'
-import Staff from '@/app/(pages)/Component/Staff'
-import DeptMission from '@/app/(pages)/Component/DeptMission'
+import ITRepresentatives from '../Component/ITReps'
+import ITStaff from '../Component/ITStaff'
+import ITDeptMission from '../Component/ITDeptMission' 
 import Image from 'next/image'
 import Pic from '@/public/Raphael-Angulu-2.png'
 
@@ -42,9 +42,9 @@ export default function page() {
         </div>
                     </div>
                     <div id='Programs'><ITPrograms></ITPrograms></div>
-                    <div className='' id='Mission'><DeptMission></DeptMission></div>
-                    <div id='Staff'><Staff></Staff></div>
-                    <div id='Student-Representatives'><Representatives></Representatives></div>
+                    <div className='' id='Mission'><ITDeptMission></ITDeptMission></div>
+                    <div id='Staff'><ITStaff></ITStaff></div>
+                    <div id='Student-Representatives'><ITRepresentatives></ITRepresentatives></div>
                 </div>
             </div>
         </div>
