@@ -406,6 +406,9 @@ export const fetchSampleClubUpcomingEvents = async (eventType:string) =>{
         orderBy:{
           dateOfEvent:'desc'
         },
+        include:{
+          createdBy:true,
+        },
         take:3
       })
 
