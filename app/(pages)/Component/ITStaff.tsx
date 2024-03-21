@@ -20,7 +20,7 @@ interface User {
     
 }
 
-export default function Staff() {
+export default function ITStaff() {
 
     const [staffs, setStaffs] = useState<User[] | null>(null); 
     const [loading, setLoading] = useState(true);

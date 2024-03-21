@@ -8,21 +8,47 @@ export default function page() {
             <p>Name of Club</p>
             </div>
             <div className="flex justify-between items-center px-10 py-10">
-            <ul className="flex gap-4"> 
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Overview</li>
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Members</li>
-                <li className='cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-black after:block after:duration-500 hover:after:w-full'>Events</li>
-            </ul>
             
             </div>
 
             <div className="bg-white mx-10 h-56 rounded shadow-sm ">
             
-                <div id="main-content" className="flex-grow overflow-auto px-4 py-4">
-                
+              <div id="main-content" className="flex-grow overflow-auto px-4 py-4 flex justify-between">
+                <div>
+                  <div className="flex">
+                    <h6 className="mr-2 text-4xl font-bold md:text-5xl text-deep-purple-accent-400">
+                    22
+                    </h6>
+                    <div className="flex items-center justify-center rounded-full bg-teal-accent-400 w-7 h-7">
+                      <svg className="text-teal-900 w-7 h-7" stroke="currentColor" viewBox="0 0 52 52">
+                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+                      </svg>
+                    </div>
+                    </div>
+                    <p className="mb-2 font-bold md:text-lg">Total Members</p>
+                    <p className="text-gray-700">
+                      This is a total of all the Members currently in the Club
+                    </p>
                 </div>
-            </div>
 
+                <div>
+                  <div className="flex">
+                    <h6 className="mr-2 text-4xl font-bold md:text-5xl text-deep-purple-accent-400">
+                    22
+                    </h6>
+                    <div className="flex items-center justify-center rounded-full bg-teal-accent-400 w-7 h-7">
+                      <svg className="text-teal-900 w-7 h-7" stroke="currentColor" viewBox="0 0 52 52">
+                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="mb-2 font-bold md:text-lg">Total Events</p>
+                  <p className="text-gray-700">
+                    This is a total of all the Events the Club has had
+                  </p>
+                </div>
+              </div>
+            </div>
             </div>
     </>
   )

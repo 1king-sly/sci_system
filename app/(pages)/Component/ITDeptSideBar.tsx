@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react'
 import { useState } from 'react';
 
-export default function DeptSideBar() {
+export default function ITDeptSideBar() {
     const scrollToSection = (id:string) => {
         const element = document.getElementById(id);
         if(element){
@@ -23,19 +23,19 @@ export default function DeptSideBar() {
     
     const links = [
         {
-        name:'Introduction',href:'/Department#Introduction',id:'Introduction',
+        name:'Introduction',href:'/ITDepartment#Introduction',id:'Introduction',
     },
         {
-        name:'Programs',href:'/Department#Programs',id:'Programs',
+        name:'Programs',href:'/ITDepartment#Programs',id:'Programs',
     },
         {
-        name:'Mission and Vision',href:'/Department#Mission',id:'Mission',
+        name:'Mission and Vision',href:'/ITDepartment#Mission',id:'Mission',
     },
         {
-        name:'Staff',href:'/Department#Staff',id:'Staff',
+        name:'Staff',href:'/ITDepartment#Staff',id:'Staff',
     },
         {
-        name:'Student Representatives',href:'/Department#Student-Representatives',id:'Student-Representatives',
+        name:'Student Representatives',href:'/ITDepartment#Student-Representatives',id:'Student-Representatives',
     },
 ]
   return (
@@ -60,10 +60,9 @@ export default function DeptSideBar() {
                                 <ChevronDownIcon className='mb-2 w-6 max-[425px]:w-4 ml-16' onClick={toggleVisible} ></ChevronDownIcon>
                               </div>
                               <div className={clsx(`text-center`,!visible && 'hidden')}>
-                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='C.Science' >Bsc. Computer Science</h1>
-                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='ETS' >ETS</h1>
-                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='C.Forensics'>Computer Forensics</h1>
-                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='C.Forensics'>Msc. Computer Science</h1></div>
+                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='IT' >Bsc. Information Technology</h1>
+                                <h1 className=' mb-3 mr-4 border-2 p-2 rounded-lg hover:bg-gray-900' id='SIK' >Bsc. Information System</h1>
+                              </div>
                           </div>
                       </div>
                       </>
