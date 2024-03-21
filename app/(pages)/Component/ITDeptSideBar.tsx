@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react'
 import { useState } from 'react';
 
-export default function DeptSideBar() {
+export default function ITDeptSideBar() {
     const scrollToSection = (id:string) => {
         const element = document.getElementById(id);
         if(element){

@@ -17,6 +17,7 @@ export default function NavBar1() {
   const pathname = usePathname();
   const [viewAuth, setViewAuth] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [viewDept, setViewDept] = useState(false);
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
@@ -29,6 +30,9 @@ export default function NavBar1() {
   }
   const closeAuthMenu = () =>{
     setViewAuth(!toggleAuthForm);
+  }
+  const toggleDept = () =>{
+    setViewDept((view) => !view);
   }
 
   const session = useSession()
@@ -52,9 +56,19 @@ export default function NavBar1() {
         <Link href="/"> 
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/'})}>HOME</h1>
         </Link>
-        <Link href="/department">
-          <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENT</h1>
-        </Link>
+        <div className="relative z-[1000]">
+          <div className="relative inline-block text-left">
+            <div>
+              <Link href="#">
+                <h1 onClick={() => {closeAuthMenu(),toggleDept()}} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENTS</h1>
+              </Link>
+            </div>
+            <div className={clsx('absolute mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5', { hidden: !viewDept })}>
+                <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>Computer Science Department</h1></Link>
+                <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className='hover:opacity-75'>Information Technology Dept</h1></Link>
+            </div>
+          </div>
+        </div>
         <Link href="/club">
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname==='/club'})}>CLUBS</h1>
         </Link>
