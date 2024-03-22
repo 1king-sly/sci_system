@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image';
-import React, { use } from 'react';
+import React, { use, useEffect,useRef } from 'react';
+
 import logo from '@/public/logo.png'
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -42,9 +43,30 @@ export default function NavBar1() {
     await signOut({ redirect: false });
   };
 
+
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutSideClick = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setViewAuth(false)
+        setVisible(false)
+        setViewDept(false)
+      }
+    };
+
+    window.addEventListener("mousedown", handleOutSideClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutSideClick);
+    };
+  }, [ref]);
+
+
   return (
     <>
-    <div className='w-full flex items-center h-[20vh] font-serif z-50 bg-gray-900 max-[768px]:hidden'>
+    <div className='w-full flex items-center h-[20vh] font-serif z-50 bg-gray-900 max-[768px]:hidden' ref={ref}>
       <div className='w-full h-full mx-auto py-5 px-4  md:px-4 lg:px-8 flex items-center'> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
 
         <div className='flex justify-start w-1/3 cursor-pointer'>
