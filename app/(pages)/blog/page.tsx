@@ -82,7 +82,7 @@ export default function Page() {
               </div>
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
               <h1 className='text-3xl font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
-              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
+              <div className='w-full h-12 truncate' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
               <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
                 Read More -&gt;
               </Link>
