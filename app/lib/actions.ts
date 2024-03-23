@@ -224,13 +224,17 @@ export const fetchBlogs = async () =>{
  
 }
 
-export const fetchLatestBlogs = async () =>{
+export const fetchLatestBlogs = async (page: number, perPage: number) =>{
+
+  const offset = (page - 1) * perPage;
+
   try{
     const blogs = await prisma.blog.findMany({
       orderBy:{
         createdAt:'desc'
       },
-      take:5
+      skip: offset,
+      take: perPage
     })
 
     return blogs

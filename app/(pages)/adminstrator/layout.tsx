@@ -1,12 +1,25 @@
-import DeptSideBar from '@/app/(pages)/Component/DeptSideBar'
-import NavBar1 from "@/app/(pages)/Component/NavBar1";
+'use server'
 import Sidebar from './Component/Sidebar';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/utils/authUptions';
+import { redirect } from 'next/navigation'
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const user = await getServerSession(authOptions)
+
+
+  if(!user){
+    redirect('/')
+  }
+
+  if(user.userType !== 'ADMIN'){
+    redirect('/')
+  }
   return (
 
     <div className='w-full h-full flex overflow-hidden gap-1 mb-0'>
