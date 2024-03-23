@@ -17,7 +17,7 @@ type User = {
   updatedAt:Date;
   club:ClubType | null ,
   school:School | null,
-  userType:UserType | null,
+  userType:UserType| null,
   level: Level | null,
   image:string  
 };
@@ -79,7 +79,7 @@ export const authOptions = {
           updatedAt: user.updatedAt,
           hashedPassword: user.hashedPassword,
           school:user.school,
-          userType:user.userType, 
+          userType:user.userType || null, 
           club:user.club,  
           level:user.level ,  
           image:user.image || '',  
