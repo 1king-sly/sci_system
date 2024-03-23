@@ -26,7 +26,7 @@ export default function Page() {
     const [currentPage, setCurrentPage] = useState(1);
     const perPage = 5;
 
-  useEffect(() => {
+
     const fetchData = async () => {
       try {
         const latestBlogData = await fetchBlogs();
@@ -37,8 +37,8 @@ export default function Page() {
             
         }
 
-        const latestBlogsData = await fetchLatestBlogs(1,4);
-        if(latestBlogsData){
+        const latestBlogsData = await fetchLatestBlogs(currentPage,perPage);
+        if(latestBlogsData && latestBlogsData.length > 0){
 
             setLatestBlogs(latestBlogsData);
         } else {
@@ -54,6 +54,7 @@ export default function Page() {
       }
     };
 
+  useEffect(() => {
     fetchData();
   }, [currentPage]);
 
@@ -85,7 +86,7 @@ export default function Page() {
                 <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-96 object-cover'  width={1400} height={1400} />
               </div>
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
-              <h1 className='text-3xl font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
+              <h1 className='text-3xl font-bold uppercase' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
               <div className='w-full h-12 truncate' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
               <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
                 Read More -&gt;
@@ -97,7 +98,7 @@ export default function Page() {
       
 
         {/* SideBar */}
-        <div className='md:w-full lg:w-1/4 lg:px-10 lg:py-10 right-0 h-[42vh]'>
+        <div className='md:w-full lg:w-1/4 lg:px-10 lg:py-10 right-0 h-[66vh] min-[1024px]:h[80vh]'>
           <h1 className='text-2xl font-bold font-serif lg:px-2'>Popular Blogs</h1>
           {popularBlogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.id} >
@@ -115,7 +116,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className='lg:mx-20 md:mx-10 mx-5 mt-10 bottom-0'>
+      <div className='lg:mx-20 md:mx-10 mx-5 mt-10 max-[425px]:mt-20 bottom-0'>
         <div className='flex items-center justify-between'>
           <h1 className='text-xl font-serif mb-5 '>Latest Blogs</h1>
           <div className="flex items-center  mb-5 bg-white xs:flex-row xs:justify-between">
