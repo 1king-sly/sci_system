@@ -119,6 +119,7 @@ export const addEvent = async (formData: FormData) => {
 };
 
 export const addBlog = async (formData: FormData) => {
+    console.log(formData)
 
 
   try {

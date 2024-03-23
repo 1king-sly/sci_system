@@ -11,7 +11,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 type Variant = 'REGISTER' | 'LOGIN';
 
-export default function AuthForm({ref}:{ref:any}) {
+export default function AuthForm() {
   const [variant, setVariant] = useState<Variant>('LOGIN');
   const [loading, setisLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -38,18 +38,6 @@ export default function AuthForm({ref}:{ref:any}) {
 
   const session = useSession();
 
-
-  const handleGuestSubmit = async() =>{
-    const event = window.event;
-    if (!event) {
-      return;
-    }
-    event.preventDefault();
-
-    toggleLoading();
-
-    router.push('/Guest/Projects');   
-  }
 
   const handleSubmit = async () => {
     const event = window.event;
@@ -112,7 +100,7 @@ export default function AuthForm({ref}:{ref:any}) {
     <>
       <div className={clsx(`w-full mx-16 bg-white px-4 lg:px-10 py-6 mt-2 gap-2 rounded-md  shadow-lg`, {
         'hidden': session?.status === 'authenticated'
-      })} ref={ref}>
+      })} >
         <form>
           {variant === 'REGISTER' && (
              <>
