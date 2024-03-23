@@ -37,10 +37,12 @@ export default function Page() {
             
         }
 
-        const latestBlogsData = await fetchLatestBlogs();
+        const latestBlogsData = await fetchLatestBlogs(perPage, currentPage);
         if(latestBlogsData){
 
             setLatestBlogs(latestBlogsData);
+        } else {
+          setCurrentPage(1);
         }
 
         const popularBlogsData = await fetchTrendingBlogs();
@@ -53,7 +55,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className='w-full h-full relative'>

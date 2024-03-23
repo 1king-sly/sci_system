@@ -10,12 +10,12 @@ export default async function page() {
 
   const user = await getServerSession(authOptions)
 
-
   if(!user){
     redirect('/')
   }
 
-  if(user.role !== 'Lead' || user.role !== 'CoLead'){
+  if(user.role !== 'Lead' && user.role !== 'CoLead'){
+
     redirect('/')
   }
 
