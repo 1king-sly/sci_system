@@ -10,7 +10,6 @@ export default async function page() {
 
   const user = await getServerSession(authOptions)
 
-
   if(!user){
     redirect('/')
   }

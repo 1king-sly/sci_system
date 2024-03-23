@@ -19,6 +19,12 @@ export default function NavBar1() {
   const [viewAuth, setViewAuth] = useState(false);
   const [visible, setVisible] = useState(false);
   const [viewDept, setViewDept] = useState(false);
+  const [viewAccount, setViewAccount] = useState(false);
+
+  const toggleAccount = () => {
+    setViewAccount((vacc) => !vacc);
+  }
+  
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
@@ -223,6 +229,28 @@ export default function NavBar1() {
                   <li><Link href="/club" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>CLUBS</Link> </li>
                   <li><Link href="/events" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>EVENTS</Link> </li>
                   <li><Link href="/research" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>RESEARCH</Link> </li>
+                  <li><Link href="/blog" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>BLOG</Link> </li>
+                  {session?.status === "authenticated" ? (
+                    <>
+                          {session?.data.role === 'Lead' || session?.data.role === 'CoLead' ?(
+                            <li><Link href="/Admin" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>GO TO ADMIN</Link> </li>
+                          ): null}
+                          {session?.data.userType === 'ADMIN'  ?(
+                            <li><Link href="/adminstrator" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>GO TO ADMIN</Link> </li>  
+                          ): null}
+                            <li><Link href="/Admin/profile" className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" onClick={() => {closeAuthMenu();closeDropDown();}}>PROFILE</Link> </li>  
+                          <button
+                            onClick={handleSignOut}
+                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            role="menuitem"
+                          >
+                            <span className="flex flex-col">
+                              <span>Logout</span>
+                            </span>
+                          </button>
+                      </>
+                ):(
+                  <>
                   <li>
                     <Link
                       href="#"
@@ -235,6 +263,8 @@ export default function NavBar1() {
                       Login
                     </Link> 
                   </li>
+                  </>
+                )}
                 </ul>
               </nav>
             </div>
