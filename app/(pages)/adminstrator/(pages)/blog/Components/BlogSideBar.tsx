@@ -21,26 +21,56 @@ interface Blog {
 export default function BlogSideBar() {
 
     const [latestBlogs, setLatestBlogs] = useState<Blog[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const perPage = 4; 
+
+
+
+    const fetchData = async () => {
+      try {    
+        const latestBlogsData = await fetchLatestBlogs(currentPage, perPage);
+        if(latestBlogsData && latestBlogsData.length > 0){
+
+            setLatestBlogs(latestBlogsData);
+        }
+        else{
+          setCurrentPage(1);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {    
-            const latestBlogsData = await fetchLatestBlogs();
-            if(latestBlogsData){
-    
-                setLatestBlogs(latestBlogsData);
-            }
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-    
+     
         fetchData();
-      }, []);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [currentPage]);
 
   return (
     <div className='w-full h-full'>
+
+      <div className='w-full flex justify-between '>
         <h1 className='text-2xl font-bold font-serif px-2'>Latest Blogs</h1>
+        <div className="flex items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
+                        <div className="flex items-center">
+                            <button type="button" title='Prev' className="w-full p-4 text-base text-gray-600 bg-white border rounded-l-xl hover:bg-gray-100" onClick={() => setCurrentPage(currentPage - 1)}>
+                                <svg width="9" fill="currentColor" height="8" className="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <button type="button" title='Next' className="w-full p-4 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-100" onClick={() => setCurrentPage(currentPage + 1)}>
+                                <svg width="9" fill="currentColor" height="8" className="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+      </div>
+
+
         <div className='w-full py-5'>
             {latestBlogs.map((blog)=>(
                 <Link href={`/adminstrator/blog/${blog.slug}`} key={blog.id}>

@@ -15,7 +15,7 @@ export default async function page() {
     redirect('/')
   }
 
-  if(user.role !== 'Lead' || user.role !== 'CoLead'){
+  if(user.role !== 'Lead' && user.role !== 'CoLead'){
     redirect('/')
   }
 

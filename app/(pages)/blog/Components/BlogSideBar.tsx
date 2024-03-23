@@ -25,7 +25,7 @@ export default function BlogSideBar() {
     useEffect(() => {
         const fetchData = async () => {
           try {    
-            const latestBlogsData = await fetchLatestBlogs();
+            const latestBlogsData = await fetchLatestBlogs(1,2);
             if(latestBlogsData){
     
                 setLatestBlogs(latestBlogsData);

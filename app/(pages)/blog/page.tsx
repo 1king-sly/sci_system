@@ -35,7 +35,7 @@ export default function Page() {
             
         }
 
-        const latestBlogsData = await fetchLatestBlogs();
+        const latestBlogsData = await fetchLatestBlogs(1,4);
         if(latestBlogsData){
 
             setLatestBlogs(latestBlogsData);
