@@ -113,14 +113,20 @@ export default function Page() {
       <div id="live-content" className={clsx(``,!visible && 'hidden')}> 
       {events !== null && events.length > 0 ? (
         events.map(event => (
-          <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4'>
-            <Image src={event.createdBy.image || pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
-            <div>
-              <h3 className="font-semibold text-md ">{event.title}</h3>
-              <p>{String(event.dateOfEvent)}</p>
-              <p>
-                {event.desc}
-              </p>
+          <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between'>
+            <div className='flex gap-10 items-center'>
+              <Image src={event.createdBy.image || pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
+              <div>
+                <h3 className="font-semibold text-md ">{event.title}</h3>
+                <p>{String(event.dateOfEvent)}</p>
+                <p>
+                  {event.desc}
+                </p>
+              </div>
+            </div>
+            <div className='justify-end items-end mx-10'>
+              <Link key={event.id} href={`/events/${event.slug}`}><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
+              <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4'>Delete</button>
             </div>
           </div>
         ))
@@ -129,7 +135,8 @@ export default function Page() {
         )}    
       </div>
       <div id="draft-content" className={clsx(``,!visibleDraft && 'hidden')}>
-        <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4">
+        <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between">
+        <div className='flex gap-10 items-center'>
         <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
 
           <div>
@@ -137,38 +144,59 @@ export default function Page() {
           <p>
             Event brief Description, a few lines about the event
          </p>
-          </div>
+          </div></div>
+          <div className='justify-end items-end mx-10'>
+              <Link href='events/id'><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
+              <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4'>Delete</button>
+            </div>
            </div>
       </div>
       <div id="completed-content" className={clsx(``,!visibleCompleted && 'hidden')}>
-        <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4">
-        <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
-          <div>
-             <h3 className="font-semibold text-md ">Event One</h3>
-          <p>
-            Event brief Description, a few lines about the event
-         </p>
-          </div>
-           </div>
-           <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4">
+      <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between">
+        <div className='flex gap-10 items-center'>
           <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
-
             <div>
-               <h3 className="font-semibold text-md ">Event One</h3>
-            <p>
-              Event brief Description, a few lines about the event
-           </p>
-            </div>
-             </div>
-             <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4">
-              <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
-              <div>
-                 <h3 className="font-semibold text-md ">Event One</h3>
+              <h3 className="font-semibold text-md ">Event One</h3>
               <p>
                 Event brief Description, a few lines about the event
-             </p>
-              </div>
-               </div>    
+              </p>
+            </div>
+          </div>
+          <div className='justify-end items-end mx-10'>
+              <Link href='events/id'><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
+              <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4'>Delete</button>
+            </div>
+           </div>
+      <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between">
+        <div className='flex gap-10 items-center'>
+          <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
+            <div>
+              <h3 className="font-semibold text-md ">Event One</h3>
+              <p>
+                Event brief Description, a few lines about the event
+              </p>
+            </div>
+          </div>
+          <div className='justify-end items-end mx-10'>
+              <Link href='events/id'><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
+              <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4'>Delete</button>
+            </div>
+           </div>
+      <div className="flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between">
+        <div className='flex gap-10 items-center'>
+          <Image src={pic} alt='ClubPic' height={400} width={400} className='w-24 h-24 rounded-full object-cover'></Image>
+            <div>
+              <h3 className="font-semibold text-md ">Event One</h3>
+              <p>
+                Event brief Description, a few lines about the event
+              </p>
+            </div>
+          </div>
+          <div className='justify-end items-end mx-10'>
+              <Link href='events/id'><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
+              <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4'>Delete</button>
+            </div>
+           </div> 
       </div>
     </div>
   </div>
