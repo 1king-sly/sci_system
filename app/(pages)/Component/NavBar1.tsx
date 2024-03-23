@@ -58,7 +58,6 @@ export default function NavBar1() {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         setVisible(false)
         setViewDept(false)
-        setViewAuth(false)
       }
     };
 
@@ -73,7 +72,7 @@ export default function NavBar1() {
   return (
     <>
     <div className='w-full flex items-center h-[20vh] font-serif z-50 bg-gray-900 max-[768px]:hidden' ref={ref}>
-      <div className='w-full h-full mx-auto py-5 px-4  md:px-4 lg:px-8 flex items-center'> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
+      <div className='w-full h-full mx-auto py-5 px-4  md:px-4 lg:px-8 flex items-center' ref={ref}> {/*sm:max-w-xl md:max-w-full lg:max-w-screen-xl*/}
 
         <div className='flex justify-start w-1/3 cursor-pointer'>
           <Link href='/'>
@@ -84,14 +83,14 @@ export default function NavBar1() {
         <Link href="/"> 
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/'})}>HOME</h1>
         </Link>
-        <div className="relative z-[1000]" ref={ref}>
-          <div className="relative inline-block text-left">
-            <div>
+        <div className="relative z-[1000]" ref={ref} >
+          <div className="relative inline-block text-left" ref={ref} >
+            <div >
               <Link href="#">
                 <h1 onClick={() => {closeAuthMenu(),toggleDept()}} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENTS</h1>
               </Link>
             </div>
-            <div className={clsx('absolute mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5', { hidden: !viewDept })} ref={ref}>
+            <div className={clsx('absolute mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5', { hidden: !viewDept })}>
                 <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>Computer Science Department</h1></Link>
                 <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className='hover:opacity-75'>Information Technology Dept</h1></Link>
             </div>
@@ -182,8 +181,8 @@ export default function NavBar1() {
         </div>
       </div>
     </div>
-    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full  flex items-start justify-center bg-transparent z-50 `, !viewAuth && 'hidden')} ref={ref}>
-    <div className='flex flex-col items-center justify-center' >
+    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full  flex items-start justify-center bg-transparent z-50 `, !viewAuth && 'hidden')} ref={ref}>{/*h-full*/}
+    <div className='flex flex-col items-center justify-center' ref={ref} >
       <XMarkIcon className='cursor-pointer h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
       <AuthForm ></AuthForm>
       </div>

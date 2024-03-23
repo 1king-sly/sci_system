@@ -37,7 +37,7 @@ export default function Page() {
             
         }
 
-        const latestBlogsData = await fetchLatestBlogs(perPage, currentPage);
+        const latestBlogsData = await fetchLatestBlogs(1,4);
         if(latestBlogsData){
 
             setLatestBlogs(latestBlogsData);
@@ -85,8 +85,8 @@ export default function Page() {
                 <Image src={latestBlog?.poster || Banner} alt='Blog-Banner' className='rounded-lg w-full h-96 object-cover'  width={1400} height={1400} />
               </div>
               <h1>{new Date(latestBlog.createdAt).toLocaleDateString()}</h1>
-              <h1 className='text-3xl font-bold uppercase' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
-              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
+              <h1 className='text-3xl font-bold' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.title) }}></h1>
+              <div className='w-full h-12 truncate' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(latestBlog.desc) }}></div>
               <Link className='hover:underline duration-300' href={`/blog/${latestBlog.slug}`}>
                 Read More -&gt;
               </Link>

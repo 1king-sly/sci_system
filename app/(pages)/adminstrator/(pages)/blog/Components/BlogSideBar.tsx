@@ -21,26 +21,37 @@ interface Blog {
 export default function BlogSideBar() {
 
     const [latestBlogs, setLatestBlogs] = useState<Blog[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const perPage = 3; 
+
+
+
+    const fetchData = async () => {
+      try {    
+        const latestBlogsData = await fetchLatestBlogs(currentPage, perPage);
+        if(latestBlogsData && latestBlogsData.length > 0){
+
+            setLatestBlogs(latestBlogsData);
+        }
+        else{
+          setCurrentPage(1);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {    
-            const latestBlogsData = await fetchLatestBlogs();
-            if(latestBlogsData){
-    
-                setLatestBlogs(latestBlogsData);
-            }
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-    
+     
         fetchData();
-      }, []);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [currentPage]);
 
   return (
     <div className='w-full h-full'>
         <h1 className='text-2xl font-bold font-serif px-2'>Latest Blogs</h1>
+
+
         <div className='w-full py-5'>
             {latestBlogs.map((blog)=>(
                 <Link href={`/adminstrator/blog/${blog.slug}`} key={blog.id}>
