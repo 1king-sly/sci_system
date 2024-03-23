@@ -50,7 +50,6 @@ export default function NavBar1() {
   useEffect(() => {
     const handleOutSideClick = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setViewAuth(false)
         setVisible(false)
         setViewDept(false)
       }
@@ -79,7 +78,7 @@ export default function NavBar1() {
           <h1 onClick={closeAuthMenu} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/'})}>HOME</h1>
         </Link>
         <div className="relative z-[1000]">
-          <div className="relative inline-block text-left">
+          <div className="relative inline-block text-left" ref={ref}>
             <div>
               <Link href="#">
                 <h1 onClick={() => {closeAuthMenu(),toggleDept()}} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENTS</h1>
@@ -122,14 +121,17 @@ export default function NavBar1() {
               <div
                 className={clsx('absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5', { hidden: !visible })}
               >
-                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <Link href="#" className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
-                    <span className="flex flex-col">
-                      <span>
-                        Settings
-                      </span>
-                    </span>
-                  </Link>
+                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" ref={ref}>
+                  {session?.data.role === 'Lead' || session?.data.role === 'CoLead' ?(
+                         <Link href="/Admin" className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
+                         <span className="flex flex-col">
+                           <span>
+                             Go to Admin
+                           </span>
+                         </span>
+                       </Link>
+                  ): null}
+               
                   <Link href="/account" className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
                     <span className="flex flex-col">
                       <span>
@@ -164,15 +166,15 @@ export default function NavBar1() {
         </div>
       </div>
     </div>
-    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full  flex items-start justify-center bg-transparent z-50 `, !viewAuth && 'hidden')}>{/*h-full*/}
-    <div className='flex flex-col items-center justify-center'>
+    <div className={clsx(`my-[25vh] fixed top-0 left-0 w-full  flex items-start justify-center bg-transparent z-50 `, !viewAuth && 'hidden')} ref={ref}>{/*h-full*/}
+    <div className='flex flex-col items-center justify-center' ref={ref}>
       <XMarkIcon className='cursor-pointer h-10 w-10 min-[769px]:hidden bg-white' onClick={closeAuthMenu}></XMarkIcon>
-      <AuthForm></AuthForm>
+      <AuthForm ref={ref}></AuthForm>
       </div>
     </div>
 
     {/* Mobile NavBar */}
-    <div className="min-[769px]:hidden">
+    <div className="min-[769px]:hidden" ref={ref}>
           {/* Mobile menu dropdown */}
           <div className="top-4 left-0 w-full">
             <div className="bg-gray-900 border rounded shadow-sm">
