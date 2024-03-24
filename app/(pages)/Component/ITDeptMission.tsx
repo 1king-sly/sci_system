@@ -23,9 +23,9 @@ export default function ITDeptMission() {
                     <div className="w-px h-full bg-gray-300"></div>
                     </div>
                     <div className="pt-1 pb-8">
-                    <p className="mb-2 text-lg font-bold">Mission</p>
+                    <p className="mb-2 text-lg font-bold">Vision</p>
                     <p className="text-gray-700">
-                        Our School Aims to create Industry Ready Experts Who Solve Real World Problems.
+                        Create The Best Tech Experts Who Bring Solutions To Real World Problems.
                     </p>
                     </div>
                 </div>
@@ -42,9 +42,9 @@ export default function ITDeptMission() {
                     <div className="w-px h-full bg-gray-300"></div>
                     </div>
                     <div className="pt-1 pb-8">
-                    <p className="mb-2 text-lg font-bold">Vision</p>
+                    <p className="mb-2 text-lg font-bold">Mission</p>
                     <p className="text-gray-700">
-                        Create The Best Tech Experts Who Bring Solutions To Real World Problems.
+                        Our School Aims to create Industry Ready Experts Who Solve Real World Problems.
                     </p>
                     </div>
                 </div>
