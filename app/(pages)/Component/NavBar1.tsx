@@ -117,7 +117,7 @@ export default function NavBar1() {
                   <div className="relative inline-block text-left"> 
                     <Link href='/department' 
                       className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600' 
-                      onClick={() => {toggleCSPrograms(), closeITPrograms()}}>
+                      onClick={() => {toggleCSPrograms()}}>
                         <h1 className=' hover:opacity-75'>Computer Science Department</h1>
                     </Link>
 
@@ -132,8 +132,8 @@ export default function NavBar1() {
                 <div ref={ref1} className="relative z-[1000]">
                   <div className="relative inline-block text-left">
                     <Link href='/ITDepartment' 
-                      className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'
-                      onClick={() => {toggleITPrograms(), closeCSPrograms()}}>
+                      className=' rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'
+                      onClick={() => {toggleITPrograms()}}>
                       <h1 className='hover:opacity-75'>Information Technology Dept</h1>
                     </Link>
                     <div ref={ref1} className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !viewITPrograms })}>
