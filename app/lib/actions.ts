@@ -118,6 +118,36 @@ export const addEvent = async (formData: FormData) => {
   }
 };
 
+
+export const updateEvent = async (formData: any) => {
+  console.log(formData)
+
+  
+  const fileUrls = formData.fileUrls
+  const id = formData.id
+
+ 
+  if(fileUrls.length > 0){
+    throw new Error('Intentional')  }
+
+  try {
+    const updatedEvent = await prisma.event.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        gallery: fileUrls, 
+      },
+    });
+
+    console.log(updatedEvent)
+
+    return updatedEvent;
+  } catch (error) {
+    console.error('Failed to update Event', error);
+    throw error; // Rethrow the error for handling in the calling function
+  }
+};
 export const addBlog = async (formData: FormData) => {
     console.log(formData)
 
