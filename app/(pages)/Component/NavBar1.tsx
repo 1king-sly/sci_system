@@ -19,21 +19,9 @@ export default function NavBar1() {
   const [viewAuth, setViewAuth] = useState(false);
   const [visible, setVisible] = useState(false);
   const [viewDept, setViewDept] = useState(false);
-  const [viewCSPrograms, setViewCSPrograms] = useState(false);
-  const [viewITPrograms, setViewITPrograms] = useState(false);
+  const [hidden, setHidden] = useState(true);
+  const [csHidden, setCsHidden] = useState(true);
 
-  const toggleCSPrograms = () => {
-    setViewCSPrograms((cprog) => !cprog);
-  }
-  const closeCSPrograms = () => {
-    setViewITPrograms(!toggleCSPrograms);
-  }
-  const toggleITPrograms = () => {
-    setViewITPrograms((Iprog) => !Iprog);
-  }  
-  const closeITPrograms = () => {
-    setViewITPrograms(!toggleITPrograms);
-  }
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
@@ -117,11 +105,15 @@ export default function NavBar1() {
                   <div className="relative inline-block text-left"> 
                     <Link href='/department' 
                       className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600' 
-                      onClick={() => {toggleCSPrograms()}}>
+                      onMouseEnter={() => setCsHidden(true)}
+                      >
                         <h1 className=' hover:opacity-75'>Computer Science Department</h1>
                     </Link>
 
-                    <div ref={ref1} className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !viewCSPrograms })}>
+                    <div ref={ref1} 
+                      onMouseEnter={() => setCsHidden(true)}
+                      onMouseLeave={() => setCsHidden(false)}
+                      className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !csHidden })}>
                       <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Science</h1></Link>
                       <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Forensics</h1></Link>
                       <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. ETS</h1></Link>
@@ -133,10 +125,14 @@ export default function NavBar1() {
                   <div className="relative inline-block text-left">
                     <Link href='/ITDepartment' 
                       className=' rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'
-                      onClick={() => {toggleITPrograms()}}>
+                      onMouseEnter={() => setHidden(true)}
+                      >
                       <h1 className='hover:opacity-75'>Information Technology Dept</h1>
                     </Link>
-                    <div ref={ref1} className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !viewITPrograms })}>
+                    <div ref={ref1} 
+                      onMouseEnter={() => setHidden(true)}
+                      onMouseLeave={() => setHidden(false)}
+                      className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !hidden })}>
                       <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information Technology</h1></Link>
                       <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information System</h1></Link>
                       <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>MSC. Information Technology</h1></Link>
