@@ -11,10 +11,10 @@ export default function ResearchSideNav() {
     }
   const links = [
     {
-    name:'Research',href:'/department#Whatwedo',id:'Whatwedo',
+    name:'Research',href:'/research',id:'Whatwedo',
 },
     {
-    name:'Collaborations',href:'/department#ResearchArea',id:'ResearchArea',
+    name:'Collaborations',href:'/research/collaborations',id:'ResearchArea',
 },
 ]
   return (
@@ -33,7 +33,9 @@ export default function ResearchSideNav() {
                 >
                     <div className='flex-col w-full'>
                         <div className='flex gap-10'>
+                            <Link key={link.name} href={link.href}>
                             <h1 className="mb-2 mr-4 text-sm font-bold  tracking-wider" key={link.name} >{link.name}</h1>
+                            </Link>
                             <ChevronDownIcon className='w-6 h-6' onClick={toggleResearch}/>
                         </div>
                         <div className={clsx(`text-center w-full`, !visible && 'hidden')}>
@@ -47,9 +49,13 @@ export default function ResearchSideNav() {
         }
         return (
                 <div key={link.name}
-                    className={clsx(`cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2`,)}
+                    className='cursor-pointer w-full rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2'
                 >
-                    <Link href='/research/collaborations'><h1 className="mb-2 mr-4 text-sm font-bold  tracking-wider" key={link.name} >{link.name}</h1></Link>
+                    <Link href={link.href} 
+                        key={link.name}
+                    >
+                        <h1 className="mb-2 mr-4 text-sm font-bold  tracking-wider" key={link.name} >{link.name}</h1>
+                    </Link>
                 </div>
         );
     })}
