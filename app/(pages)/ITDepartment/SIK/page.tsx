@@ -17,7 +17,6 @@ export default function page() {
             with a diploma in IT from MMUST or equivalent with a credit
             or distinction will be admitted into 2nd year of study. or a
             relevant diploma recognized by the University Senate</h1>
-        {/* <h1 className='text-xl font-bold my-3'>Course Requirements</h1> */}
     </div>
   )
 
