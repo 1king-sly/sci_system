@@ -20,7 +20,7 @@ export default function AboutCs() {
                 </span>
             </h2>
             <p className="text-base text-gray-700 md:text-lg">
-                The School of Computing and Informatics of Masinde Muliro Universityy of Science and Technology is one of the promising Schools in the University. The School was was approved and officially formed on January, 2017 after splitting from the former Faculty of Science.
+                The School of Computing and Informatics of Masinde Muliro University of Science and Technology is one of the promising Schools in the University. The School was was approved and officially formed on January, 2017 after splitting from the former Faculty of Science.
 
                 We offer in-depth content in Computer Science and Information Technology that spans a wide range, from theoretical and algorithmic foundations to cutting-edge developments in ICT for Development, green technologies, security, dynamic databases and other exciting areas. We are equal to task and dedicated to producing quality products that can take on challenging programming jobs          </p>
             </div> 

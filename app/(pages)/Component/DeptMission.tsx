@@ -8,7 +8,7 @@ export default function DeptMission() {
             <div className="grid max-w-screen-lg gap-12 lg:grid-cols-2 sm:mx-auto">
             <div className="flex flex-col justify-center">
                 <div>
-                    <h2 className="text-4xl font-bold">Mission and Vision</h2>
+                    <h2 className="text-4xl font-bold">Vision and Mission</h2>
                 </div>
                 <div className="flex">
                     <div className="flex flex-col items-center mr-4">
@@ -25,8 +25,7 @@ export default function DeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Vision</p>
                     <p className="text-gray-700">
-                        Create The Best Tech Experts Who Bring Solutions To Real World Problems.
-                    </p>
+                        To be a distinguished Centre of excellence in teaching, research and extension services in Computing and Information Communication Technologies in the region.</p>
                     </div>
                 </div>
                 <div className="flex">
@@ -44,8 +43,7 @@ export default function DeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Mission</p>
                     <p className="text-gray-700">
-                        Our School Aims to create Industry Ready Experts Who Solve Real World Problems.
-                    </p>
+                        To disseminate knowledge, conduct research and extension on the latest Computing and Information Communication Technologies                    </p>
                     </div>
                 </div>
                 <div className="flex">
@@ -62,18 +60,24 @@ export default function DeptMission() {
                     </div>
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Core Values</p>
+
+
+
                     <ul className="mt-2 space-y-2">
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Quality</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Dynamism and Hard work</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Research</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Teamwork</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Excellence</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Gender equity</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Respect</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Positive ethnicity</h1>
+                        </li>                        
+                        <li>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Zero-tolerance on corruption</h1>
                         </li>
                         </ul>
                     </div>

@@ -25,8 +25,7 @@ export default function ITDeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Vision</p>
                     <p className="text-gray-700">
-                        Create The Best Tech Experts Who Bring Solutions To Real World Problems.
-                    </p>
+                        To be a centre of excellence in science and technology responsive to development needs of society through engagement in dynamic knowledge creation and application.                    </p>
                     </div>
                 </div>
                 <div className="flex">
@@ -44,7 +43,7 @@ export default function ITDeptMission() {
                     <div className="pt-1 pb-8">
                     <p className="mb-2 text-lg font-bold">Mission</p>
                     <p className="text-gray-700">
-                        Our School Aims to create Industry Ready Experts Who Solve Real World Problems.
+                        To generate, preserve and disseminate knowledge by integrating science and technology into quality programmes covering a wide variety of disciplines while engaging in innovative research, training, teaching, and consultancy.
                     </p>
                     </div>
                 </div>
@@ -64,16 +63,16 @@ export default function ITDeptMission() {
                     <p className="mb-2 text-lg font-bold">Core Values</p>
                     <ul className="mt-2 space-y-2">
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Quality</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Quality</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Research</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Research</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Excellence</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Excellence</h1>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Respect</a>
+                            <h1 className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Respect</h1>
                         </li>
                         </ul>
                     </div>
