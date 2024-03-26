@@ -4,7 +4,7 @@ import ResearchContent from './Components/ResearchContent'
 export default function page() {
   return (
     <>
-      <div className="grid grid-cols-4">
+      <div className="w-full">
         <ResearchContent></ResearchContent>
       </div>
     </>
