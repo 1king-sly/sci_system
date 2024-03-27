@@ -5,11 +5,21 @@ import Banner from '@/public/ResearchBanner.jpeg'
 import CardsPic from '@/public/Team.jpeg'
 import Link from 'next/link'
 import clsx from 'clsx';
+import CreateGallery from '@/app/(pages)/Component/CreateGallery';
+
 
 export default function ResearchContent() {
   const [hidden, setHidden] = useState(false);
   const [irfHidden, setIRFHidden] = useState(false);
   const [nrfHidden, setNRFHidden] = useState(false);
+  const [visible,setVisible] = useState(false)
+
+  
+
+  const toggleVisible = () => {
+    setVisible((prev) => !prev)
+  }
+
   return (
     <>
         <div className="w-full col-span-4 border-l-2 p-5">
@@ -106,7 +116,18 @@ export default function ResearchContent() {
             </div>
 
           </div>
-      </div>
+
+
+          <button type='button' className='text-xs bg-sky-300 p-2 rounded-lg' onClick={toggleVisible}>Add Gallery</button>
+        </div>
+
+        {visible?(
+
+          <CreateGallery id={1}/>
+
+        ): null}
+
+
     </>
     )
 }

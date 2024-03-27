@@ -121,6 +121,7 @@ export const addEvent = async (formData: FormData) => {
 
 export const updateEvent = async (formData: any) => {
   console.log(formData)
+  
 
   
   const fileUrls = formData.fileUrls
