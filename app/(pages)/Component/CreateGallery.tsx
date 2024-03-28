@@ -14,8 +14,8 @@ export default function CreateGallery({id}:{id:number}) {
     const [disabled, setDisabled] = useState(false);
     const [formData, setFormData] = useState({
       id: id,
-      imagePreview: {} as { [key: string]: Blob } ,
-     fileUrls: {} as { [key: string]: string },      });
+      imagePreview: {} as { [key: string]: string } ,
+     fileUrls: {}   });
   
     const toggleLoading = () => {
       setisLoading((prevLoading) => !prevLoading);
@@ -32,50 +32,10 @@ export default function CreateGallery({id}:{id:number}) {
      
         toggleLoading();
 
-        console.log(formData)
 
      
     try {
-        // toast.loading('Publishing Gallery');
-
-        const formDataToUpload = new FormData();
-  
-        Object.values(formData.imagePreview || {}).forEach((file, index) => {
-            formDataToUpload.append(`file${index}`, file as unknown as Blob);
-
-           
-
-          
-            setFormData((prevFormData) => ({
-              ...prevFormData,
-              fileUrls: { ...prevFormData.fileUrls, [index]: file },
-            }));
-          });
-
-      
-        formDataToUpload.append('upload_preset', 'psy5tipf');
-          
-
-
-        const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
-          method: 'POST',
-          body: formDataToUpload,
-        });
-  
-        if (!response.ok) {
-         console.log(response)
-          throw new Error('Failed to upload file to Cloudinary');
-        }
-  
-        const data = await response.json();
-        console.log(data)
-  
-        const fileUrl = data.secure_url;
-
-        console.log(fileUrl)
-  
-       
-       
+        toast.loading('Publishing Gallery');
   
         const newFormData = new FormData();
 
@@ -83,15 +43,15 @@ export default function CreateGallery({id}:{id:number}) {
         newFormData.append('id',formData.id as unknown as string)
        
   
-          // const create = await updateEvent(formData);
-          // if (create) {
-          //   toast.dismiss();
-          //   toggleVisible();
-          //   toast.success('Gallery published Successfully');
-          // } else {
-          //   toast.dismiss();
-          //   toast.error('Error publishing gallery');
-          // }
+          const create = await updateEvent(formData);
+          if (create) {
+            toast.dismiss();
+            toggleVisible();
+            toast.success('Gallery published Successfully');
+          } else {
+            toast.dismiss();
+            toast.error('Error publishing gallery');
+          }
         
       } catch (error) {
         toast.dismiss()
@@ -114,71 +74,54 @@ export default function CreateGallery({id}:{id:number}) {
   
    
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, files } = event.target;
-      
-        if (name === 'file' && files && files.length > 0) {
-          console.log('files', files)
+      const { name, files } = event.target;
+  
+      if (name === 'file' && files && files.length > 0) {
+
+        toggleLoading();
+
+
+        toast.loading('Uploading Images...')
+         
           try {
-           
-      
-            const formDataToUpload = new FormData();
-
-            formDataToUpload.append('upload_preset', 'psy5tipf');
-
-      
-          
-            Array.from(files).forEach(async (file, index) => {
-              formDataToUpload.append(`file${index}`, file as unknown as Blob);
-
-            
-
+            const uploadedFileUrls: string[] = []
+              for (let index = 0; index < files.length; index++) {
+                  const file = files[index];
+                  const formDataToUpload = new FormData();
+                  formDataToUpload.append('upload_preset', 'psy5tipf');
+                  formDataToUpload.append('file', file);
+  
+                  const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
+                      method: 'POST',
+                      body: formDataToUpload,
+                  });
+  
+                  console.log(response);
+  
+                  if (!response.ok) {
+                      throw new Error('Failed to upload file to Cloudinary');
+                  }
+  
+                  const data = await response.json();
+                  const fileUrl = data.secure_url;
+                  uploadedFileUrls.push(fileUrl);
+              }
 
               setFormData((prevFormData) => ({
                 ...prevFormData,
-                imagePreview: { ...prevFormData.imagePreview, [index]: file },
-              }));
-            }
+                fileUrls: uploadedFileUrls,
+            }));
 
-
-              // const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
-              //   method: 'POST',
-              //   body: formDataToUpload,
-              //   headers: {
-              //       'Content-Type': 'application/json',
-
-              //     },
-              //   mode:'no-cors',
-              // });
-
-              // console.log(response)
-        
-              // if (!response.ok) {
-              //   throw new Error('Failed to upload file to Cloudinary');
-              // }
-        
-              // const data = await response.json();
-              // const fileUrls = data.secure_url;
-
-              // const reader = new FileReader();
-
-              // reader.onload = () => {
-              //   const base64String = reader.result?.toString().split(',')[1];
-        
-               
-          
-              //   setFormData({
-              //     ...formData, 
-              //     imagePreview: { ...formData.imagePreview, [index]: file},
-              //   });
-              // };
-          
-              // reader.readAsDataURL(file);,
-  
-         ) }catch (error) {
-            console.error('Error uploading file:', error);
+            toast.dismiss()
+            toast.success('Ready to publish gallery')
+            toggleLoading();
+          } catch (error) {
+              console.error('Error uploading file:', error);
           }
-        }
-      };
+      }
+  };
+  
+  
       
   
 

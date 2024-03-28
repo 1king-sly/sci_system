@@ -120,7 +120,6 @@ export const addEvent = async (formData: FormData) => {
 
 
 export const updateEvent = async (formData: any) => {
-  console.log(formData)
   
 
   
@@ -128,8 +127,7 @@ export const updateEvent = async (formData: any) => {
   const id = formData.id
 
  
-  if(fileUrls.length > 0){
-    throw new Error('Intentional')  }
+ 
 
   try {
     const updatedEvent = await prisma.event.update({
@@ -141,12 +139,11 @@ export const updateEvent = async (formData: any) => {
       },
     });
 
-    console.log(updatedEvent)
 
     return updatedEvent;
   } catch (error) {
     console.error('Failed to update Event', error);
-    throw error; // Rethrow the error for handling in the calling function
+    throw error; 
   }
 };
 export const addBlog = async (formData: FormData) => {
