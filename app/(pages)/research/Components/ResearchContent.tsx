@@ -1,11 +1,12 @@
 'use client'
 import React, {useState} from 'react'
 import Image from 'next/image'
-import Banner from '@/public/ResearchBanner.jpeg'
 import CardsPic from '@/public/Team.jpeg'
 import Link from 'next/link'
 import clsx from 'clsx';
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
+
+
 
 export default function ResearchContent() {
   const [hidden, setHidden] = useState(false);
@@ -116,7 +117,11 @@ export default function ResearchContent() {
             </div>
 
           </div>
-      </div>
+        </div>
+
+       
+
+
     </>
     )
 }

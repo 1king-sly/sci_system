@@ -45,14 +45,17 @@ model Event {
 model Research {
   id        Int      @id @default(autoincrement())
   userId    Int
+  slug        String    @unique
   createdAt DateTime @default(now())
-  status    Status
-  ans1      String
-  ans2      String
-  ans3      String
-  ans4      String
+  status    Status  @default(PENDING)
+  type      ResearchType
+  desc      String
+  body      String
+  partners  String[]
+  collaborators   String[]
   updatedBy String?
   title     String
+  image String?
   user      User     @relation(fields: [userId], references: [id])
 }
 
@@ -74,6 +77,11 @@ enum EventType {
   ACS
   HEALTHIT
   IOT
+}
+enum ResearchType {
+URF
+IRF
+NRF
 }
 
 enum Status {

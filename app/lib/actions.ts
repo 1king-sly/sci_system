@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/utils/authUptions";
-import { ClubType, EventType, RoleType, School, UserType,Level } from '@prisma/client';
+import { ClubType, EventType, RoleType, School, UserType,Level, ResearchType } from '@prisma/client';
 
 const cron = require('node-cron');
 
@@ -120,15 +120,14 @@ export const addEvent = async (formData: FormData) => {
 
 
 export const updateEvent = async (formData: any) => {
-  console.log(formData)
+  
 
   
   const fileUrls = formData.fileUrls
   const id = formData.id
 
  
-  if(fileUrls.length > 0){
-    throw new Error('Intentional')  }
+ 
 
   try {
     const updatedEvent = await prisma.event.update({
@@ -140,16 +139,14 @@ export const updateEvent = async (formData: any) => {
       },
     });
 
-    console.log(updatedEvent)
 
     return updatedEvent;
   } catch (error) {
     console.error('Failed to update Event', error);
-    throw error; // Rethrow the error for handling in the calling function
+    throw error; 
   }
 };
 export const addBlog = async (formData: FormData) => {
-    console.log(formData)
 
 
   try {
@@ -363,15 +360,22 @@ export const createUser = async (formData:any)=>{
 
 export const createProject = async (formData:any)=>{
   const title= formData.title
-  const ans1 = formData.ans1
-  const ans2 = formData.ans2
-  const ans3 = formData.ans3
-  const ans4 = formData.ans4
+  const desc = formData.desc
+  const body = formData.body
+  const type = formData.type
+  const partners = formData.partners
+  const collaborators = formData.collaborators
+  const image = formData.image
 
-  if(!title|| !ans1 || !ans2 || !ans3 || !ans4){
+  if(!title|| !desc || !body || !type || !partners|| !collaborators){
     throw new Error ('Required field is missing')
 
   }
+
+  const slug = slugify(title, { lower: true, strict: true });
+
+  const timestamp = Date.now();
+  const uniqueSlug = `${slug}-${timestamp}`;
 
   try{
 
@@ -386,11 +390,13 @@ export const createProject = async (formData:any)=>{
       data:{
         userId:userId,
         title:title,
-        ans1:ans1,
-        ans2:ans2,
-        ans3:ans3,
-        ans4:ans4,
-        status:'PENDING'
+        slug:uniqueSlug,        
+        status:'PENDING',
+        desc:desc,
+        image:image,
+        partners:partners,
+        collaborators:collaborators,body:body,
+        type:ResearchType[type as keyof typeof ResearchType]
       }
     })
 
@@ -400,6 +406,8 @@ export const createProject = async (formData:any)=>{
     console.error('Failed to create Research')
   }
 }
+
+
 
 export const fetchUsers = async () =>{
   try{
@@ -494,15 +502,15 @@ export const fetchSingleUser = async (id:string) =>{
   }
 }
 
-export const fetchSingleResearch = async (id:string) =>{
-  if(!id){
+export const fetchSingleResearch = async (slug:string) =>{
+  if(!slug){
     throw new Error('Research Id is missing')
   }
   try{
 
     const research = await prisma.research.findUnique({
       where:{
-        id:parseInt(id)
+        slug:slug
       }
     })
 
@@ -513,7 +521,7 @@ export const fetchSingleResearch = async (id:string) =>{
   }
 }
 
-export const fetchResearchs = async (query:string) =>{
+export const fetchResearchs = async (type:string,query:string) =>{
   try{
     if(typeof query === 'string' && query.trim()){
 
@@ -521,7 +529,8 @@ export const fetchResearchs = async (query:string) =>{
         where:{
           title:{
             contains: query.trim()
-          }
+          },
+          type:ResearchType[type as keyof typeof ResearchType]
         },
         orderBy:{
           createdAt:'desc'
@@ -533,6 +542,9 @@ export const fetchResearchs = async (query:string) =>{
     }
   
     const researchs = await prisma.research.findMany({
+      where:{
+        type:ResearchType[type as keyof typeof ResearchType]
+      },
       orderBy:{
         createdAt:'desc'
       }
