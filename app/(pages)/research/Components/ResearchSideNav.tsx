@@ -11,10 +11,10 @@ export default function ResearchSideNav() {
     }
   const links = [
     {
-    name:'Research',href:'/research',id:'Whatwedo',
+    name:'Research Categories',href:'/research',id:'Whatwedo',
 },
     {
-    name:'Collaborations',href:'/research/collaborations',id:'ResearchArea',
+    name:'Collaborations',href:'/collaborations',id:'ResearchArea',
 },
 ]
   return (
@@ -26,13 +26,13 @@ export default function ResearchSideNav() {
     <div className="text-center  mb-4 items-center justify-center gap-2">
 
     {links.map((link) => {
-        if(link.name === 'Research'){
+        if(link.name === 'Research Categories'){
             return (
                 <div key={link.name}
                     className={clsx(`cursor-pointer w-full px-2 py-1 rounded-md flex  items-center justify-between text-sm hover:bg-sky-100 hover:text-blue-600 md:p-2 md:px-3 gap-2`,)}
                 >
                     <div className='flex-col w-full'>
-                        <div className='flex gap-10'>
+                        <div className='flex gap-3'>
                             <Link key={link.name} href={link.href}>
                             <h1 className="mb-2 mr-4 text-sm font-bold  tracking-wider" key={link.name} >{link.name}</h1>
                             </Link>
