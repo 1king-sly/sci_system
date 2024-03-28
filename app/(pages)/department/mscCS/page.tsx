@@ -13,7 +13,7 @@ export default function page() {
         </p>
         <h1 className='my-3'><span className='font-bold'>Course duration:</span> Four (4) academic years</h1>
         <h1 className='font-bold'>Minimum Entry Requirements</h1>
-        <h1>Relevant Bachelor's Degree from a recognised University with Second Class Upper or Second Class Lower with two(2) years relevant experience</h1>
+        <h1>Relevant Bachelor&lsquo;s Degree from a recognised University with Second Class Upper or Second Class Lower with two(2) years relevant experience</h1>
     </div>
   )
 

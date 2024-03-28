@@ -7,7 +7,7 @@ export default function page() {
         <h1 className='text-xl font-bold my-3'>About the Course</h1>
         <p className=''>
             The Bachelor of Education (Technology Education) programme is designed to produce competent graduate teachers to teach technical subjects at secondary and post-secondary school levels. 
-            Because of the practical nature of the subjects, which will be taught by graduates from this programme, the courses have been designed so that they may be taught with a practical 'hands on' orientation. 
+            Because of the practical nature of the subjects, which will be taught by graduates from this programme, the courses have been designed so that they may be taught with a practical &lsquo;hands on&lsquo; orientation. 
             Considerable time is, therefore, spent in workshops as part of the scheduled teaching. Project work, problem-solving approach and teaching practice in real life learning environments form important components of the programme.
         </p>
         <h1 className='my-3'><span className='font-bold'>Course duration:</span> Four (4) academic years</h1>
