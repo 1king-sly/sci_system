@@ -97,7 +97,7 @@ export default function NavBar1() {
           <div className="relative inline-block text-left"  >
             <div >
               <Link href="#">
-                <h1 onClick={() => {closeAuthMenu(); toggleDept();}} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENTS</h1>
+                <h1 onClick={() => {closeAuthMenu(); toggleDept(); setHidden(false);setCsHidden(false)}} className={clsx(`cursor-pointer after:content-[""] after:w-0 after:h-0.5 after:m-auto after:bg-white after:block after:duration-500 hover:after:w-full`,{'after:w-full': pathname === '/department'})}>DEPARTMENTS</h1>
               </Link>
             </div>
             <div ref={ref1} className={clsx('absolute mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5', { hidden: !viewDept })}>
@@ -105,7 +105,7 @@ export default function NavBar1() {
                   <div className="relative inline-block text-left"> 
                     <Link href='/department' 
                       className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600' 
-                      onMouseEnter={() => setCsHidden(true)}
+                      onMouseEnter={() => {setCsHidden(true);setHidden(false);}}
                       >
                         <h1 className=' hover:opacity-75'>Computer Science Department</h1>
                     </Link>
@@ -114,10 +114,10 @@ export default function NavBar1() {
                       onMouseEnter={() => setCsHidden(true)}
                       onMouseLeave={() => setCsHidden(false)}
                       className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !csHidden })}>
-                      <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Science</h1></Link>
-                      <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Forensics</h1></Link>
-                      <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. ETS</h1></Link>
-                      <Link href='/department' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>MSC. Computer Science</h1></Link>
+                      <Link href='/department/bscCS' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Science</h1></Link>
+                      <Link href='/department/bscCF' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Computer Forensics</h1></Link>
+                      <Link href='/department/bscETS' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. ETS</h1></Link>
+                      <Link href='/department/mscCS' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>MSC. Computer Science</h1></Link>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function NavBar1() {
                   <div className="relative inline-block text-left">
                     <Link href='/ITDepartment' 
                       className=' rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'
-                      onMouseEnter={() => setHidden(true)}
+                      onMouseEnter={() => {setHidden(true);setCsHidden(false)}}
                       >
                       <h1 className='hover:opacity-75'>Information Technology Dept</h1>
                     </Link>
@@ -133,10 +133,10 @@ export default function NavBar1() {
                       onMouseEnter={() => setHidden(true)}
                       onMouseLeave={() => setHidden(false)}
                       className={clsx(`absolute top-0 left-48 origin-top-left ml-10 mt-2 w-56 rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5`,{ hidden: !hidden })}>
-                      <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information Technology</h1></Link>
-                      <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information Systems and Knowledge Management</h1></Link>
-                      <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>MSC. Information Technology</h1></Link>
-                      <Link href='/ITDepartment' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>PHD. Information Technology</h1></Link>
+                      <Link href='/ITDepartment/informationTechnology' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information Technology</h1></Link>
+                      <Link href='/ITDepartment/SIK' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>BSC. Information Systems and Knowledge Management</h1></Link>
+                      <Link href='/ITDepartment/mscIT' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>MSC. Information Technology</h1></Link>
+                      <Link href='/ITDepartment/phdIT' className='rounded-md block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600'><h1 className=' hover:opacity-75'>PHD. Information Technology</h1></Link>
                     </div>
                   </div>
                 </div>
