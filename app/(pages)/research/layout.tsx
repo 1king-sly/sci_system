@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
 
     <div className='w-full h-full flex  overflow-hidden gap-1 mb-0'>
-    <div className=" w-[15vw] max-[768px]:hidden">
+    <div className=" w-[16vw] max-[768px]:hidden">
         <ResearchSideNav/>
 
       </div>
