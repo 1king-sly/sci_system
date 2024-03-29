@@ -13,7 +13,7 @@ export default function page() {
             These funds are tailored to support the diverse array of research projects conducted by faculty, researchers, and students across various disciplines. From groundbreaking scientific discoveries to insightful social science inquiries and innovative technological advancements, university research funding fuels the pursuit of knowledge and fosters academic excellence. Join us as we delve into the dynamic landscape of university research funding and uncover the transformative impact it has on shaping the future of education and scholarship.                        
         </p>
         <div className='py-5'>
-            <h1 className='text-3xl font-bold uppercase mb-5'>Featured Projects</h1>
+            <h1 className='text-3xl font-bold uppercase mb-5'>Latest Projects</h1>
             <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4'>
                 <div className='w-full h-full lg:border-2 rounded-lg py-5  bg-white'>
                     <div className='w-full px-3'>
