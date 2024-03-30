@@ -5,7 +5,9 @@ import CardsPic from '@/public/Team.jpeg'
 import Link from 'next/link'
 import clsx from 'clsx';
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-
+import C1 from '@/public/moh.png'
+import C2 from '@/public/healthit.png'
+import C3 from '@/public/NRF2.png'
 
 
 export default function ResearchContent() {
@@ -117,11 +119,72 @@ export default function ResearchContent() {
             </div>
 
           </div>
+          <div id='collaboration'>
+            <h1 className='text-center text-3xl font-bold mb-5'>Collaborators</h1>
+            <div className='grid grid-cols-5 gap-4 mx-20'>
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative'>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-       
-
-
     </>
     )
 }

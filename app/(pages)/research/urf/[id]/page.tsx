@@ -43,7 +43,7 @@ export default function page({params}: {params: {id:string}}) {
             </div>
             <div className='w-full h-full border-2 mx-2'>
                 <div className='px-3 my-3'>
-                    <h1 className='text-xl font-bold mb-3'>Project Title. 
+                    <h1 className='text-xl font-bold mb-3'> 
                         Enhancing Cybersecurity in Internet of Things (IoT) Devices through Blockchain Technology
                     </h1>
                     <h1 className='text-lg font-semibold opacity-70 mb-3'>About the Project</h1>
@@ -54,9 +54,7 @@ export default function page({params}: {params: {id:string}}) {
                         By providing a sustainable solution to the evolving cybersecurity challenges in IoT environments, the project seeks to foster greater confidence in the adoption of IoT technologies across industries. The outcomes of this research have the potential to redefine the way IoT devices are secured and managed, paving the way for a more resilient, trustworthy, and secure IoT infrastructure. Through collaboration, innovation, and continuous improvement, the project aims to contribute to the advancement of IoT security practices and promote the widespread adoption of blockchain technology in securing interconnected devices in the digital age.    
                     </p>
                     <Image src={Banner} alt='Project-Banner' width={1400} height={1400} className='p-10 w-full h-[80vh]'></Image>
-                    <h1 className='font-bold mb-3'>Project Summary</h1>
-                    <p>
-                        The project aims to address the growing security concerns surrounding Internet of Things (IoT) devices by leveraging blockchain technology to enhance their cybersecurity. IoT devices have become ubiquitous in various domains, from smart homes and healthcare to industrial automation and transportation. However, their widespread adoption has also led to increased vulnerabilities and cybersecurity threats. This research proposes to explore the application of blockchain technology to establish a secure and decentralized framework for managing IoT device communication, authentication, and data integrity.                    </p>
+                    <h1 className='font-bold mb-3 text-lg'>Detailed Description</h1>
                     <h1 className='font-bold mb-3'>Project Background</h1>
                     <p>
                         The proliferation of IoT devices has revolutionized the way we interact with technology, enabling seamless connectivity and automation. However, the centralized nature of traditional IoT architectures poses significant security risks, including data breaches, unauthorized access, and device manipulation. Blockchain technology offers a promising solution by providing a tamper-proof and transparent ledger that records all transactions and interactions among IoT devices. By decentralizing trust and consensus mechanisms, blockchain can mitigate the risks associated with centralized control and enhance the security and privacy of IoT ecosystems.

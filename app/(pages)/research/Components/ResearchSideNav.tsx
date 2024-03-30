@@ -14,7 +14,7 @@ export default function ResearchSideNav() {
     name:'Research Categories',href:'/research',id:'Whatwedo',
 },
     {
-    name:'Collaborations',href:'/collaborations',id:'ResearchArea',
+    name:'Collaborations',href:'/research#collaboration',id:'ResearchArea',
 },
 ]
   return (
