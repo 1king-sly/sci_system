@@ -7,7 +7,6 @@ import Image from 'next/image'
 import Banner from '@/public/research.jpg'
 import clsx from 'clsx'
 import { fetchResearchs } from '@/app/lib/actions';
-import { Status,ResearchType } from '@prisma/client';
 
 
 
@@ -126,6 +125,3 @@ export default function Page({searchParams}:{searchParams:string}) {
     </>
   )
 }
-
-
-
