@@ -360,10 +360,6 @@ export const createUser = async (formData:any)=>{
 
 export const createProject = async (formData:any)=>{
 
-
-  if(formData){
-    throw new Error('Testing')
-  }
   const title= formData.title
   const desc = formData.desc
   const body = formData.body
@@ -556,6 +552,11 @@ export const fetchResearchs = async (type:string,query:string) =>{
         },
         orderBy:{
           createdAt:'desc'
+        },
+        select:{
+          id:true,
+          title:true,
+          slug:true,
         }
   
       })
@@ -569,7 +570,13 @@ export const fetchResearchs = async (type:string,query:string) =>{
       },
       orderBy:{
         createdAt:'desc'
+      },
+       select:{
+        id:true,
+        title:true,
+        slug:true,
       }
+
     })
   
     return researchs 
