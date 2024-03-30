@@ -530,7 +530,8 @@ export const fetchSingleResearch = async (slug:string) =>{
     const research = await prisma.research.findUnique({
       where:{
         slug:slug
-      }
+      },
+     
     })
 
     return research

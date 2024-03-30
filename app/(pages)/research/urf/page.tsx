@@ -108,7 +108,7 @@ export default function Page({searchParams}:{searchParams:string}) {
            {researchs !== null ? (
              researchs.map((research) => (
             <div className='border-2 my-5' key={research.id}>
-            <Link href={`/${research.slug}`} >
+            <Link href={`/research/urf/${research.slug}`} >
             <h1 className='hover:text-sky-300 p-2'>{research.title}
             </h1>
             <p className='hover:text-sky-300 px-2'>Read More -&#62;</p>
