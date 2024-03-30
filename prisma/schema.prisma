@@ -51,6 +51,14 @@ model Research {
   type      ResearchType
   desc      String
   body      String
+  background  String
+  statement    String
+  justification   String
+  approach        String
+  methodology     String
+  requirements    String
+  design          String
+  development     String
   partners  String[]
   collaborators   String[]
   updatedBy String?
