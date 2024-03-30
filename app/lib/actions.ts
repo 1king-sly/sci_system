@@ -359,6 +359,11 @@ export const createUser = async (formData:any)=>{
 
 
 export const createProject = async (formData:any)=>{
+
+
+  if(formData){
+    throw new Error('Testing')
+  }
   const title= formData.title
   const desc = formData.desc
   const body = formData.body
@@ -366,8 +371,17 @@ export const createProject = async (formData:any)=>{
   const partners = formData.partners
   const collaborators = formData.collaborators
   const image = formData.image
+  const background = formData.background
+  const statement = formData.statement
+  const justification = formData.justification
+  const approach = formData.approach
+  const methodology = formData.methodology
+  const requirements = formData.requirements
+  const design = formData.design
+  const development = formData.development
 
-  if(!title|| !desc || !body || !type || !partners|| !collaborators){
+
+  if(!title|| !desc || !body || !type || !partners|| !collaborators|| !background || !statement || !justification || !approach || !methodology || !requirements || !design || !development){
     throw new Error ('Required field is missing')
 
   }
@@ -396,6 +410,14 @@ export const createProject = async (formData:any)=>{
         image:image,
         partners:partners,
         collaborators:collaborators,body:body,
+        background:background,
+        statement:statement,
+        justification:justification,
+        approach:approach,
+        methodology:methodology,
+        requirements:requirements,
+        design:design,
+        development:development,
         type:ResearchType[type as keyof typeof ResearchType]
       }
     })
