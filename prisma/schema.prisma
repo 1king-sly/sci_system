@@ -59,8 +59,8 @@ model Research {
   requirements    String
   design          String
   development     String
-  partners  String[]
-  collaborators   String[]
+  partners  String?
+  collaborators   String?
   updatedBy String?
   title     String
   image String?

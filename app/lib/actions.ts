@@ -361,16 +361,13 @@ export const createUser = async (formData:any)=>{
 export const createProject = async (formData:any)=>{
 
 
-  if(formData){
-    throw new Error('Testing')
-  }
   const title= formData.title
   const desc = formData.desc
   const body = formData.body
   const type = formData.type
   const partners = formData.partners
   const collaborators = formData.collaborators
-  const image = formData.image
+  const image = formData.poster
   const background = formData.background
   const statement = formData.statement
   const justification = formData.justification
@@ -425,7 +422,7 @@ export const createProject = async (formData:any)=>{
     return research
 
   }catch(error:any){
-    console.error('Failed to create Research')
+    console.error('Failed to create Research',error)
   }
 }
 
@@ -533,7 +530,8 @@ export const fetchSingleResearch = async (slug:string) =>{
     const research = await prisma.research.findUnique({
       where:{
         slug:slug
-      }
+      },
+     
     })
 
     return research
@@ -556,6 +554,11 @@ export const fetchResearchs = async (type:string,query:string) =>{
         },
         orderBy:{
           createdAt:'desc'
+        },
+        select:{
+          id:true,
+          title:true,
+          slug:true,
         }
   
       })
@@ -569,7 +572,13 @@ export const fetchResearchs = async (type:string,query:string) =>{
       },
       orderBy:{
         createdAt:'desc'
+      },
+       select:{
+        id:true,
+        title:true,
+        slug:true,
       }
+
     })
   
     return researchs 
