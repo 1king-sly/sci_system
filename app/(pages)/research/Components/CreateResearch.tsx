@@ -63,56 +63,6 @@ export default function CreateResearch({type}:{type:string}) {
 
         try {
             toast.loading('Creating research project')
-
-            if(formData.imagePreview !== null ){
-              
-                const formDataToUpload = new FormData();
-                formDataToUpload.append('file',formData.imagePreview as unknown as  Blob);
-                formDataToUpload.append('upload_preset', 'psy5tipf');
-        
-                const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
-                  method: 'POST',
-                  body: formDataToUpload
-                });
-        
-        
-                if (!response.ok) {
-                  throw new Error('Failed to upload file to Cloudinary');
-                }
-        
-                const data = await response.json();
-        
-                const fileUrl = data.secure_url;
-        
-                setFormData(prevFormData => ({
-                    ...prevFormData,
-                    poster: fileUrl,
-                  }));
-        
-        
-                  const newFormData =  new FormData();
-        
-                  newFormData.append('poster',fileUrl)
-                  newFormData.append('desc',formData.desc)
-                  newFormData.append('title',formData.title)
-
-                  if(data){
-                    const create = await createProject(formData);
-                    if (create) {
-                      toast.dismiss();
-                      toggleVisible();
-                      toast.success('Project created Successfully');
-                    } else {
-                      toast.dismiss();
-                      toast.error('Error creating Project');
-                    }
-                  }
-        
-            }
-         
-
-            
-  
            
               const create = await createProject(formData);
               if (create) {
@@ -153,20 +103,29 @@ export default function CreateResearch({type}:{type:string}) {
         if (file) {
   
          
-          const reader = new FileReader();
+          const formDataToUpload = new FormData();
+          formDataToUpload.append('file',file);
+          formDataToUpload.append('upload_preset', 'psy5tipf');
   
-          reader.onload = () => {
-            const base64String = reader.result?.toString().split(',')[1];
-    
-           
-      
-            setFormData({
-              ...formData, 
-              imagePreview: reader.result as string,
-            });
-          };
-      
-          reader.readAsDataURL(file);
+          const response = await fetch('https://api.cloudinary.com/v1_1/dwav3nker/upload', {
+            method: 'POST',
+            body: formDataToUpload
+          });
+  
+  
+          if (!response.ok) {
+            throw new Error('Failed to upload file to Cloudinary');
+          }
+  
+          const data = await response.json();
+  
+          const fileUrl = data.secure_url;
+  
+          setFormData(prevFormData => ({
+              ...prevFormData,
+              poster: fileUrl,
+            }));
+  
   
         
         }

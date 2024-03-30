@@ -360,13 +360,14 @@ export const createUser = async (formData:any)=>{
 
 export const createProject = async (formData:any)=>{
 
+
   const title= formData.title
   const desc = formData.desc
   const body = formData.body
   const type = formData.type
   const partners = formData.partners
   const collaborators = formData.collaborators
-  const image = formData.image
+  const image = formData.poster
   const background = formData.background
   const statement = formData.statement
   const justification = formData.justification
@@ -421,7 +422,7 @@ export const createProject = async (formData:any)=>{
     return research
 
   }catch(error:any){
-    console.error('Failed to create Research')
+    console.error('Failed to create Research',error)
   }
 }
 
