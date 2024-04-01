@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Banner from '@/public/research.jpg'
 import clsx from 'clsx'
 import { fetchResearchs } from '@/app/lib/actions';
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 
 
@@ -15,6 +15,7 @@ export default function Page({searchParams}:{searchParams:string}) {
   const params = new URLSearchParams(searchParams);
   const q = params.get('query') || '';
   const [visible,setVisible] = useState(false)
+  const [perPeriod,setperPeriod] = useState(false)
   const [researchs,setResearchs]= useState<{
     id: number;
     title:string,
@@ -24,7 +25,9 @@ export default function Page({searchParams}:{searchParams:string}) {
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
-
+  const togglePerPeriod = () => {
+    setperPeriod((prev) => !prev);
+  }
   const fetchResearch = async ()=>{
     const data = await fetchResearchs('URF',q)
 
@@ -41,25 +44,30 @@ export default function Page({searchParams}:{searchParams:string}) {
   return (
     <>
 
-    <div className={clsx(`w-full h-full`,{'hidden':!visible})} >
-
+    <div className={clsx(`w-full h-full bg-sky-100`,{'hidden':!visible})} >
+      <div className='h-9 flex'>
+        <button className='bg-slate-600 mx-auto mb-1 text-white font-semibold px-3 py-1 rounded-lg' onClick={toggleVisible}>Cancel
+        </button>
+      </div>
       <CreateResearch type='NRF'/>
 
     </div>
     <div className={clsx(`my-10 mx-10`,{'hidden':visible})}>
-        <h1 className='text-3xl font-bold my-5 uppercase'>National Research Fund (NRF)</h1>        <p className='my-3'>
+        <h1 className='text-3xl font-bold my-5 uppercase'>National Research Fund (NRF)</h1>        
+        <p className='my-3'>
             The National Research Fund (NRF) is a State Corporation established under the Science Technology and Innovation (ST&I) Act No. 28, Section 32 of 2013. The Fund is mandated to facilitate research to advance Science, Technology and Innovation.
-            Part VII of the ST&I Act, 2013, stipulates that the Fund will constitute a sum of money amounting to 2% of the country&lsquo;s Gross Domestic Product every year and such other monies designated for the Fund by Parliament, donations, endowment or grants or gifts designated for the Fund.<button className='p-2 rounded-full text-white bg-sky-300 m-2' onClick={toggleVisible}>Propose Research</button> 
+            Part VII of the ST&I Act, 2013, stipulates that the Fund will constitute a sum of money amounting to 2% of the country&lsquo;s Gross Domestic Product every year and such other monies designated for the Fund by Parliament, donations, endowment or grants or gifts designated for the Fund.
         </p>
+        <button className='p-2 rounded-full text-white bg-sky-300 my-2' onClick={toggleVisible}>Propose Research</button> 
         <div className='py-5'>
                      <h1 className='text-3xl font-bold uppercase mb-5'>Researches Won</h1>
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2023-2024</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,visible && 'hidden')} onClick={toggleVisible}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!visible && 'hidden')} onClick={toggleVisible}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={togglePerPeriod}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={togglePerPeriod}></MinusIcon>
                      </div>
-                     <div className={clsx(`flex-col mx-5 my-3 text-sky-300 text-lg`,!visible && 'hidden')}>
+                     <div className={clsx(`flex-col mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -69,10 +77,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2022-2023</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,visible && 'hidden')} onClick={toggleVisible}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!visible && 'hidden')} onClick={toggleVisible}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={togglePerPeriod}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={togglePerPeriod}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!visible && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -82,10 +90,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2021-2022</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,visible && 'hidden')} onClick={toggleVisible}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!visible && 'hidden')} onClick={toggleVisible}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={togglePerPeriod}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={togglePerPeriod}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!visible && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -95,10 +103,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2020-2021</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,visible && 'hidden')} onClick={toggleVisible}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!visible && 'hidden')} onClick={toggleVisible}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={togglePerPeriod}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={togglePerPeriod}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!visible && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
                          <Link href={''} className='my-1'><h1>January</h1></Link>
                         <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
