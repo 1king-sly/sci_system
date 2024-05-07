@@ -5,8 +5,11 @@ import CardsPic from '@/public/Team.jpeg'
 import Link from 'next/link'
 import clsx from 'clsx';
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-
-
+import C1 from '@/public/moh.png'
+import C2 from '@/public/usaid.png'
+import C3 from '@/public/Kaiico.png'
+import C4 from '@/public/uon.png'
+import C5 from '@/public/healthit.png'
 
 export default function ResearchContent() {
   const [hidden, setHidden] = useState(false);
@@ -117,11 +120,72 @@ export default function ResearchContent() {
             </div>
 
           </div>
+          <div id='collaboration'>
+            <h1 className='text-center text-3xl font-bold mb-5'>Collaborators</h1>
+            <div className='grid grid-cols-5 gap-4 mx-20'>
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative'>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C1} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The Ministry of Health (MoH) mandate is to build a progressive, responsive and sustainable healthcare system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C2} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The USAID mandate is to build a progressive, responsive and sustainable humanitarian system for all Kenyans</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C3} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>KAIICO is one of our estimed Collaborators</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C4} alt='Collaborators' className='p-5 ' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>The University of Nairobi is one of our estimed Collaborators</p>
+                  </div>
+                </div>
+              </div>              
+              <div className='mb-10 w-full h-[62vh]'>
+                <div className='my-10 relative '>
+                  <div className='h-[25vh] absolute hover:relative ease-in-out duration-300 bg-sky-300 hover:bg-red-600 rounded-lg'>
+                    <Link href={''}>
+                    <Image src={C5} alt='Collaborators' className='p-5 my-auto' width={1400} height={1400}></Image>
+                    </Link>
+                  </div>
+                  <div className='h-[25vh] rounded-lg p-3 bg-white font-semibold shadow-2xl shadow-black'>
+                      <p>HealthIt is one of our Collaborators in creation of health Solutions in Kenya</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-       
-
-
     </>
     )
 }
