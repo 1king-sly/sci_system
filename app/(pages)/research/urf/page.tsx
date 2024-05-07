@@ -1,13 +1,7 @@
 import React from 'react'
-<<<<<<< HEAD
 import CreateResearch from '../Components/CreateResearch'
 
-export default function page() {
-  return (
-   <>
-   <CreateResearch type='URF'/>
-   </>
-=======
+
 import Link from 'next/link'
 import Image from 'next/image'
 import Banner from '@/public/research.jpg'
@@ -81,7 +75,6 @@ export default function page() {
         </div>
     </div>
     </>
->>>>>>> c29252bd3a44b1d61f16a81e7bf9f3ec292e9caf
   )
 }
 
