@@ -1,14 +1,8 @@
 'use client'
 import React, { useState, useEffect, Suspense } from 'react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import pic from '@/public/students.png';
-import pic2 from '@/public/club.jpg';
-import pic3 from '@/public/students.png';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css'; // Import the CSS for styling
+
 import { usePathname } from 'next/navigation';
 import Cards from './(pages)/Component/Cards';
 import UpcomingEvents from './(pages)/Component/UpcomingEvents';
@@ -25,35 +19,29 @@ export default function Home() {
   ];
 
   const pathname = usePathname();
-
-  const [currentDataIndex, setCurrentDataIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentDataIndex((prevIndex) => (prevIndex + 1) % datas.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % datas.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [datas.length]);
 
   return (
-    <>
-      <div className="w-full h-full flex gap-10 flex-col">
-        {/* Hero Section */}
-        <div className="relative">
-          <Swiper
-            className="w-full h-[70vh]"
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay ={true}
-            onSlideChange={(swiper) => setCurrentDataIndex(swiper.activeIndex)}
-          >
-            {datas.map((data) => (
-              <SwiperSlide key={data.desc}>
-                <div className="relative">
+    <div className="w-full h-full flex gap-10 flex-col">
+      {/* Hero Section */}
+      <AliceCarousel
+        autoPlay
+        autoPlayInterval={2000}
+        disableButtonsControls={true}
+        disableDotsControls={true}
+        infinite={true}
+        keyboardNavigation={true}
+        items={datas.map((data) => (
+          <div key={data.desc}>
+            <div className="relative">
                   <Image src={data.image} alt="hero-images" className="absolute inset-0 object-cover w-full h-[70vh]" width={1000}
   height={1000} />
                   <div className="relative bg-gray-900 bg-opacity-75 h-[70vh]">
@@ -68,22 +56,21 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        <DeanSection />
-        <DeptMission />
-        <div className="px-4  w-full py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-h-screen-lg lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
-          <div className="grid gap-10 row-gap-8 lg:grid-cols-5">
-            <Cards />
-            <Suspense>
-              <UpcomingEvents />
-            </Suspense>
           </div>
+        ))}
+        onSlideChanged={(e) => setCurrentIndex(e.item)}
+      />
+      <DeanSection />
+      <DeptMission />
+      <div className="px-4  w-full py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-h-screen-lg lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+        <div className="grid gap-10 row-gap-8 lg:grid-cols-5">
+          <Cards />
+          <Suspense>
+            <UpcomingEvents />
+          </Suspense>
         </div>
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
