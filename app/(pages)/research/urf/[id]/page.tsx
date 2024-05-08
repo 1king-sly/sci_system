@@ -18,18 +18,22 @@ export default async function page({params}: {params: {id:string}}) {
     if(!research){
       return <NotFound/>
     }
+
+
+    const collaborators = Array.isArray(research.collaborators) ? research.collaborators.join(', ') : research.collaborators;
+    const partners = Array.isArray(research.partners) ? research.partners.join(', ') : research.partners;
   return (
     <div className='w-full h-full my-5'>
         <div className='flex flex-row'>
             <div className='w-[14vw] border-2 mx-2'>
                 <div className='px-3 my-3'>
                     <h1 className='font-semibold text-xl mb-1'>Collaborators</h1>
-                    <div className='mb-3 text-sm' dangerouslySetInnerHTML={{ __html: DOMPurifyServer.sanitize(research.collaborators || '') }}></div>
+                    <div className='mb-3 text-sm' dangerouslySetInnerHTML={{ __html: DOMPurifyServer.sanitize(collaborators || '') }}></div>
                 </div>
                 <div className='px-3 my-3'>
                     <h1 className='font-semibold text-xl mb-1'>Partners</h1>
                     <Link href={''}><h1 className='mb-3 text-sm text-sky-500 hover:text-sky-300' 
-                    dangerouslySetInnerHTML={{ __html: DOMPurifyServer.sanitize(research.partners || '') }}></h1></Link>
+                    dangerouslySetInnerHTML={{ __html: DOMPurifyServer.sanitize(partners || '') }}></h1></Link>
                 </div>
                 <div className='px-3 my-3'>
                     <h1 className='font-semibold text-xl mb-1'>Contact Details</h1>

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .ql-container{
     font-size: 18px !important;
 }
