@@ -11,6 +11,7 @@ import DeanSection from './(pages)/Component/DeanSection';
 import Footer from './(pages)/Component/Footer';
 import Image from 'next/image';
 
+
 export default function Home() {
   const datas = [
     { image: '/students.png', desc: 'First picture', data: 'Welcome to Department of Computer Science,Home of technology' },
