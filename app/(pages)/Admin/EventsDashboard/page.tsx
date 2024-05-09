@@ -60,6 +60,8 @@ export default function Page() {
   }
 
   const fetchEvents = async (type: string) => {
+    setLoading(true)
+
     const session = await getSession();
     if (!session || !session?.club) {
       console.error('No club found in session');
@@ -73,30 +75,27 @@ export default function Page() {
       let eventsData = null;
       switch (type) {
         case 'upcoming':
-          setLoading(true)
           eventsData = await fetchSampleClubUpcomingEvents(club);
           setEvents(eventsData);
-          setLoading(false)
 
           break;
         case 'draft':
-          setLoading(true)
           eventsData = await fetchSampleClubDraftEvents(club);
           setDrafts(eventsData);
-          setLoading(false)
 
           break;
         case 'completed':
-          setLoading(true)
           eventsData = await fetchSampleClubCompletedEvents(club);
           setCompleted(eventsData);
-          setLoading(false)
           break;
         default:
           break;
       }
     } catch (error) {
       console.error('Error fetching events:', error);
+    }finally{
+      setLoading(false)
+
     }
   };
 
@@ -147,8 +146,10 @@ export default function Page() {
         <div className="bg-white mx-10 h-fit rounded shadow-sm ">
           <div id="main-content" className="flex-grow overflow-auto px-4 py-4">
             {/* Upcoming Events */}
-            <div id="live-content" className={clsx(``,!visible && 'hidden')}> 
-              {events !== null && events.length > 0 ? (
+            <div id="live-content" className={clsx(``, !visible && 'hidden')}>
+              {loading ? (
+                <p>Loading...</p>
+              ) : events !== null && events.length > 0 ? (
                 events.map(event => (
                   <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between'>
                     <div className='flex gap-10 items-center'>
@@ -163,16 +164,18 @@ export default function Page() {
                     </div>
                     <div className='justify-end items-end mx-10'>
                       <Link key={event.id} href={`/events/${event.slug}`}><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
-                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={()=> deleteEvent(event.id)} >Delete</button>
+                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={() => deleteEvent(event.id)} >Delete</button>
                     </div>
                   </div>
                 ))
               ) : (
                 <p>No Upcoming Events scheduled</p>
-              )}    
+              )}
             </div>
-            <div id="draft-content" className={clsx(``,!visibleDraft && 'hidden')}>
-              {drafts !== null && drafts.length > 0 ? (
+            <div id="draft-content" className={clsx(``, !visibleDraft && 'hidden')}>
+              {loading ? (
+                <p>Loading...</p>
+              ) : drafts !== null && drafts.length > 0 ? (
                 drafts.map(event => (
                   <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between'>
                     <div className='flex gap-10 items-center'>
@@ -187,16 +190,18 @@ export default function Page() {
                     </div>
                     <div className='justify-end items-end mx-10'>
                       <Link key={event.id} href={`/events/${event.slug}`}><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
-                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={()=> deleteDraft(event.id)}>Delete</button>
+                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={() => deleteDraft(event.id)}>Delete</button>
                     </div>
                   </div>
                 ))
               ) : (
                 <p>No Drafted Events </p>
-              )}    
+              )}
             </div>
-            <div id="completed-content" className={clsx(``,!visibleCompleted && 'hidden')}>
-              {completed !== null && completed.length > 0 ? (
+            <div id="completed-content" className={clsx(``, !visibleCompleted && 'hidden')}>
+              {loading ? (
+                <p>Loading...</p>
+              ) : completed !== null && completed.length > 0 ? (
                 completed.map(event => (
                   <div key={event.id} className='flex shadow-md p-3 border-t-2 m-2 hover:shadow-lg items-center gap-10 py-4 justify-between'>
                     <div className='flex gap-10 items-center'>
@@ -211,13 +216,13 @@ export default function Page() {
                     </div>
                     <div className='justify-end items-end mx-10'>
                       <Link key={event.id} href={`/events/${event.slug}`}><button className='bg-rose-600 py-2 px-4 rounded-lg mx-4'>View</button></Link>
-                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={()=> deleteEvent(event.id)}>Delete</button>
+                      <button className='bg-sky-300 py-2 px-4 rounded-lg mx-4' onClick={() => deleteEvent(event.id)}>Delete</button>
                     </div>
                   </div>
                 ))
               ) : (
                 <p>No Completed Events </p>
-              )}    
+              )}
             </div>
           </div>
         </div>
