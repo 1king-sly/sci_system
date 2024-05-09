@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  id             Int        @id @default(autoincrement())
+  id             Int          @id @default(autoincrement())
   userName       String
-  email          String     @unique
+  email          String       @unique
   hashedPassword String
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
   image          String?
   club           ClubType?
   role           RoleType
@@ -23,6 +23,7 @@ model User {
   Blog           Blog[]
   Event          Event[]
   researches     Research[]
+  EventDraft     EventDraft[]
 }
 
 model Event {
@@ -42,29 +43,47 @@ model Event {
   createdBy   User      @relation(fields: [createdById], references: [id])
 }
 
-model Research {
-  id        Int      @id @default(autoincrement())
-  userId    Int
+model EventDraft {
+  id          Int       @id @default(autoincrement())
+  createdAt      DateTime     @default(now())
+  createdById Int
+  dateOfEvent  String?
+  title       String
+  desc        String?
+  venue       String?
+  timeOfEvent DateTime?
+  gallery     String[]  @default([])
+  type        EventType?
+  speaker     String?
+  host        String?
+  poster      String?
   slug        String    @unique
-  createdAt DateTime @default(now())
-  status    Status  @default(PENDING)
-  type      ResearchType
-  desc      String
-  body      String
-  background  String
-  statement    String
-  justification   String
-  approach        String
-  methodology     String
-  requirements    String
-  design          String
-  development     String
-  partners  String?
-  collaborators   String?
-  updatedBy String?
-  title     String
-  image String?
-  user      User     @relation(fields: [userId], references: [id])
+  createdBy   User      @relation(fields: [createdById], references: [id])
+}
+
+model Research {
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  slug          String       @unique
+  createdAt     DateTime     @default(now())
+  status        Status       @default(PENDING)
+  type          ResearchType
+  desc          String
+  body          String
+  background    String
+  statement     String
+  justification String
+  approach      String
+  methodology   String
+  requirements  String
+  design        String
+  development   String
+  partners      String?
+  collaborators String?
+  updatedBy     String?
+  title         String
+  image         String?
+  user          User         @relation(fields: [userId], references: [id])
 }
 
 model Blog {
@@ -86,10 +105,11 @@ enum EventType {
   HEALTHIT
   IOT
 }
+
 enum ResearchType {
-URF
-IRF
-NRF
+  URF
+  IRF
+  NRF
 }
 
 enum Status {
