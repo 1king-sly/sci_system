@@ -45,6 +45,7 @@ model Event {
 
 model EventDraft {
   id          Int       @id @default(autoincrement())
+  createdAt      DateTime     @default(now())
   createdById Int
   dateOfEvent  String?
   title       String

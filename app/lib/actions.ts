@@ -335,6 +335,62 @@ export const draftToEvent = async (formData: FormData)=>{
 
 }
 
+export const deleteEvent = async (id:number)=>{
+
+  try{
+
+    const event = await prisma.event.delete({
+      where:{
+        id:id
+      }
+    })
+    revalidatePath('/Admin/EventsDashboard')
+
+    return event
+
+  }catch(error){
+    console.error('Failed to delete event', error)
+  }
+  
+}
+export const deleteDraft = async (id:number)=>{
+
+  try{
+
+    const event = await prisma.eventDraft.delete({
+      where:{
+        id:id
+      }
+    })
+
+    revalidatePath('/Admin/EventsDashboard')
+
+
+    return event
+
+  }catch(error){
+    console.error('Failed to delete event', error)
+  }
+  
+}
+export const deleteBlog = async (id:number)=>{
+
+  try{
+
+    const event = await prisma.blog.delete({
+      where:{
+        id:id
+      }
+    })
+
+    return event
+
+  }catch(error){
+    console.error('Failed to delete event', error)
+  }
+  
+}
+
 export const updateEvent = async (formData: any) => {
   
 
@@ -700,6 +756,50 @@ export const fetchSampleClubUpcomingEvents = async (eventType: string) => {
         return events;
     } catch (error) {
         console.error('Failed to fetch specific Events', error);
+        throw error;
+    }
+};
+export const fetchSampleClubDraftEvents = async (eventType: string) => {
+    try {
+        const today = new Date();
+        const events = await prisma.eventDraft.findMany({
+            where: {
+                type: EventType[eventType as keyof typeof EventType],
+            },
+            orderBy: {
+              createdAt: 'asc' 
+            }
+            ,include:{
+              createdBy:true,
+            },
+            take: 3
+        });
+        return events;
+    } catch (error) {
+        console.error('Failed to fetch specific drafted Events', error);
+        throw error;
+    }
+};
+export const fetchSampleClubCompletedEvents = async (eventType: string) => {
+    try {
+        const today = new Date();
+        const events = await prisma.event.findMany({
+            where: {
+                type: EventType[eventType as keyof typeof EventType],
+                dateOfEvent: {
+                  lt: today                }
+            },
+            orderBy: {
+                dateOfEvent: 'asc' 
+            }
+            ,include:{
+              createdBy:true,
+            },
+            take: 3
+        });
+        return events;
+    } catch (error) {
+        console.error('Failed to fetch completed Events', error);
         throw error;
     }
 };
