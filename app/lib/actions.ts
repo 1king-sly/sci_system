@@ -119,6 +119,222 @@ export const addEvent = async (formData: FormData) => {
 };
 
 
+export const draftEvent = async (formData: FormData) => {
+
+
+  try {
+    const date = formData.get('date') as unknown as string
+    ;
+    const venue = formData.get('venue') as unknown as string
+    ;
+    const speaker = formData.get('speaker') as unknown as string
+    ;
+    const host = formData.get('host') as unknown as string
+    ;
+    const poster = formData.get('poster') as unknown as string
+    ;
+    const time = formData.get('time') as unknown as string
+    ;
+    const desc = formData.get('desc') as unknown as string
+    
+    const title = formData.get('title') as unknown as string
+
+
+    let draftDate 
+    let draftVenue
+    let draftSpeaker
+    let draftHost 
+    let draftPoster
+    let draftTime
+    let draftDesc
+    
+    
+
+    
+    if (!title) {
+      throw new Error('Required field is missing'); 
+    }
+
+    if(date !== null){
+      draftDate = date
+    }
+    if(time !== null){
+      draftTime = date
+    }
+    if(venue !== null && venue !== ''){
+      draftVenue = venue
+    }
+    if(speaker !== null && speaker !== ''){
+      draftSpeaker = speaker
+    }
+    if(host !== null && host !== ''){
+      draftHost = host
+    }
+    if(poster !== null && poster !== ''){
+      draftPoster = poster
+    }
+    if(desc !== null && desc !== ''){
+      draftDesc = desc
+    }
+
+
+    const slug = slugify(title, { lower: true, strict: true });
+
+    const timestamp = Date.now();
+    const uniqueSlug = `${slug}-${timestamp}`;
+
+
+    const user = await getServerSession(authOptions)
+
+   
+    if (user) {
+      const userId = parseInt(user.id);
+      const club = user.club as unknown 
+      if(!club){
+        console.error('Club missing')
+      }
+      const newEvent = await prisma.eventDraft.create({
+        data:{
+          title:title,
+          createdById:userId,
+          dateOfEvent:draftDate,
+          venue:draftVenue,
+          slug:uniqueSlug,
+          timeOfEvent:draftTime,
+          speaker:draftSpeaker,
+          host:draftHost,
+          poster:draftPoster,
+          type:EventType[club as keyof typeof club],
+          desc:draftDesc,
+        }
+      });
+      revalidatePath('/');
+      revalidatePath('/Admin');
+      return newEvent
+  
+    }
+  } catch (error) {
+    console.error(error, 'Failed to draft event');
+    
+  } finally {
+    
+    revalidatePath('/');
+  }
+};
+
+export const draftToEvent = async (formData: FormData)=>{
+
+  try {
+
+    const id =formData.get('id') as unknown as string
+
+    const date = formData.get('date') as unknown as Date
+    ;
+    const venue = formData.get('venue') as unknown as string
+    ;
+    const speaker = formData.get('speaker') as unknown as string
+    ;
+    const host = formData.get('host') as unknown as string
+    ;
+    const poster = formData.get('poster') as unknown as string
+    ;
+    const time = formData.get('time') as unknown as string
+    ;
+    const desc = formData.get('desc') as unknown as string
+    
+    const title = formData.get('title') as unknown as string
+    
+
+    
+    if (!date || !venue || !speaker || !host || !poster || !time || !desc || !title) {
+      throw new Error('Required field is missing'); 
+    }
+
+    const newDate = date+''+'T00:00:00.000Z'
+
+    const newTime = date+''+'T'+time+''+':00.000Z'
+
+    const slug = slugify(title, { lower: true, strict: true });
+
+    const timestamp = Date.now();
+    const uniqueSlug = `${slug}-${timestamp}`;
+
+
+    const user = await getServerSession(authOptions)
+
+   
+    if (user) {
+      const userId = parseInt(user.id);
+      const club = user.club as unknown 
+      if(!club){
+        console.error('Club missing')
+      }
+      const newEvent = await prisma.event.create({
+        data:{
+          title:title,
+          createdById:userId,
+          dateOfEvent:newDate,
+          venue:venue,
+          slug:uniqueSlug,
+          timeOfEvent:newTime,
+          speaker:speaker,
+          host:host,
+          poster:poster,
+          type:EventType[club as keyof typeof club],
+          desc:desc,
+        }
+      });
+      revalidatePath('/');
+      if(newEvent){
+
+        const draft = await prisma.eventDraft.delete({
+          where:{
+            slug:id
+          }
+        })
+
+        const users = await fetchUsers()
+        {users?.map(async (user)=>{
+          const email = user.email
+          const userName = user.userName
+          const transporter:any = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            tls: {
+              ciphers: "SSLv3",
+              rejectUnauthorized: false,
+          },
+            secure: false, 
+            auth: {
+              user: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+              pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+            },
+          });
+    
+          const info = await transporter.sendMail({
+            from: {
+              name:'Byrone Kinsly',
+              address:process.env.NEXT_PUBLIC_PERSONAL_EMAIL
+            }, 
+            to: email, 
+            subject: "NEW EVENT UPDATE", 
+            text:` Hello ${userName}, A new event has been scheduled for ${date} at ${time} hosted by ${host}. The speaker will be ${speaker} venue is at ${venue}. Purpose to attend kindly`,
+            html: `<b>Hello ${userName}, A new event has been scheduled for ${date} at ${time} hosted by ${host}. The speaker will be ${speaker} venue is at ${venue}. Purpose to attend kindly</b>`, 
+          });
+        })}
+      }
+
+      return newEvent
+  
+    }
+  } catch (error) {
+    console.error(error, 'Failed to convert draft to  event');
+    
+  }
+
+
+}
+
 export const updateEvent = async (formData: any) => {
   
 
