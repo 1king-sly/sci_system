@@ -118,6 +118,42 @@ export const addEvent = async (formData: FormData) => {
   }
 };
 
+export const countEvents= async (id:string)=>{
+
+  try{
+
+    const count = await prisma.event.count({
+      where:{
+        type:EventType[id as keyof typeof EventType]
+      }
+    })
+
+    return count
+
+  }catch(error:any){
+    console.error('Failed to count events', error)
+  }
+
+
+}
+export const countClubMembers= async (id:string)=>{
+
+  try{
+
+    const count = await prisma.user.count({
+      where:{
+        club:ClubType[id as keyof typeof ClubType]
+      }
+    })
+
+    return count
+
+  }catch(error:any){
+    console.error('Failed to count club members', error)
+  }
+
+
+}
 
 export const draftEvent = async (formData: FormData) => {
 

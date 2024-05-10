@@ -1,11 +1,24 @@
+'use server'
+import { countEvents, countClubMembers } from '@/app/lib/actions'
+import { authOptions } from '@/app/utils/authUptions'
+import { getServerSession } from 'next-auth'
 import React from 'react'
 
-export default function page() {
+export default async function page() {
+  const user = await getServerSession(authOptions)
+  if(!user){
+    console.error('No user info detected')
+  }
+
+  const club = user.club
+
+  const events = await countEvents(club)
+  const members =  await countClubMembers(club)
   return (
     <>
         <div className="bg-sky-100 w-full">
             <div className="border-l-2 text-center py-2 text-3xl bg-slate-400">
-            <p>Name of Club</p>
+            <p className='uppercase'>{club}</p>
             </div>
             <div className="flex justify-between items-center px-10 py-10">
             
@@ -17,7 +30,7 @@ export default function page() {
                 <div>
                   <div className="flex">
                     <h6 className="mr-2 text-4xl font-bold md:text-5xl text-deep-purple-accent-400">
-                    22
+                    {members}
                     </h6>
                     <div className="flex items-center justify-center rounded-full bg-teal-accent-400 w-7 h-7">
                       <svg className="text-teal-900 w-7 h-7" stroke="currentColor" viewBox="0 0 52 52">
@@ -34,7 +47,7 @@ export default function page() {
                 <div>
                   <div className="flex">
                     <h6 className="mr-2 text-4xl font-bold md:text-5xl text-deep-purple-accent-400">
-                    22
+                    {events}
                     </h6>
                     <div className="flex items-center justify-center rounded-full bg-teal-accent-400 w-7 h-7">
                       <svg className="text-teal-900 w-7 h-7" stroke="currentColor" viewBox="0 0 52 52">
