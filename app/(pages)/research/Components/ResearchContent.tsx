@@ -60,7 +60,7 @@ export default function ResearchContent() {
               <div
                 onMouseEnter={() => setHidden(true)}
                 onMouseLeave={() => setHidden(false)}>
-                <Link href="#">
+                <Link href="/research/urf">
                   <div className={clsx(`relative overflow-hidden transition duration-200 transform rounded border-2 shadow-lg  hover:shadow-2xl`,{} )}>
                     <Image className="object-cover w-full h-56 md:h-64 xl:h-56" src={CardsPic} alt="" />
                     <div className="absolute inset-0 px-6 py-24 text-center bg-black bg-opacity-60 hover:bg-opacity-100">
@@ -80,7 +80,7 @@ export default function ResearchContent() {
               <div
                 onMouseEnter={() => setNRFHidden(true)}
                 onMouseLeave={() => setNRFHidden(false)}>
-                <Link href="#" >
+                <Link href="/research/nrf" >
                   <div className="relative overflow-hidden transition duration-200 transform rounded border-2 shadow-lg  hover:shadow-2xl">
                     <Image className="object-cover w-full h-56 md:h-64 xl:h-56" src={CardsPic} alt="" />
                     <div className="absolute inset-0 px-6 py-24 text-center bg-black bg-opacity-60 hover:bg-opacity-100">
@@ -100,7 +100,7 @@ export default function ResearchContent() {
               <div
                 onMouseEnter={() => setIRFHidden(true)}
                 onMouseLeave={() => setIRFHidden(false)}>
-                <Link href="#">
+                <Link href="/research/irf">
                 <div className={clsx(`relative overflow-hidden transition duration-200 transform rounded border-2 shadow-lg hover:shadow-2xl`, )}>
                     <Image className="object-cover w-full h-56 md:h-64 xl:h-56" src={CardsPic} alt="" />
                     <div className="absolute inset-0 px-6 py-24 text-center bg-black bg-opacity-60 hover:bg-opacity-100">
