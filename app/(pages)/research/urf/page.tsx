@@ -51,43 +51,6 @@ export default function Page({searchParams}:{searchParams:string}) {
             Step into the world of university research funding, where innovation and exploration are nurtured. University research funds serve as vital resources that propel cutting-edge research initiatives within academic institutions. 
             These funds are tailored to support the diverse array of research projects conducted by faculty, researchers, and students across various disciplines. From groundbreaking scientific discoveries to insightful social science inquiries and innovative technological advancements, university research funding fuels the pursuit of knowledge and fosters academic excellence. Join us as we delve into the dynamic landscape of university research funding and uncover the transformative impact it has on shaping the future of education and scholarship. <button className='p-2 rounded-full text-white bg-sky-300 m-2' onClick={toggleVisible}>Propose Research</button>                       
         </p>
-        <div className='py-5'>
-            <h1 className='text-3xl font-bold uppercase mb-5'>Latest Projects</h1>
-            <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4'>
-                <div className='w-full h-full lg:border-2 rounded-lg py-5  bg-white'>
-                    <div className='w-full px-3'>
-                        <Image src={Banner} alt='Blog-Banner' className='w-full h-full object-cover ' width={1400} height={1400} />
-                    </div>
-                    <Link href={'/research/urf/id'}>
-                        <h1 className=' px-3 text-xl text-center font-semibold hover:font-bold'>Name of the the URF Research project</h1>
-                    </Link>
-                </div>
-                <div className='w-full h-full lg:border-2 rounded-lg py-5  bg-white'>
-                    <div className='w-full px-3'>
-                        <Image src={Banner} alt='Blog-Banner' className='w-full h-full object-cover ' width={1400} height={1400} />
-                    </div>
-                    <Link href={'/research/urf/id'}>
-                        <h1 className=' px-3 text-xl text-center font-semibold hover:font-bold'>Name of the the URF Research project</h1>
-                    </Link>
-                </div>                
-                <div className='w-full h-full lg:border-2 rounded-lg py-5  bg-white'>
-                    <div className='w-full px-3'>
-                        <Image src={Banner} alt='Blog-Banner' className='w-full h-full object-cover ' width={1400} height={1400} />
-                    </div>
-                    <Link href={'/research/urf/id'}>
-                        <h1 className=' px-3 text-xl text-center font-semibold hover:font-bold'>Name of the the URF Research project</h1>
-                    </Link>
-                </div>                
-                <div className='w-full h-full lg:border-2 rounded-lg py-5  bg-white'>
-                    <div className='w-full px-3'>
-                        <Image src={Banner} alt='Blog-Banner' className='w-full h-full object-cover ' width={1400} height={1400} />
-                    </div>
-                    <Link href={'/research/urf/id'}>
-                        <h1 className=' px-3 text-xl text-center font-semibold hover:font-bold'>Name of the the URF Research project</h1>
-                    </Link>
-                </div>
-            </div>
-        </div>
         <div className='w-full h-auto my-5 border-2'>
             <div className='p-5'>
             <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
