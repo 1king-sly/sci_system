@@ -10,12 +10,11 @@ import { fetchResearchs } from '@/app/lib/actions';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 
-
 export default function Page({searchParams}:{searchParams:string}) {
   const params = new URLSearchParams(searchParams);
   const q = params.get('query') || '';
   const [visible,setVisible] = useState(false)
-  const [perPeriod,setperPeriod] = useState(false)
+  const [perPeriod,setperPeriod] = useState<number | null>(null);
   const [researchs,setResearchs]= useState<{
     id: number;
     title:string,
@@ -25,8 +24,15 @@ export default function Page({searchParams}:{searchParams:string}) {
   const toggleVisible = () => {
     setVisible((prevVisible) => !prevVisible);
   }
-  const togglePerPeriod = (period:string) => {
-    setperPeriod((prev) => !prev);
+  const togglePerPeriod = (index:number) => {
+
+
+    if(perPeriod === index){
+      setperPeriod(null)
+    }else{
+      setperPeriod(index)
+
+    }
   }
   const fetchResearch = async ()=>{
     const data = await fetchResearchs('NRF',q)
@@ -64,10 +70,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2023-2024</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2023-2024')}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2023-2024')}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod === 1  && 'hidden')} onClick={()=>togglePerPeriod(1)}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod !== 1 && 'hidden')} onClick={()=>togglePerPeriod(1)}></MinusIcon>
                      </div>
-                     <div className={clsx(`flex-col mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
+                     <div className={clsx(`flex-col mx-5 my-3 text-sky-300 text-lg`,perPeriod !== 1 && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -77,10 +83,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2022-2023</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2022-2023')}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2022-2023')}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod === 2 && 'hidden')} onClick={()=>togglePerPeriod(2)}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod !== 2 && 'hidden')} onClick={()=>togglePerPeriod(2)}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,perPeriod !== 2 && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -90,10 +96,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2021-2022</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2021-2022')}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2021-2022')}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod === 3 && 'hidden')} onClick={()=>togglePerPeriod(3)}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod !== 3 && 'hidden')} onClick={()=>togglePerPeriod(3)}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,perPeriod !== 3 && 'hidden')}>
                          <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
                          <Link href={''} className='my-1'><h1>May</h1></Link>
@@ -103,10 +109,10 @@ export default function Page({searchParams}:{searchParams:string}) {
                      <div className='w-full my-5'>
                      <div className='bg-gray-900 text-white w-full h-10 relative'>
                          <h1 className='my-3 absolute text-xl px-5'>2020-2021</h1>
-                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2020-2021')}></PlusIcon>
-                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,!perPeriod && 'hidden')} onClick={()=>togglePerPeriod('2020-2021')}></MinusIcon>
+                         <PlusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod === 4 && 'hidden')} onClick={()=>togglePerPeriod(4)}></PlusIcon>
+                         <MinusIcon className={clsx(`w-10 h-10 text-white absolute right-5 cursor-pointer`,perPeriod !== 4 && 'hidden')} onClick={()=>togglePerPeriod(4)}></MinusIcon>
                      </div>
-                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,!perPeriod && 'hidden')}>
+                     <div className={clsx(`mx-5 my-3 text-sky-300 text-lg`,perPeriod !== 4 && 'hidden')}>
                          <Link href={''} className='my-1'><h1>January</h1></Link>
                         <Link href={''} className='my-1'><h1>September</h1></Link>
                          <Link href={''} className='my-1'><h1>June</h1></Link>
