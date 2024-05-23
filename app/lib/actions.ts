@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt'
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/utils/authUptions";
-import { ClubType, EventType, RoleType, School, UserType,Level, ResearchType } from '@prisma/client';
+import { ClubType, EventType, RoleType, School, UserType,Level, ResearchType, Status } from '@prisma/client';
 
 const cron = require('node-cron');
 
@@ -425,6 +425,29 @@ export const deleteBlog = async (id:number)=>{
     console.error('Failed to delete event', error)
   }
   
+}
+
+export const updateResearch = async(id:string,status:string) =>{
+
+  if(id === null || status === null || status ===''){
+    throw new Error('Invalid field passed')
+  }
+
+  try{
+    const update = await prisma.research.update({
+      where:{
+        id:parseInt(id)
+      },
+      data:{
+        status:Status[status as keyof typeof Status]
+      }
+    })
+    return update
+
+  }catch(error:any){
+    console.error('Failed to update project status: ',error)
+  }
+
 }
 
 export const updateEvent = async (formData: any) => {
