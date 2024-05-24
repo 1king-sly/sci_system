@@ -427,6 +427,23 @@ export const deleteBlog = async (id:number)=>{
   
 }
 
+export const fetchUser = async (id:string)=>{
+
+  try{
+    const user = await prisma.user.findUnique({
+      where:{
+        id:parseInt(id)
+      }
+    })
+
+    return user
+
+
+  }catch(error:any){
+    console.error('Failed to fetch User: ',error)
+  }
+}
+
 export const updateResearch = async(id:string,status:string) =>{
 
   if(id === null || status === null || status ===''){
@@ -434,6 +451,14 @@ export const updateResearch = async(id:string,status:string) =>{
   }
 
   try{
+
+    const user = await fetchUser(id)
+
+    const userEmail = user?.email
+
+    const firstName = user?.userName
+
+
     const update = await prisma.research.update({
       where:{
         id:parseInt(id)
@@ -442,6 +467,95 @@ export const updateResearch = async(id:string,status:string) =>{
         status:Status[status as keyof typeof Status]
       }
     })
+    if(update){
+      if(status === 'ACCEPTED'){
+        const transporter:any = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          tls: {
+            ciphers: "SSLv3",
+            rejectUnauthorized: false,
+        },
+          secure: false, 
+          auth: {
+            user: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+            pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+          },
+        });
+  
+        const info = await transporter.sendMail({
+          from: {
+            name:'Byrone Kinsly',
+            address:process.env.NEXT_PUBLIC_PERSONAL_EMAIL
+          }, 
+          to: userEmail, 
+          subject: "Online Project Proposal System Project Reviewed", 
+          text:` Hello ${firstName}, your project has been accepted, checkout the system for more details`,
+          html: `<b>Hello ${firstName}, your project has been accepted, checkout the system for more details</b>`, 
+        });
+      
+       
+       
+      }else if(status ==='REJECTED'){
+
+        const transporter:any = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          tls: {
+            ciphers: "SSLv3",
+            rejectUnauthorized: false,
+        },
+          secure: false, 
+          auth: {
+            user: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+            pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+          },
+        });
+  
+        const info = await transporter.sendMail({
+          from: {
+            name:'Byrone Kinsly',
+            address:process.env.NEXT_PUBLIC_PERSONAL_EMAIL
+          }, 
+          to: userEmail, 
+          subject: "Online Project Proposal System Project Reviewed", 
+          text:` Hello ${firstName}, your project has been declined, checkout the system for more details`,
+          html: `<b>Hello ${firstName}, your project has been declined, checkout the system for more details</b>`, 
+        });
+      
+        
+
+      }else{
+
+        const transporter:any = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          tls: {
+            ciphers: "SSLv3",
+            rejectUnauthorized: false,
+        },
+          secure: false, 
+          auth: {
+            user: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+            pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+          },
+        });
+  
+        const info = await transporter.sendMail({
+          from: {
+            name:'Byrone Kinsly',
+            address:process.env.NEXT_PUBLIC_PERSONAL_EMAIL
+          }, 
+          to: userEmail, 
+          subject: "Online Project Proposal System Project Reviewed", 
+          text:` Hello ${firstName}, your project has been sent to external moderator,feedback will be back within 14 days, checkout the system for more details`,
+          html: `<b>Hello ${firstName}, your project has been sent to external moderator,feedback will be back within 14 days, checkout the system for more details</b>`, 
+        });
+      
+       
+        
+      }
+      }
     return update
 
   }catch(error:any){
